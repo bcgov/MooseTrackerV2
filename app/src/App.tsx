@@ -3,6 +3,7 @@ import "./App.css";
 import { FormPanel } from "./UI/Form";
 import { MapPanel } from "./UI/Map";
 import './index.css'
+import { SubmitSightingDialog } from "./UI/SubmitSightingDialog";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <div className="rootContainer">
         <MapPanel/>
         <FormPanel/>
+        <SubmitSightingDialog/>
       </div>
   );
 }

@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER } from "../state/actions";
-import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
+import { GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER, TOGGLE_SIGHTING_DIALOG, ACTIVITY_UPDATE_MOOSE } from "../state/actions";
 
 export const FormPanel = (props: any) => {
   const ref = useRef(0);
@@ -76,6 +75,14 @@ export const FormPanel = (props: any) => {
             );
           })}
         </div>
+        <button
+          className="submit-sighting-button"
+          onClick={() => {
+            dispatch({ type: TOGGLE_SIGHTING_DIALOG });
+          }}
+        >
+          Submit Sighting
+        </button>
       </div>
     </div>
   );

@@ -3,7 +3,10 @@ import {
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
 } from "../actions";
-import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
+import {
+  ACTIVITY_UPDATE_MOOSE,
+  TOGGLE_SIGHTING_DIALOG,
+} from "../actions/index";
 
 import { AppConfig } from "../config";
 
@@ -11,11 +14,15 @@ class MooseSightingState {
   recordingMooseInProgress: boolean;
   location: any;
   mooseArray: any[];
+  sightings: any[];
+  sightingDialogToggle: boolean;
 
   constructor() {
     this.location = "";
     this.recordingMooseInProgress = false;
     this.mooseArray = [];
+    this.sightings = [];
+    this.sightingDialogToggle = false;
   }
 }
 const initialState = new MooseSightingState();
@@ -47,7 +54,7 @@ function createMooseSightingStateReducer(
       case ACTIVITY_LOCATION_SET: {
         return {
           ...state,
-          location: { ...action.payload } ,
+          location: { ...action.payload },
         };
       }
       case ACTIVITY_UPDATE_MOOSE: {
@@ -68,6 +75,12 @@ function createMooseSightingStateReducer(
         return {
           ...state,
           mooseArray: meese,
+        };
+      }
+      case TOGGLE_SIGHTING_DIALOG: {
+        return {
+          ...state,
+          sightingDialogToggle: !state.sightingDialogToggle,
         };
       }
       default:
