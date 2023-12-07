@@ -10,12 +10,12 @@ import {
   GET_GEOLOCATION
 } from "../actions";
 
-function* handle_USER_CLICK_RECORD_MOOSE(action: any) {
+function* handle_USER_CLICK_RECORD_MOOSE (action: any) {
   yield put({ type: ACTIVITY_LOCATION_SET, payload: location });
 }
 
 
-function* getGeoLocation() {
+function* getGeoLocation(action: any) {
  const coordChannel = channel();
 
   console.log("in the get geo function");
@@ -51,8 +51,8 @@ function* getGeoLocation() {
 }
 
 
-function* activityPageSaga() {
+function* mooseSightingSaga() {
   yield all([takeEvery(GET_GEOLOCATION, getGeoLocation)]);
 }
 
-export default activityPageSaga;
+export default mooseSightingSaga;

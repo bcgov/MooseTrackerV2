@@ -3,12 +3,12 @@ import { combineReducers } from 'redux';
 import { AppConfig } from '../config';
 
 import { createConfigurationReducerWithDefaultState } from './configuration';
-import { createActivityReducer } from './activity';
+import { createMooseSightingStateReducer } from './MooseSightings';
 
 function createRootReducer(config: AppConfig) {
   return combineReducers({
     Configuration: createConfigurationReducerWithDefaultState(config),
-    Activity: createActivityReducer(config)
+    MooseSightingsState: createMooseSightingStateReducer(config)
   });
 }
 

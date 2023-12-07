@@ -7,7 +7,7 @@ import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
 
 import { AppConfig } from "../config";
 
-class ActivityState {
+class MooseSightingState {
   recordingMooseInProgress: boolean;
   location: any;
   mooseArray: any[];
@@ -18,11 +18,11 @@ class ActivityState {
     this.mooseArray = [];
   }
 }
-const initialState = new ActivityState();
+const initialState = new MooseSightingState();
 
-function createActivityReducer(
+function createMooseSightingStateReducer(
   configuration: AppConfig
-): (arg0: ActivityState, AnyAction: any) => ActivityState {
+): (arg0: MooseSightingState, AnyAction: any) => MooseSightingState {
   return (state = initialState, action) => {
     switch (action.type) {
       case USER_CLICK_ADD_MOOSE: {
@@ -75,7 +75,7 @@ function createActivityReducer(
   };
 }
 
-const selectActivity: (state: any) => ActivityState = (state) =>
-  state.ActivityPage;
+const selectMooseSightingState: (state: any) => MooseSightingState = (state) =>
+  state.MooseSightingState;
 
-export { createActivityReducer, selectActivity };
+export { createMooseSightingStateReducer, selectMooseSightingState };

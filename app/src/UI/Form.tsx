@@ -15,7 +15,7 @@ export const FormPanel = (props: any) => {
     dispatch({ type: ACTIVITY_UPDATE_MOOSE, payload: { id: mooseId, age: mooseAge } });
   };
 
-  const mooseArray = useSelector((state: any) => state.Activity.mooseArray);
+  const mooseArray = useSelector((state: any) => state.MooseSightingsState.mooseArray);
 
   return (
     <div className="FormPanel">

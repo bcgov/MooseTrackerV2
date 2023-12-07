@@ -4,7 +4,7 @@ import { createRootReducer } from './reducers';
 
 import { createLogger } from 'redux-logger';
 import { AppConfig } from './config';
-import activityPageSaga from './sagas/activity';
+import mooseSightingSaga from './sagas/mooseSightingsSaga';
 
 const setupStore = (configuration: AppConfig) => {
   const logger = createLogger({
@@ -24,7 +24,7 @@ const setupStore = (configuration: AppConfig) => {
     store = createStore(createRootReducer(configuration), applyMiddleware(sagaMiddleware));
   }
 
-  sagaMiddleware.run(activityPageSaga);
+  sagaMiddleware.run(mooseSightingSaga);
 
 
   return store;
