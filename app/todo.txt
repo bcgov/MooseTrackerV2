@@ -33,8 +33,8 @@
     # Gabe
     - [ ] confirm/submit - dispatch action
         - [x] modal / ui prompt and dispatch on confirm
-        - [ ] data in state for current sighting is 'packaged' up into a 'sighting' object
-        - [ ] sighting objects are in a list in state
+        - [x] data in state for current sighting is 'packaged' up into a 'sighting' object
+        - [x] sighting objects are in a list in state
 
         - [ ] on update write to localstorage
         - [ ] on load read from state

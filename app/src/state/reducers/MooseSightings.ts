@@ -2,12 +2,11 @@ import {
   ACTIVITY_LOCATION_SET,
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
-} from "../actions";
-import {
   ACTIVITY_UPDATE_MOOSE,
   TOGGLE_SIGHTING_DIALOG,
-} from "../actions/index";
-
+  USER_UPDATE_SIGHTINGS,
+  CLEAR_CURRENT_SIGHTING,
+} from "../actions";
 import { AppConfig } from "../config";
 
 class MooseSightingState {
@@ -81,6 +80,18 @@ function createMooseSightingStateReducer(
         return {
           ...state,
           sightingDialogToggle: !state.sightingDialogToggle,
+        };
+      }
+      case USER_UPDATE_SIGHTINGS: {
+        return {
+          ...state,
+          sightings: [...state.sightings, action.payload.sighting],
+        };
+      }
+      case CLEAR_CURRENT_SIGHTING: {
+        return {
+          ...state,
+          mooseArray: [],
         };
       }
       default:
