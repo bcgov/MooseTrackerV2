@@ -5,9 +5,9 @@
             - [x] Title or something to indicate # L
         - [ ] Button to persist to disk (save) # J
             - [ ] A redux saga action handler - action dispatched and side effect handler writes to disk
-        - [ ] UI to list all sightings and if submitted or not # G
-            - [ ] Another page to list all previous sightings, summarize them in one line and list them # 
-            - [ ] Shows status (synced or not)
+        - [x] UI to list all sightings and if submitted or not # G
+            - [x] Another page to list all previous sightings, summarize them in one line and list them # 
+            - [x] Shows status (synced or not)
 
         # Getting in to API stuff
         - [ ] UI to submit all sightings
