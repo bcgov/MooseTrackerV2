@@ -83,13 +83,6 @@ export const FormPanel = (props: any) => {
             >
               Mark Location
             </button>
-          <button
-            className='saveSightingsButton'
-            onClick={() => {
-              saveSightingToDisk()
-            }}>
-            Save
-          </button>
           </div>
         </div>
         <div className="meese">
@@ -140,6 +133,9 @@ export const FormPanel = (props: any) => {
         <div className="formFooter">
           <button
             className="saveMooseButton"
+            onClick={() => {
+              saveSightingToDisk()
+            }}
           >
             Save
           </button>
