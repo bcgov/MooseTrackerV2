@@ -18,6 +18,8 @@
   height: 50px;
   padding: 0.5em;
   text-align: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 .meese {
@@ -61,4 +63,12 @@
 
 #ageSelector {
   margin-left: 5px
+}
+
+h2.formHeading {
+  text-align: left;
+  font-size: x-large;
+  font-weight: bold;
+  color: white;
+  margin-left: 20px;
 }

@@ -2,7 +2,7 @@
 
     - [ ] App making API call to submit sightings
         - [ ] UI To tell user they are making a sighting:
-            - [ ] Title or something to indicate # L
+            - [x] Title or something to indicate # L
         - [ ] Button to persist to disk (save) # J
             - [ ] A redux saga action handler - action dispatched and side effect handler writes to disk
         - [ ] UI to list all sightings and if submitted or not # G

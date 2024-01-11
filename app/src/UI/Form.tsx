@@ -65,22 +65,24 @@ export const FormPanel = (props: any) => {
     <div className="FormPanel">
       <div className="inputsContainer">
         <div className="headerBar">
-          <button
-            className="addMooseButton"
-            onClick={() => {
-              dispatch({ type: USER_CLICK_ADD_MOOSE });
-            }}
-          >
-            Add Moose
-          </button>
-          <button
-            className="recordLocationButton"
-            onClick={() => {
-              dispatch({ type: GET_GEOLOCATION });
-            }}
-          >
-            Mark Location
-          </button>
+          <h2 className="formHeading">Add a Moose Sighting</h2>
+          <div className="headerButtons">
+            <button
+              className="addMooseButton"
+              onClick={() => {
+                dispatch({ type: USER_CLICK_ADD_MOOSE });
+              }}
+            >
+              Add Moose
+            </button>
+            <button
+              className="recordLocationButton"
+              onClick={() => {
+                dispatch({ type: GET_GEOLOCATION });
+              }}
+            >
+              Mark Location
+            </button>
           <button
             className='saveSightingsButton'
             onClick={() => {
@@ -88,6 +90,7 @@ export const FormPanel = (props: any) => {
             }}>
             Save
           </button>
+          </div>
         </div>
         <div className="meese">
           {mooseArray.map((moose: any) => {
