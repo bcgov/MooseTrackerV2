@@ -8,6 +8,7 @@ import { Footer } from "./UI/Footer";
 import { Regs } from "./UI/Regs";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { About } from "./UI/About";
+import { Sightings } from "./UI/Sightings";
 
 function App() {
   const ref = useRef(0);
@@ -30,6 +31,7 @@ function App() {
           />
           <Route path="/Regulations" element={<Regs />} />
           <Route path="/About" element={<About />} />
+          <Route path="/Sightings" element={<Sightings />} />
         </Routes>
         <Footer />
       </BrowserRouter>

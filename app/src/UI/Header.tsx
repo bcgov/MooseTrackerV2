@@ -12,6 +12,10 @@ export const Header = (props: any) => {
     navigate('/');
   }
 
+  const goToSightings = () => {
+    navigate("/Sightings");
+  }
+
     return(
         <div className="headerWrapper">
             <div className="iconContainer">
@@ -23,6 +27,11 @@ export const Header = (props: any) => {
             <div className="about-button-container">
                 <button className="about-button" onClick={goHome}>
                   About
+                </button>
+            </div>
+            <div className="about-button-container">
+                <button className="about-button" onClick={goToSightings}>
+                  Sightings
                 </button>
             </div>
         </div>

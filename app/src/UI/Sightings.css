@@ -1,0 +1,17 @@
+.sightings-container {
+  padding: 2rem;
+}
+
+.sighting-header > {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sighting-date, .sighting-status {
+  flex-grow: 1;
+  display: inline;
+}
+
+.sighting-date {
+  flex-grow: 4;
+}
