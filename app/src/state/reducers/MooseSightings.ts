@@ -4,6 +4,7 @@ import {
   ACTIVITY_LOCATION_SET,
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
+  ACTIVITY_CLEAR_MOOSE_ARRAY
 } from "../actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
 
@@ -87,6 +88,12 @@ function createMooseSightingStateReducer(
         return {
           ...state,
           mooseArray: meese
+        }
+      }
+      case ACTIVITY_CLEAR_MOOSE_ARRAY: {
+        return {
+          ...state,
+          mooseArray: []
         }
       }
       default:
