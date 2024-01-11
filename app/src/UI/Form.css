@@ -9,7 +9,6 @@
 .inputsContainer {
   height: 75%;
   width: 80%;
-  justify-content: center;
   background-color: yellow;
 }
 
@@ -71,4 +70,23 @@ h2.formHeading {
   font-weight: bold;
   color: white;
   margin-left: 20px;
+}
+
+.formFooter {
+  background-color: #003366;
+  height: 50px;
+  padding: 0.5em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.saveMooseButton {
+  background-color:#FCBA19;
+  border-color: initial;
+  color: #003366;
+  height: 100%;
+  padding:0.3em 1.2em;
+  border-radius:2em;
+  margin: 5px
 }

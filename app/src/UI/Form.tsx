@@ -137,6 +137,13 @@ export const FormPanel = (props: any) => {
             );
           })}
         </div>
+        <div className="formFooter">
+          <button
+            className="saveMooseButton"
+          >
+            Save
+          </button>
+        </div>
       </div>
     </div>
   );
