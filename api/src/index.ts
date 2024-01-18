@@ -4,6 +4,7 @@ import apiDoc from "../api-doc";
 import * as bodyParser from "body-parser";
 import { createDb, openDb } from "./Db/db";
 
+
 const port = 7080;
 
 const setupDb = async function () {
@@ -12,7 +13,13 @@ const setupDb = async function () {
   createDb(connection)
 }
 
+const cors = require('cors');
+
 const app: express.Express = express();
+
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
 
 app.use(bodyParser.json());
 
