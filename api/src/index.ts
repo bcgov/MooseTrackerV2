@@ -26,6 +26,11 @@ initialize({
   routesIndexFileRegExp: /(?:index)?\.[tj]s$/, // updated default to allow .ts
 });
 
+app.use((err, req, res, next) => {
+  console.error(`Error in path ${req.path}:`, err);
+  res.status(500).send('Something broke!');
+});
+
 console.log("initialized");
 if (port) {
   setupDb().then(() => {

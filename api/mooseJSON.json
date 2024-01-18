@@ -1,12 +1,15 @@
 {
   "clientID": 1,
   "date": "2023-11-16",
-  "location": [54.1, 100],
+  "location": [
+    54.1,
+    100
+  ],
   "moose": [
     {
-    "lifestage": "Adult",
-    "health": "Good",
-    "gender": "Bull"
+      "lifestage": "Adult",
+      "health": "Good",
+      "gender": "Bull"
     },
     {
       "lifestage": "buck",

@@ -26,6 +26,7 @@ class MooseSightingState {
 }
 const initialState = new MooseSightingState();
 
+
 function createMooseSightingStateReducer(
   configuration: AppConfig
 ): (arg0: MooseSightingState, AnyAction: any) => MooseSightingState {

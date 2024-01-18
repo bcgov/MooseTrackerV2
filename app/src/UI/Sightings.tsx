@@ -18,8 +18,8 @@ export const Sightings = (props: any) => {
   return (
     <div className="sightings-container">
       <h1>All Sightings</h1>
-      {storedSightings.length > 0 ?
-      storedSightings.map((sighting: any) => {
+      {storedSightings.sightings.length > 0 ?
+      storedSightings.sightings.map((sighting: any) => {
         return (
         <Accordion key={sighting.id} className="sighting">
           <AccordionSummary className="sighting-header" aria-controls="panel-content">

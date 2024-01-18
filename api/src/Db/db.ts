@@ -38,8 +38,29 @@ export async function insertMeese(dbConnection: Database, postbody: any) {
   dbConnection.run(insertSQL);
 }
 
+export async function insertSightingMoose(dbConnection: Database, postbody: any) {
+  try {
+    let values = [];
+    postbody.sightings.forEach(sighting => {
+      sighting.mooseArray.forEach(moose => {
+        values.push([1, sighting.id, new Date(sighting.dateOfSighting * 1000), sighting.location[0], sighting.location[1], moose?.age || null, moose?.gender || null, 'Healthy']);
+      });
+    });
 
-export async function findUserMeese (dbConnection: Database, user: any) {
+    const placeholders = values.map(tuple => '(' + tuple.map(() => '?').join(', ') + ')').join(', ');
+    const insertSQL = `INSERT INTO Moose (clientId, sightingId, date, lat, long, lifestage, gender, health) VALUES ${placeholders}`;
+
+    await dbConnection.run(insertSQL, [].concat(...values));
+    console.log("Insertion successful");
+  } catch (error) {
+    console.error("Error during database insertion: ", error);
+    throw error;
+  }
+}
+
+
+
+export async function findUserMeese(dbConnection: Database, user: any) {
   let findUserSQL = 'SELECT * FROM Moose WHERE clientId = ?'
   console.log(findUserSQL);
   dbConnection.run(findUserSQL, user);

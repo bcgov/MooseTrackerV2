@@ -1,0 +1,26 @@
+{
+    "sightings": [
+        {
+            "id": "sighting1",
+            "dateOfSighting": 1673942400,
+            "status": "observed",
+            "syncDate": 1674028800,
+            "location": [
+                54.1,
+                100
+            ],
+            "mooseArray": [
+                {
+                    "id": 101,
+                    "age": "Adult",
+                    "gender": "Male"
+                },
+                {
+                    "id": 102,
+                    "age": "Calf",
+                    "gender": "Female"
+                }
+            ]
+        }
+    ]
+}
