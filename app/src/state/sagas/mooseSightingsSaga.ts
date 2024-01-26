@@ -13,6 +13,8 @@ import {
   GET_GEOLOCATION,
   ACTIVITY_CLEAR_MOOSE_ARRAY,
   WRITE_SIGHTINGS_TO_DISK,
+  USER_SAVE_SIGHTINGS_SUCCESS,
+  USER_SAVE_SIGHTINGS_FAIL
 } from "../actions";
 
 function* handle_USER_CLICK_RECORD_MOOSE (action: any) {
@@ -64,10 +66,28 @@ function* write_sightings_to_disk(): Generator<any> {
 
 
 function* handle_USER_SAVE_SIGHTINGS(action: any) {
+  
+  const mooseSightings: any = yield select((state: any) => state.MooseSightingsState);
 
-  // validate input
+  const mooseArray = mooseSightings.mooseArray;
+  const mooseLocation = mooseSightings.mooseLocation;
 
-  yield put({ type: WRITE_SIGHTINGS_TO_DISK });
+  let errors = [];
+
+  if (mooseArray.length < 1) {
+    errors.push('Moose array cannot be empty.');
+  }
+  if (mooseLocation === undefined) {
+    errors.push('Moose location cannot be empty.');
+  }
+
+  if (!errors) {
+    yield put({ type: USER_SAVE_SIGHTINGS_SUCCESS });
+  }
+  else {
+    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: {errors: errors} });
+  }
+
 }
 
 

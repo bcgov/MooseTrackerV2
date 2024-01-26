@@ -6,6 +6,8 @@ import {
   USER_CLICK_RECORD_MOOSE,
   USER_SAVE_SIGHTINGS,
   ACTIVITY_CLEAR_MOOSE_ARRAY,
+  USER_SAVE_SIGHTINGS_SUCCESS,
+  USER_SAVE_SIGHTINGS_FAIL,
 } from "../actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
 
@@ -51,7 +53,7 @@ function createMooseSightingStateReducer(
           recordingMooseInProgress: true,
         };
       }
-      case USER_SAVE_SIGHTINGS: {
+      case USER_SAVE_SIGHTINGS_SUCCESS: {
         //const sightings  = state.allSightings? state.allSightings : [];
         return {
           ...state,
@@ -69,6 +71,14 @@ function createMooseSightingStateReducer(
             },
           ],
         };
+      }
+      case USER_SAVE_SIGHTINGS_FAIL: {
+        // TODO: replace alert() with snackbar
+        alert(`save fail :( \n${action.payload.errors.join('\n')}`);
+        
+        return {
+          ...state, error: action.payload.error
+        }
       }
       case ACTIVITY_LOCATION_SET: {
         return {
