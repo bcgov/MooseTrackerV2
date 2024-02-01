@@ -148,10 +148,9 @@ function createMooseSightingStateReducer(
         };
       }
       case SIGHTING_SYNC_SUCCESSFUL: {
-        const updatedSightings = action.payload?.data
-        console.log(updatedSightings)
         return {
-          ...state
+          ...state,
+          allSightings: state.allSightings.map((sighting) => { return {...sighting, 'status':"Synced"} })
         }
       }
       default:

@@ -62,9 +62,9 @@ function* getGeoLocation(action: any) {
 
 
 
-function* write_sightings_to_disk(): Generator<any> {
-  const sightings: any = yield select((state: any) => state.MooseSightingsState.allSightings);
-  localStorage.setItem("Sightings", JSON.stringify(sightings));
+function* write_sightings_to_disk(action: any): Generator<any> {
+    const sightings: any = yield select((state: any) => state.MooseSightingsState.allSightings);
+    localStorage.setItem("Sightings", JSON.stringify(sightings));
 }
 
 
@@ -93,56 +93,51 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
 
 }
 
+function prepareSightingsForApi(sightings: any) {
+  return sightings.map(sighting => {
+    return {
+      id: sighting.id,
+      dateOfSighting: sighting.dateOfSighting,
+      status: "Synced",
+      syncDate: Date.now(),
+      location: [sighting.location.latitude, sighting.location.longitude],
+      mooseArray: sighting.mooseArray.map(moose => ({
+        id: moose.id,
+        age: moose.age,
+        gender: moose.gender || "unknown"
+      }))
+    };
+  });
+}
 
-function* handle_SYNC_SIGHTINGS_TO_DB(action: any): any {
-
-  const dispatch = useDispatch()
-
-  const storedSightings: any = yield select((state: any) => state.MooseSightingsState.allSightings);
-
-  function prepareSightingsForApi(sightings: any) {
-    return sightings.map(sighting => {
-      return {
-        id: sighting.id,
-        dateOfSighting: sighting.dateOfSighting,
-        status: sighting.status,
-        syncDate: sighting.syncDate,
-        location: [sighting.location.latitude, sighting.location.longitude],
-        mooseArray: sighting.mooseArray.map(moose => ({
-          id: moose.id,
-          age: moose.age,
-          gender: moose.gender || "unknown"
-        }))
-      };
-    });
-  }
-
-  (async () => {
-    try {
-      const validatedSightings = prepareSightingsForApi(storedSightings)
-      const response = await fetch('http://localhost:7080/recordSightings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ sightings: validatedSightings }),
-      });
-
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        console.error('Error response:', errorResponse);
-        throw new Error(errorResponse)
-      }
-
-      const data = await response.json();
-      dispatch({ type: SIGHTING_SYNC_SUCCESSFUL, payload: { data: data }})
-      console.log('Sightings synced successfully:', data);
-    } catch (error: any) {
-      console.log(error)
+function fetchSightings(validatedSightings: any) {
+  return fetch('http://localhost:7080/recordSightings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ sightings: validatedSightings }),
+  })
+  .then(response => {
+    if (!response.ok) {
+      return response.json().then(errorResponse => Promise.reject(new Error(errorResponse)));
     }
-  })()
+    return response.json();
+  });
+}
 
+function* handle_SYNC_SIGHTINGS_TO_DB(action: any) {
+  try {
+    const storedSightings = yield select((state) => state.MooseSightingsState.allSightings);
+    const validatedSightings = prepareSightingsForApi(storedSightings);
 
+    const data = yield call(fetchSightings, validatedSightings);
+
+    yield put({ type: SIGHTING_SYNC_SUCCESSFUL, payload: { data: data }});
+    console.log('Sightings synced successfully:', data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function* mooseSightingSaga() {
@@ -152,6 +147,7 @@ function* mooseSightingSaga() {
       takeEvery(USER_SAVE_SIGHTINGS, handle_USER_SAVE_SIGHTINGS),
       takeEvery(WRITE_SIGHTINGS_TO_DISK, write_sightings_to_disk),
       takeEvery(SYNC_SIGHTINGS_TO_DB, handle_SYNC_SIGHTINGS_TO_DB),
+      takeEvery(SIGHTING_SYNC_SUCCESSFUL, write_sightings_to_disk)
     ]);
 
   }
