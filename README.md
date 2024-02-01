@@ -69,9 +69,7 @@ An updated version of the Moose Tracker application.
 Please follow these instructions on setting up in an IOS simulation.
 
 ### For IOS builds
-1. ```sh
-Brew install cocoapods
-```
+1. ```sh Brew install cocoapods ```
 
 2. ```sh
 cd MooseTrackerV2/app/ios/App
@@ -170,4 +168,4 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 * []()
 * []()
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p> --> -->
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
