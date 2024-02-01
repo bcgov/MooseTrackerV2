@@ -156,9 +156,12 @@ const MapMarkers = (props: any) => {
   //   </>
   // );
 
-  const NotSynchedMeese = (props: any) => (
+  const NotSynchedMeese = (props: any) => {
+    
+    console.log(typeof allSightings)
+      return(
     <>
-      {allSightings.map((sighting: any, index: number) => {
+      {allSightings?.map((sighting: any, index: number) => {
         return sighting.mooseArray.map((moose: any, mooseIndex: number) => {
           const position = getOffsetLocation(index, markerPosition);
           const mooseIcon = getMooseIcon(moose, 1);
@@ -166,7 +169,7 @@ const MapMarkers = (props: any) => {
         })
       })}
     </>
-  );
+  )};
 
   return (
     <>

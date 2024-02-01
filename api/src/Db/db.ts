@@ -4,11 +4,11 @@ import sqlite3 from  "sqlite3";
 
 // you would have to import / invoke this in another file
 export async function openDb() {
-  const db = new sqlite3.Database(':memory:');
-  return  db
+  const db = new sqlite3.Database('moose.db');
+  return db
 }
 
-export async function createDb(dbConnection: any) {
+export async function createDb(dbConnection: sqlite3.Database) {
   const createTableSql = `CREATE TABLE IF NOT EXISTS Moose
                             (clientId real not Null, 
                             sightingId integer not Null,
