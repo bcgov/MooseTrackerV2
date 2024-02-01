@@ -71,25 +71,15 @@ Please follow these instructions on setting up in an IOS simulation.
 ### For IOS builds
 1. ```sh Brew install cocoapods ```
 
-2. ```sh
-cd MooseTrackerV2/app/ios/App
-```
+2. ```sh cd MooseTrackerV2/app/ios/App ```
 
-3. ```sh
-pod install
-```
+3. ```sh pod install ```
 
-4. ```sh
-cd MooseTrackerV2/app
-```
+4. ```sh cd MooseTrackerV2/app ```
 
-5. ```sh
-npx cap sync
-```
+5. ```sh npx cap sync ```
 
-6. ```sh
-npx cap open ios
-```
+6. ```sh npx cap open ios ```
 
 7. In xcode hit play icon
 
