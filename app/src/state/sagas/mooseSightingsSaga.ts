@@ -70,7 +70,7 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   const mooseSightings: any = yield select((state: any) => state.MooseSightingsState);
 
   const mooseArray = mooseSightings.mooseArray;
-  const mooseLocation = mooseSightings.mooseLocation;
+  const mooseLocation = mooseSightings.location;
 
   let errors = [];
 
@@ -81,11 +81,11 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
     errors.push('Moose location cannot be empty.');
   }
 
-  if (!errors) {
-    yield put({ type: USER_SAVE_SIGHTINGS_SUCCESS });
+  if (errors.length) {
+    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: {errors: errors} });
   }
   else {
-    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: {errors: errors} });
+    yield put({ type: USER_SAVE_SIGHTINGS_SUCCESS });
   }
 
 }
