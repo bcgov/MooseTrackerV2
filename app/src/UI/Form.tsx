@@ -68,6 +68,14 @@ export const FormPanel = (props: any) => {
           <h2 className="formHeading">Add a Moose Sighting</h2>
           <div className="headerButtons">
             <button
+              className="clearSightingsButton"
+              onClick={() => {
+                dispatch({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
+              }}
+            >
+              Clear
+            </button>
+            <button
               className="addMooseButton"
               onClick={() => {
                 dispatch({ type: USER_CLICK_ADD_MOOSE });

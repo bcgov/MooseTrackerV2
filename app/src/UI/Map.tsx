@@ -31,6 +31,28 @@ const mooseIconCalf = new Icon({
   shadowSize: [41, 41],
 });
 
+const mooseNotSyncIconMale = new Icon({
+  iconUrl: "moosegreen.png",
+  iconSize: [30, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+const mooseNotSyncIconFemale = new Icon({
+  iconUrl: "fmoosegreen.png",
+  iconSize: [30, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+const mooseNotSyncIconCalf = new Icon({
+  iconUrl: "calfgreen.png",
+  iconSize: [30, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
 const ChangeView: React.FC<ChangeViewProps> = ({ center }) => {
   const map = useMap();
   map.setView(center);
@@ -54,6 +76,10 @@ const MapMarkers = (props: any) => {
   const mooseArray = useSelector(
     (state: any) => state.MooseSightingsState.mooseArray
   ).slice(0, 5);
+
+  const allSightings = useSelector(
+    (state: any) => state.MooseSightingsState.allSightings
+  );
 
   const mooseIcon = new Icon({
     iconUrl: 'moose.png',
@@ -85,7 +111,17 @@ const MapMarkers = (props: any) => {
     return [offsetPoint.lat, offsetPoint.lng];
   };
 
-  const getMooseIcon = (moose: any) => {
+  const getMooseIcon = (moose: any, status: any) => {
+    if (status && status === 1) {
+      if (moose.age === "Calf" && moose.age !== null) {
+        return mooseNotSyncIconCalf;
+      }
+      if (moose.gender === "female") {
+        return mooseNotSyncIconFemale;
+      } else {
+        return mooseNotSyncIconMale;
+      }
+    }
     if (moose.age === "Calf" && moose.age !== null) {
       return mooseIconCalf;
     }
@@ -104,13 +140,41 @@ const MapMarkers = (props: any) => {
     <>
       {mooseArray.map((moose: any, index: number) => {
         const position = getOffsetLocation(index, markerPosition);
-        const mooseIcon = getMooseIcon(moose);
+        const mooseIcon = getMooseIcon(moose, 0);
         return <Marker key={index} position={position} icon={mooseIcon} />;
       })}
     </>
   );
 
-  return <Meese key={zoomed} />;
+  // const synchedMeese = (props: any) => (
+  //   <>
+  //     {allSightings.map((moose: any, index: number) => {
+  //       const position = getOffsetLocation(index, markerPosition);
+  //       const mooseIcon = getMooseIcon(moose);
+  //       return <Marker key={index} position={position} icon={mooseIcon} />;
+  //     })}
+  //   </>
+  // );
+
+  const NotSynchedMeese = (props: any) => (
+    <>
+      {allSightings.map((sighting: any, index: number) => {
+        return sighting.mooseArray.map((moose: any, mooseIndex: number) => {
+          const position = getOffsetLocation(index, markerPosition);
+          const mooseIcon = getMooseIcon(moose, 1);
+          return <Marker key={index + mooseIndex} position={position} icon={mooseIcon} />;
+        })
+      })}
+    </>
+  );
+
+  return (
+    <>
+      <Meese key={zoomed} />
+      {/* <synchedMeese key={}/> */}
+      <NotSynchedMeese key={zoomed}/>
+    </>
+  )
 };
 
 const defaultLocation: [number, number] = [48.4284, -123.3656];

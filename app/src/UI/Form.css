@@ -55,6 +55,20 @@
   background-color:#f4cb64;
 }
 
+.clearSightingsButton {
+  background-color:#FCBA19;
+  border-color: initial;
+  color: #003366;
+  height: 100%;
+  padding:0.3em 1.2em;
+  border-radius:2em;
+  margin: 5px
+}
+
+.clearSightingsButton:hover {
+  background-color:#f4cb64;
+}
+
 .moose{
   margin: 1px;
   border: #223f75 1px solid;

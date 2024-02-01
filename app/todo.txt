@@ -10,7 +10,9 @@ today;
             - [ ] puts User save sighting success with updated state if pass, that action hits reducer
         - [ ] Write to disk - this gets fired on User save sighting success
         - [ ] For the user save sighting failure - hits reducer, writes to a current error property
-        - [ ] New snackbar component that listens to error property and pops up 
+        - [ ] New snackbar component that listens to error property and pops up
+        - [ ] new component add a map layer show moose (alt colour) in state (sightings) on map
+        - [ ] onclick or onhover date?
 
 
 today todo:
