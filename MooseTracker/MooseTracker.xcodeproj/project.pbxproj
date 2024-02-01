@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F5420EC2B6C14B900D60BFF /* MooseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5420EB2B6C14B900D60BFF /* MooseTrackerApp.swift */; };
+		1F5420EE2B6C14B900D60BFF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5420ED2B6C14B900D60BFF /* ContentView.swift */; };
+		1F5420F02B6C14BB00D60BFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5420EF2B6C14BB00D60BFF /* Assets.xcassets */; };
+		1F5420F42B6C14BB00D60BFF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5420F32B6C14BB00D60BFF /* Preview Assets.xcassets */; };
+		1F5420FE2B6C14BC00D60BFF /* MooseTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5420FD2B6C14BC00D60BFF /* MooseTrackerTests.swift */; };
+		1F5421082B6C14BC00D60BFF /* MooseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5421072B6C14BC00D60BFF /* MooseTrackerUITests.swift */; };
+		1F54210A2B6C14BC00D60BFF /* MooseTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5421092B6C14BC00D60BFF /* MooseTrackerUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1F5420FA2B6C14BC00D60BFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F5420E02B6C14B900D60BFF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F5420E72B6C14B900D60BFF;
+			remoteInfo = MooseTracker;
+		};
+		1F5421042B6C14BC00D60BFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F5420E02B6C14B900D60BFF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F5420E72B6C14B900D60BFF;
+			remoteInfo = MooseTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F5420E82B6C14B900D60BFF /* MooseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MooseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F5420EB2B6C14B900D60BFF /* MooseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooseTrackerApp.swift; sourceTree = "<group>"; };
+		1F5420ED2B6C14B900D60BFF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1F5420EF2B6C14BB00D60BFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F5420F12B6C14BB00D60BFF /* MooseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooseTracker.entitlements; sourceTree = "<group>"; };
+		1F5420F32B6C14BB00D60BFF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1F5420F92B6C14BC00D60BFF /* MooseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MooseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F5420FD2B6C14BC00D60BFF /* MooseTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooseTrackerTests.swift; sourceTree = "<group>"; };
+		1F5421032B6C14BC00D60BFF /* MooseTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MooseTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F5421072B6C14BC00D60BFF /* MooseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooseTrackerUITests.swift; sourceTree = "<group>"; };
+		1F5421092B6C14BC00D60BFF /* MooseTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooseTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1F5420E52B6C14B900D60BFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F5420F62B6C14BC00D60BFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F5421002B6C14BC00D60BFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F5420DF2B6C14B900D60BFF = {
+			isa = PBXGroup;
+			children = (
+				1F5420EA2B6C14B900D60BFF /* MooseTracker */,
+				1F5420FC2B6C14BC00D60BFF /* MooseTrackerTests */,
+				1F5421062B6C14BC00D60BFF /* MooseTrackerUITests */,
+				1F5420E92B6C14B900D60BFF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1F5420E92B6C14B900D60BFF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F5420E82B6C14B900D60BFF /* MooseTracker.app */,
+				1F5420F92B6C14BC00D60BFF /* MooseTrackerTests.xctest */,
+				1F5421032B6C14BC00D60BFF /* MooseTrackerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F5420EA2B6C14B900D60BFF /* MooseTracker */ = {
+			isa = PBXGroup;
+			children = (
+				1F5420EB2B6C14B900D60BFF /* MooseTrackerApp.swift */,
+				1F5420ED2B6C14B900D60BFF /* ContentView.swift */,
+				1F5420EF2B6C14BB00D60BFF /* Assets.xcassets */,
+				1F5420F12B6C14BB00D60BFF /* MooseTracker.entitlements */,
+				1F5420F22B6C14BB00D60BFF /* Preview Content */,
+			);
+			path = MooseTracker;
+			sourceTree = "<group>";
+		};
+		1F5420F22B6C14BB00D60BFF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1F5420F32B6C14BB00D60BFF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1F5420FC2B6C14BC00D60BFF /* MooseTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				1F5420FD2B6C14BC00D60BFF /* MooseTrackerTests.swift */,
+			);
+			path = MooseTrackerTests;
+			sourceTree = "<group>";
+		};
+		1F5421062B6C14BC00D60BFF /* MooseTrackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1F5421072B6C14BC00D60BFF /* MooseTrackerUITests.swift */,
+				1F5421092B6C14BC00D60BFF /* MooseTrackerUITestsLaunchTests.swift */,
+			);
+			path = MooseTrackerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1F5420E72B6C14B900D60BFF /* MooseTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F54210D2B6C14BC00D60BFF /* Build configuration list for PBXNativeTarget "MooseTracker" */;
+			buildPhases = (
+				1F5420E42B6C14B900D60BFF /* Sources */,
+				1F5420E52B6C14B900D60BFF /* Frameworks */,
+				1F5420E62B6C14B900D60BFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MooseTracker;
+			productName = MooseTracker;
+			productReference = 1F5420E82B6C14B900D60BFF /* MooseTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1F5420F82B6C14BC00D60BFF /* MooseTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F5421102B6C14BC00D60BFF /* Build configuration list for PBXNativeTarget "MooseTrackerTests" */;
+			buildPhases = (
+				1F5420F52B6C14BC00D60BFF /* Sources */,
+				1F5420F62B6C14BC00D60BFF /* Frameworks */,
+				1F5420F72B6C14BC00D60BFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F5420FB2B6C14BC00D60BFF /* PBXTargetDependency */,
+			);
+			name = MooseTrackerTests;
+			productName = MooseTrackerTests;
+			productReference = 1F5420F92B6C14BC00D60BFF /* MooseTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1F5421022B6C14BC00D60BFF /* MooseTrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F5421132B6C14BC00D60BFF /* Build configuration list for PBXNativeTarget "MooseTrackerUITests" */;
+			buildPhases = (
+				1F5420FF2B6C14BC00D60BFF /* Sources */,
+				1F5421002B6C14BC00D60BFF /* Frameworks */,
+				1F5421012B6C14BC00D60BFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F5421052B6C14BC00D60BFF /* PBXTargetDependency */,
+			);
+			name = MooseTrackerUITests;
+			productName = MooseTrackerUITests;
+			productReference = 1F5421032B6C14BC00D60BFF /* MooseTrackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F5420E02B6C14B900D60BFF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					1F5420E72B6C14B900D60BFF = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					1F5420F82B6C14BC00D60BFF = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 1F5420E72B6C14B900D60BFF;
+					};
+					1F5421022B6C14BC00D60BFF = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 1F5420E72B6C14B900D60BFF;
+					};
+				};
+			};
+			buildConfigurationList = 1F5420E32B6C14B900D60BFF /* Build configuration list for PBXProject "MooseTracker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1F5420DF2B6C14B900D60BFF;
+			productRefGroup = 1F5420E92B6C14B900D60BFF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F5420E72B6C14B900D60BFF /* MooseTracker */,
+				1F5420F82B6C14BC00D60BFF /* MooseTrackerTests */,
+				1F5421022B6C14BC00D60BFF /* MooseTrackerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F5420E62B6C14B900D60BFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F5420F42B6C14BB00D60BFF /* Preview Assets.xcassets in Resources */,
+				1F5420F02B6C14BB00D60BFF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F5420F72B6C14BC00D60BFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F5421012B6C14BC00D60BFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1F5420E42B6C14B900D60BFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F5420EE2B6C14B900D60BFF /* ContentView.swift in Sources */,
+				1F5420EC2B6C14B900D60BFF /* MooseTrackerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F5420F52B6C14BC00D60BFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F5420FE2B6C14BC00D60BFF /* MooseTrackerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F5420FF2B6C14BC00D60BFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F5421082B6C14BC00D60BFF /* MooseTrackerUITests.swift in Sources */,
+				1F54210A2B6C14BC00D60BFF /* MooseTrackerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F5420FB2B6C14BC00D60BFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F5420E72B6C14B900D60BFF /* MooseTracker */;
+			targetProxy = 1F5420FA2B6C14BC00D60BFF /* PBXContainerItemProxy */;
+		};
+		1F5421052B6C14BC00D60BFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F5420E72B6C14B900D60BFF /* MooseTracker */;
+			targetProxy = 1F5421042B6C14BC00D60BFF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1F54210B2B6C14BC00D60BFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1F54210C2B6C14BC00D60BFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		1F54210E2B6C14BC00D60BFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MooseTracker/MooseTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MooseTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = 739R35W77V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = BCGov.MooseTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1F54210F2B6C14BC00D60BFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MooseTracker/MooseTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MooseTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = 739R35W77V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = BCGov.MooseTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1F5421112B6C14BC00D60BFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 739R35W77V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = BCGov.MooseTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MooseTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MooseTracker";
+			};
+			name = Debug;
+		};
+		1F5421122B6C14BC00D60BFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 739R35W77V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = BCGov.MooseTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MooseTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MooseTracker";
+			};
+			name = Release;
+		};
+		1F5421142B6C14BC00D60BFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 739R35W77V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = BCGov.MooseTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MooseTracker;
+			};
+			name = Debug;
+		};
+		1F5421152B6C14BC00D60BFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 739R35W77V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = BCGov.MooseTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MooseTracker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1F5420E32B6C14B900D60BFF /* Build configuration list for PBXProject "MooseTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F54210B2B6C14BC00D60BFF /* Debug */,
+				1F54210C2B6C14BC00D60BFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F54210D2B6C14BC00D60BFF /* Build configuration list for PBXNativeTarget "MooseTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F54210E2B6C14BC00D60BFF /* Debug */,
+				1F54210F2B6C14BC00D60BFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F5421102B6C14BC00D60BFF /* Build configuration list for PBXNativeTarget "MooseTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F5421112B6C14BC00D60BFF /* Debug */,
+				1F5421122B6C14BC00D60BFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F5421132B6C14BC00D60BFF /* Build configuration list for PBXNativeTarget "MooseTrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F5421142B6C14BC00D60BFF /* Debug */,
+				1F5421152B6C14BC00D60BFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1F5420E02B6C14B900D60BFF /* Project object */;
+}
