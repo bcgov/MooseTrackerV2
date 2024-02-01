@@ -6,6 +6,7 @@ import {
   USER_CLICK_RECORD_MOOSE,
   USER_SAVE_SIGHTINGS,
   ACTIVITY_CLEAR_MOOSE_ARRAY,
+  SIGHTING_SYNC_SUCCESSFUL,
 } from "../actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
 
@@ -53,6 +54,7 @@ function createMooseSightingStateReducer(
       }
       case USER_SAVE_SIGHTINGS: {
         //const sightings  = state.allSightings? state.allSightings : [];
+        console.log(state)
         return {
           ...state,
           mooseArray: [],
@@ -117,6 +119,13 @@ function createMooseSightingStateReducer(
           ...state,
           mooseArray: [],
         };
+      }
+      case SIGHTING_SYNC_SUCCESSFUL: {
+        const updatedSightings = action.payload?.data
+        console.log(updatedSightings)
+        return {
+          ...state
+        }
       }
       default:
         return state;

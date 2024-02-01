@@ -34,8 +34,8 @@ initialize({
 });
 
 app.use((err, req, res, next) => {
-  console.error(`Error in path ${req.path}:`, err);
-  res.status(500).send('Something broke!');
+  console.log(`Error in path ${req.path}:`, err);
+  res.status(err.status).send(err.errors);
 });
 
 console.log("initialized");
