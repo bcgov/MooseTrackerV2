@@ -9,6 +9,7 @@ import { Regs } from "./UI/Regs";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { About } from "./UI/About";
 import { Sightings } from "./UI/Sightings";
+import { UserSaveSnackbar } from "./UI/UserSaveSnackbar";
 
 function App() {
   const ref = useRef(0);
@@ -19,6 +20,7 @@ function App() {
     <div className="rootContainer">
       <BrowserRouter>
       <Header  />
+      <UserSaveSnackbar/>
         <Routes>
           <Route
             path="/"
