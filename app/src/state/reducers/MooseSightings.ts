@@ -8,6 +8,7 @@ import {
   ACTIVITY_CLEAR_MOOSE_ARRAY,
   USER_SAVE_SIGHTINGS_SUCCESS,
   USER_SAVE_SIGHTINGS_FAIL,
+  USER_CLOSE_SNACKBAR,
 } from "../actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
 
@@ -18,12 +19,16 @@ class MooseSightingState {
   location: any;
   mooseArray: any[];
   allSightings: any[];
+  successSnackbarOpen: boolean;
+  successSnackbarMessage: string;
 
   constructor() {
     this.location = "";
     this.recordingMooseInProgress = false;
     this.mooseArray = [];
     this.allSightings = localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
+    this.successSnackbarMessage = "";
+    this.successSnackbarOpen = false;
   }
 }
 const initialState = new MooseSightingState();
@@ -70,14 +75,23 @@ function createMooseSightingStateReducer(
               dateOfSighting: Date.now(),
             },
           ],
+          successSnackbarOpen: true,
+          successSnackbarMessage: "Moose sighting saved successfully."
         };
       }
       case USER_SAVE_SIGHTINGS_FAIL: {
         // TODO: replace alert() with snackbar
-        alert(`save fail :( \n${action.payload.errors.join('\n')}`);
-        
         return {
-          ...state, error: action.payload.error
+          ...state,
+          successSnackbarOpen: true,
+          successSnackbarMessage: JSON.stringify(action.payload.errors)
+        }
+      }
+      case USER_CLOSE_SNACKBAR: {
+        return {
+          ...state,
+          successSnackbarOpen: false,
+          successSnackbarMessage: ""
         }
       }
       case ACTIVITY_LOCATION_SET: {

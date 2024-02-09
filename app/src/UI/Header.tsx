@@ -21,18 +21,18 @@ export const Header = (props: any) => {
     return(
         <div className="headerWrapper">
             <div className="iconContainer">
-                <img className="bcgovIcon" src="bcgov_logo.svg" alt="Government of British Columbia" />
+                <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToForm}/>
             </div>
             <div className="titleContainer" onClick={goToForm}>
                 <p className="headerText">Moose Tracker</p>
             </div>
-            <div className="about-button-container">
-                <button className="about-button" onClick={goHome}>
+            <div className="headerButtonContainer">
+                <button className="headerButton" onClick={goHome}>
                   About
                 </button>
             </div>
-            <div className="about-button-container">
-                <button className="about-button" onClick={goToSightings}>
+            <div className="headerButtonContainer">
+                <button className="headerButton" onClick={goToSightings}>
                   Sightings
                 </button>
             </div>

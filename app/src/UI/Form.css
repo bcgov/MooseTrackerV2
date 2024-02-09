@@ -27,45 +27,19 @@
   width: 100%;
 }
 
-.addMooseButton {
-  background-color:#FCBA19;
-  border-color: initial;
-  color: #003366;
-  height: 100%;
-  padding:0.3em 1.2em;
-  border-radius:2em;
-  margin: 5px
+.formButton {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  background-color: #036;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  text-align: center;
 }
 
-.addMooseButton:hover {
-  background-color:#f4cb64;
-}
-
-.recordLocationButton {
-  background-color:#FCBA19;
-  border-color: initial;
-  color: #003366;
-  height: 100%;
-  padding:0.3em 1.2em;
-  border-radius:2em;
-  margin: 5px
-}
-
-.recordLocationButton:hover {
-  background-color:#f4cb64;
-}
-
-.clearSightingsButton {
-  background-color:#FCBA19;
-  border-color: initial;
-  color: #003366;
-  height: 100%;
-  padding:0.3em 1.2em;
-  border-radius:2em;
-  margin: 5px
-}
-
-.clearSightingsButton:hover {
+.formButton:hover {
   background-color:#f4cb64;
 }
 
@@ -93,14 +67,4 @@ h2.formHeading {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-.saveMooseButton {
-  background-color:#FCBA19;
-  border-color: initial;
-  color: #003366;
-  height: 100%;
-  padding:0.3em 1.2em;
-  border-radius:2em;
-  margin: 5px
 }

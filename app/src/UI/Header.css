@@ -1,23 +1,26 @@
 .headerWrapper{
-    background-color: #003366;
     display: flex;
-    flex-grow: 1;
-    height: 75px;
-    margin: 0;
-    flex-direction: row;
+    max-width: 1120px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    height: 64px;
+    margin: 0px 32px;
 }
 
 .iconContainer{
     display: flex;
     flex-basis: 1;
-    margin-left: 100px;
+    margin-left: 10px;
     align-items: center;
     justify-content: center;
 }
 
 .bcgovIcon{
-    height:50px;
-    width:100%;
+    max-height: 60px;
+    max-width: 100%;
+    border-style: none;
+    overflow-clip-margin: content-box;
+    overflow: clip;
 }
 
 .titleContainer{
@@ -35,19 +38,22 @@
     margin-left: 20px;
 }
 
-.about-button-container {
+.headerButtonContainer {
   display: flex;
   align-items: center;
   justify-content: start;
-  flex-grow: 1;
+  padding-right: 0.5rem;
 }
 
-.about-button {
-  background-color: #FCBA19;
-  border-color: initial;
-  color: #003366;
-  padding: 1em 1.2em;
-  border-radius: 2em;
-  margin: 5px;
+.headerButton {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 27px;
+  background-color: #fff;
+  color:  #036;
+  border: 1px solid #323130;
   cursor: pointer;
 }

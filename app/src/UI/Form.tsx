@@ -68,7 +68,7 @@ export const FormPanel = (props: any) => {
           <h2 className="formHeading">Add a Moose Sighting</h2>
           <div className="headerButtons">
             <button
-              className="clearSightingsButton"
+              className="formButton"
               onClick={() => {
                 dispatch({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
               }}
@@ -76,7 +76,7 @@ export const FormPanel = (props: any) => {
               Clear
             </button>
             <button
-              className="addMooseButton"
+              className="formButton"
               onClick={() => {
                 dispatch({ type: USER_CLICK_ADD_MOOSE });
               }}
@@ -84,7 +84,7 @@ export const FormPanel = (props: any) => {
               Add Moose
             </button>
             <button
-              className="recordLocationButton"
+              className="formButton"
               onClick={() => {
                 dispatch({ type: GET_GEOLOCATION });
               }}
@@ -140,7 +140,7 @@ export const FormPanel = (props: any) => {
         </div>
         <div className="formFooter">
           <button
-            className="saveMooseButton"
+            className="formButton"
             onClick={() => {
               dispatch({ type: USER_SAVE_SIGHTINGS })
             }}

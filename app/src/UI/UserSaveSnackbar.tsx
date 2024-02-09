@@ -1,24 +1,27 @@
-import { Snackbar, Button } from "@mui/material";
-import { select } from "redux-saga/effects";
+import { Snackbar, Button, Alert } from "@mui/material";
+import "./UserSaveSnackbar.css";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch } from "react-redux";
+import { USER_CLOSE_SNACKBAR } from "../state/actions";
+import { useEffect } from "react";
 
 export const UserSaveSnackbar = () => {
+  const successSnackbarMessage: string = useSelector((state: any) => state.MooseSightingsState.successSnackbarMessage);
+  const successSnackbarOpen: boolean = useSelector((state: any) => state.MooseSightingsState.successSnackbarOpen);
 
-  const snackbarState: any = yield select((state: any) => state.SnackbarState);
+  const dispatch = useDispatch();
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') return;
-    snackbarState.isOpen = false;
+    dispatch({type: USER_CLOSE_SNACKBAR});
   }
 
   return (
-    <>
-      <Button>Okay</Button>
       <Snackbar 
-          message='Success or fail, meh' 
+          message={successSnackbarMessage}
           autoHideDuration={4000} 
-          open={snackbarState}
+          open={successSnackbarOpen}
           onClose={handleClose}
-      />
-    </>
+        />
   )
 }

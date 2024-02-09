@@ -1,5 +1,5 @@
 .footer{
-    background-color: #003366;
+    background-color: #fff;
     display: flex;
     flex-grow: 1;
     height: 75px;
@@ -9,7 +9,7 @@
 }
 
 a{
-    color: white;
+    color: #036;
     text-decoration: none;
     margin-left: 100px;
 }
