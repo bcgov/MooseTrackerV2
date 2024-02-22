@@ -90,12 +90,17 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
 
 }
 
+function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
+  yield put({ type: WRITE_SIGHTINGS_TO_DISK });
+}
+
 
 function* mooseSightingSaga() {
   try {
   yield all([
     takeEvery(GET_GEOLOCATION, getGeoLocation),
     takeEvery(USER_SAVE_SIGHTINGS, handle_USER_SAVE_SIGHTINGS),
+    takeEvery(USER_SAVE_SIGHTINGS_SUCCESS, handle_USER_SAVE_SIGHTINGS_SUCCESS),
     takeEvery(WRITE_SIGHTINGS_TO_DISK, write_sightings_to_disk),
   ]);
 
