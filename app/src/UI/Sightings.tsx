@@ -1,8 +1,12 @@
 import { useEffect, useRef } from "react";
 import "./Sightings.css";
 import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import { useSelector, useDispatch } from "react-redux";
 import { SYNC_SIGHTINGS_TO_DB } from "../state/actions";
 
@@ -32,11 +36,26 @@ export const Sightings = (props: any) => {
                 <div className="sighting-date">{sighting.dateOfSighting}</div>
                 <div className="sighting-status">status: {sighting.status}</div>
               </AccordionSummary>
-              <AccordionDetails>
-                {sighting.mooseArray.map((moose: any) => {
-                  return (<p>{moose.id} | {moose.age} - {moose.gender}</p>);
-                })}
-              </AccordionDetails>
+              <Table>
+                <TableHead className='sighting-table-header'>
+                  <TableRow>
+                    <TableCell>ID</TableCell>
+                    <TableCell>Age</TableCell>
+                    <TableCell>Gender</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {sighting.mooseArray.map((moose: any) => {
+                    return (
+                      <TableRow key={moose.id}>
+                        <TableCell>{moose.id}</TableCell>
+                        <TableCell>{moose.age}</TableCell>
+                        <TableCell>{moose.gender}</TableCell>
+                      </TableRow>                      
+                    );                  
+                  })}
+                </TableBody> 
+              </Table>
             </Accordion>
           );
         })

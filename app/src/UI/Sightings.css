@@ -15,3 +15,7 @@
 .sighting-date {
   flex-grow: 4;
 }
+
+.sighting-table-header th{
+  font-weight: bold !important;
+}

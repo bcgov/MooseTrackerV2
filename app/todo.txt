@@ -1,6 +1,6 @@
 Feb.22/24
 
-- [ ] Zoom control css should be fixed - Norris
+- [x] Zoom control css should be fixed - Norris
 - [x] About page needs fixing
   - [x] Fish from BCGov's moose tracker repos, there should be two of them
 - [x] Add "make a sighting" button or something like that for new sightings page -Luna
@@ -11,13 +11,13 @@ Feb.22/24
   - [ ] Find the hunting regulations for this year and proof out viewing that pdf in android and ios for version 1
   - [ ] For version 2 include a table of contents and physically split the pdf by regulations
 - [ ] Fix the react problems within console
-- [ ] Sightings page could use some more styling
 - [ ] get docker working
 - [ ] Moose pins should be different colors
   - [ ] synced
   - [ ] not synced
   - [ ] Current sighting
-- [ ] All sightings page should look like the make a sighting page
+- [ ] All sightings page should look like the make a sighting page - Norris
+- [ ] Sightings page could use some more styling - Norris
 
 
 today;
