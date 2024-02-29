@@ -1,8 +1,8 @@
 Feb.22/24
 
 - [ ] Zoom control css should be fixed
-- [ ] About page needs fixing
-  - [ ] Fish from BCGov's moose tracker repos, there should be two of them
+- [x] About page needs fixing
+  - [x] Fish from BCGov's moose tracker repos, there should be two of them
 - [ ] Add "make a sighting" button or something like that for new sightings page
 - [ ] Add an indicator to show which route we're on
 - [ ] Add a tutorial icon/help box

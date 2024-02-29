@@ -1,6 +1,9 @@
+.headerMain {
+position: relative;
+}
+
 .headerWrapper{
     display: flex;
-    max-width: 1120px;
     -webkit-box-pack: justify;
     justify-content: space-between;
     height: 64px;
@@ -56,4 +59,14 @@
   color:  #036;
   border: 1px solid #323130;
   cursor: pointer;
+}
+
+.divider {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
 }

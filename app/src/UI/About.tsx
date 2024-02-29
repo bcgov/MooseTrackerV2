@@ -6,19 +6,21 @@ export const About = (props: any) => {
   ref.current += 1;
   console.log("%About render:" + ref.current.toString(), "color: green");
 
-  return <div className="about-container">
-    <h1>The Moose Tracker v2</h1>
+  return (
+  <div className="about-container">
+    <h1>British Columbia Moose Tracker Application</h1>
     <p>
-      this that crazy silly moose sighting app ya feel me
+      B.C. Moose Tracker is an official Government of British Columbia app that allows hunters to play an important part in moose conservation and management.
     </p>
     <p>
-      Man I do love some meese. Very big very powerful like a mountain
+      The app, available through Google Play and the App store, lets users upload information on the number, sex and location of moose they encounter in the wild directly to a province-wide database. The collected data helps monitor moose populations and alert wildlife staff to emerging issues.
     </p>
     <p>
-    Chambray venmo photo booth cliche, same bespoke polaroid microdosing mixtape fanny pack knausgaard. Taiyaki air plant live-edge, vaporware asymmetrical fam neutra same fanny pack plaid hexagon big mood blackbird spyplane meggings edison bulb. Narwhal pug farm-to-table, whatever fanny pack dreamcatcher cornhole irony listicle locavore hella hot chicken DIY jianbing. Taxidermy iPhone wolf forage ramps. Fixie quinoa health goth bruh occupy master cleanse sriracha. Ethical copper mug same try-hard jianbing hammock, paleo bicycle rights bitters DIY ramps Brooklyn gochujang. Post-ironic keytar fingerstache, actually air plant palo santo grailed.
+      The app supports the government’s ongoing efforts to strengthen the provincial moose management strategy through the modernization of licensing, inventory and research methods.
     </p>
     <p>
-      bottom text goes here
+      As an added bonus, the app includes a digital version of <a href="https://www2.gov.bc.ca/assets/download/EA20F1184A4349EEB9D6D70F60B9DB79">2022-2024 Hunting & Trapping Regulations Synopsis (pdf 16.1 MB)</a>.  It’s an indispensable, searchable summary of hunting seasons and regulations throughout B.C. – including interactive maps.
     </p>
-  </div>;
+  </div>
+  )
 };

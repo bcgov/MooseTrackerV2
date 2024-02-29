@@ -19,6 +19,7 @@ export const Header = (props: any) => {
   }
 
     return(
+      <header className="headerMain">
         <div className="headerWrapper">
             <div className="iconContainer">
                 <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToForm}/>
@@ -37,5 +38,7 @@ export const Header = (props: any) => {
                 </button>
             </div>
         </div>
+        <span className="divider" />
+      </header>
     )
 }
