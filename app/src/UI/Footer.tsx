@@ -10,7 +10,7 @@ export const Footer = (props: any) => {
               <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" />
             </div>
             <div className="footer-text-container">
-              <a href="https://www2.gov.bc.ca/gov/content/home/privacy">Privacy Statement</a>
+              <a href="https://www2.gov.bc.ca/gov/content/home/privacy" className="privacy-text">Privacy Statement</a>
             </div>
           </div>
         </div>
