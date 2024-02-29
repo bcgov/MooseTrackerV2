@@ -16,6 +16,8 @@ export const Sightings = (props: any) => {
 
   const storedSightings = useSelector((state: any) => state.MooseSightingsState.allSightings);
 
+  const currentPage = window.location.href;
+
   return (
     <div className="sightings-container">
       <h1>All Sightings</h1>
