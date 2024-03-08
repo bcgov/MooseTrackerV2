@@ -3,7 +3,7 @@ import { MapContainer, Marker, TileLayer, useMap, Popup} from 'react-leaflet'
 import { LatLngExpression, Icon } from 'leaflet'
 import { useSelector } from "react-redux";
 import L from "leaflet";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface ChangeViewProps {
   center: LatLngExpression;
@@ -165,7 +165,8 @@ const MapMarkers = (props: any) => {
     <>
       {allSightings?.map((sighting: any, index: number) => {
         return sighting.mooseArray.map((moose: any, mooseIndex: number) => {
-          const position = getOffsetLocation(index, markerPosition);
+          const offLoc: [number, number] = sighting?.location?.latitude ? [sighting.location.latitude, sighting.location.longitude] : markerPosition;
+          const position = getOffsetLocation(index, offLoc);
           const mooseIcon = getMooseIcon(moose, 1);
           const mooseDate = new Date(sighting.dateOfSighting).toLocaleDateString();
           return (
@@ -194,10 +195,14 @@ export const MapPanel: React.FC = () => {
   const markerState = useSelector(
     (state: any) => state.MooseSightingsState.location
   ) as LocationState;
-  const markerPosition: [number, number] = [
-    markerState.latitude ?? defaultLocation[0],
-    markerState.longitude ?? defaultLocation[1],
-  ];
+  let markerPosition: [number, number] = [defaultLocation[0], defaultLocation[1]];
+
+  useEffect(() => {
+    markerPosition = [
+      markerState.latitude ?? defaultLocation[0],
+      markerState.longitude ?? defaultLocation[1],
+    ];
+  }, [markerState]);
 
   return (
     <div className="MapPanel">
