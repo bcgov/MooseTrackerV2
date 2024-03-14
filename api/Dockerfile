@@ -8,7 +8,9 @@ FROM node:20
 
 
 # Copy the rest of the source files into the image.
-COPY . .
+
+WORKDIR /usr/app
+COPY ./ /usr/app
 RUN npm install
 
 # Run the application as a non-root user.
