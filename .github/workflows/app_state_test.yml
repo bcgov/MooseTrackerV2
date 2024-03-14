@@ -1,0 +1,28 @@
+name: State tests for web app
+on: [pull_request]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.11.0'
+
+      - name: Install 
+        run: |
+          cd appv2
+          npm install
+
+      - name: Test
+        env:
+          SOURCE_GIT_COMMIT: $GITHUB_SHA
+        run: |
+          cd app
+          npm run test
+
