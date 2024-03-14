@@ -19,3 +19,6 @@ USER node
 
 # Expose the port that the application listens on.
 EXPOSE 7080
+
+
+CMD ["npm", "start"]
