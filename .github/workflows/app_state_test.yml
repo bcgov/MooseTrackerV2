@@ -16,7 +16,7 @@ jobs:
 
       - name: Install 
         run: |
-          cd appv2
+          cd app
           npm install
 
       - name: Test
