@@ -10,6 +10,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { About } from "./UI/About";
 import { Sightings } from "./UI/Sightings";
 import { UserSaveSnackbar } from "./UI/UserSaveSnackbar";
+//import { Breadcrumb } from "./UI/Breadcrumb";
 
 function App() {
   const ref = useRef(0);
@@ -19,21 +20,15 @@ function App() {
   return (
     <div className="rootContainer">
       <BrowserRouter>
-      <Header  />
-      <UserSaveSnackbar/>
+        <Header />
+        <UserSaveSnackbar />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <MapPanel />
-                <FormPanel />
-              </>
-            }
-          />
+          <Route path="/" element={<MapPanel />}>
+            <Route index element={<FormPanel />} />
+            <Route path="Sightings" element={<Sightings />} />
+          </Route>
           <Route path="/Regulations" element={<Regs />} />
           <Route path="/About" element={<About />} />
-          <Route path="/Sightings" element={<Sightings />} />
         </Routes>
         <Footer />
       </BrowserRouter>
