@@ -9,7 +9,7 @@ FROM node:20
 
 # Copy the rest of the source files into the image.
 
-RUN MKDIR app
+RUN mkdir app
 WORKDIR app
 COPY . .
 RUN npm install
