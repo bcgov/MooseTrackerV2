@@ -78,6 +78,7 @@ spec:
   resources: {}
   successfulBuildsHistoryLimit: 1
   failedBuildsHistoryLimit: 1
+  contextDir: api
   strategy:
     type: Docker
     dockerStrategy:
