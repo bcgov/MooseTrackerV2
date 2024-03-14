@@ -19,6 +19,6 @@ USER node
 
 # Expose the port that the application listens on.
 EXPOSE 7080
-
+ENV npm_config_cache=/tmp/
 
 CMD ["npm", "start"]
