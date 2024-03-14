@@ -1,12 +1,13 @@
 .MapPanel {
   display: flex;
-  background-color: blue;
+  flex-direction: column;
   width: 100%;
-  height: 500px;
+  height: 1000px;
+  flex-shrink: 0;
 }
 
 .MapContainer {
   width: 100%;
-  height: 100%;
+  height: 500px;
 }
 

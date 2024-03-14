@@ -4,6 +4,7 @@ import { LatLngExpression, Icon } from 'leaflet'
 import { useSelector } from "react-redux";
 import L from "leaflet";
 import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
 interface ChangeViewProps {
   center: LatLngExpression;
@@ -255,6 +256,7 @@ export const MapPanel: React.FC = () => {
         <MapMarkers />
         <ChangeView center={markerPosition} />
       </MapContainer>
+      <Outlet />
     </div>
   );
 };
