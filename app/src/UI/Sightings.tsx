@@ -19,20 +19,20 @@ export const Sightings = (props: any) => {
   const currentPage = window.location.href;
 
   return (
-    <div className="sightings-container">
-      <h1>All Sightings</h1>
-      <span>
-        <button onClick={() => dispatch({ type: SYNC_SIGHTINGS_TO_DB, payload: {} })}>
-          Sync
+    <div className="sightingContainer">
+      <span className="wrapper">
+        <h1>All Sightings</h1>
+        <button className="syncButton" onClick={() => dispatch({ type: SYNC_SIGHTINGS_TO_DB, payload: {} })}>
+            Sync
         </button>
       </span>
       {storedSightings?.length > 0 ?
         storedSightings?.map((sighting: any) => {
           return (
             <Accordion key={sighting.id} className="sighting">
-              <AccordionSummary className="sighting-header" aria-controls="panel-content">
-                <div className="sighting-date">{sighting.dateOfSighting}</div>
-                <div className="sighting-status">status: {sighting.status}</div>
+              <AccordionSummary className="sightingHeader" aria-controls="panel-content">
+                <div className="sightingDate">{sighting.dateOfSighting}</div>
+                <div className="sightingStatus">status: {sighting.status}</div>
               </AccordionSummary>
               <AccordionDetails>
                 {sighting.mooseArray.map((moose: any) => {

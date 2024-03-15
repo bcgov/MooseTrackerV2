@@ -8,6 +8,10 @@ FROM node:20
 
 
 # Copy the rest of the source files into the image.
+
+ENV npm_config_cache=/tmp/
+RUN mkdir app
+WORKDIR app
 COPY . .
 RUN npm install
 
@@ -17,5 +21,4 @@ USER node
 # Expose the port that the application listens on.
 EXPOSE 7080
 
-# Run the application.
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]

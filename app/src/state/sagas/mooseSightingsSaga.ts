@@ -70,7 +70,7 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   if (mooseArray.length < 1) {
     errors.push("Moose array cannot be empty.");
   }
-  if (mooseLocation === undefined) {
+  if (!mooseLocation || mooseLocation === undefined || mooseLocation === "") {
     errors.push("Moose location cannot be empty.");
   }
 
