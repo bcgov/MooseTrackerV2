@@ -91,6 +91,9 @@ export const FormPanel = (props: any) => {
             >
               Mark Location
             </button>
+            <div className="popup" >?
+              <span className="popuptext" id="myPopup">Use this form to record moose sightings. Will save locally until you synch once connected to the internet.</span>
+            </div>
           </div>
         </div>
         <div className="meese">
