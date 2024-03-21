@@ -5,7 +5,8 @@ const config: CapacitorConfig = {
   appName: 'MooseTracker',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'https',
+    url: 'http://localhost:4173/'
   }
 };
 

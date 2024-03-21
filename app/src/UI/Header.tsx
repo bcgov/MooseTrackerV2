@@ -1,9 +1,25 @@
 import "./Header.css"
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
+import { Capacitor } from '@capacitor/core';
+import { useEffect, useState } from "react";
 
 export const Header = (props: any) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+
+  const [headerWrapperClass, setHeaderWrapperClass] = useState("headerWrapper")
+  useEffect( () => {
+    const platform = Capacitor.getPlatform()
+    console.log("*******" + platform)
+    switch(platform) {
+      case "ios":
+        setHeaderWrapperClass("headerWrapper headerWrapperIOS")
+        break
+      default:
+        setHeaderWrapperClass("headerWrapper")
+    }
+  }, []);
 
   // const goHome = () => {
   //   navigate('/About');
@@ -21,9 +37,10 @@ export const Header = (props: any) => {
   //   navigate("/Sightings");
   // }
 
+
     return(
       <header className="headerMain">
-        <div className="headerWrapper">
+        <div className={headerWrapperClass}>
             <div className="iconContainer">
                 <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToForm}/>
             </div>

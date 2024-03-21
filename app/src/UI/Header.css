@@ -1,13 +1,17 @@
 .headerMain {
   position: relative;
-  }
-  
+}
+
   .headerWrapper{
       display: flex;
       -webkit-box-pack: justify;
       justify-content: space-between;
-      height: 64px;
+      height: 6px;
       margin: 0px 32px;
+  }
+
+  .headerWrapperIOS {
+    height: 4em;
   }
   
   .iconContainer{
