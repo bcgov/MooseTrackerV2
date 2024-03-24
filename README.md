@@ -58,11 +58,11 @@ Please follow these instructions on setting up in an IOS/Android simulation.
 
 3. `pod install`
 
-4. `cd MooseTrackerV2/app`
+4. `cd ../..`
 
-5 `npm run build`
+5. `nvm use 20` && `npm run build`
 
-6 `npx cap sync`
+6. `npx cap sync`
 
 7. `npx cap open ios`
 
@@ -91,3 +91,4 @@ Tested on xcode 15.0.1
 6. Find the device manager tab on the sidebar and create a virtual device (tested on medium phone)
 
 7. Select the device in the top dropdown and hit the play button
+

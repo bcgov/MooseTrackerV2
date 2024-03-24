@@ -1,83 +1,139 @@
 .headerMain {
   position: relative;
-}
 
   .headerWrapper{
       display: flex;
       -webkit-box-pack: justify;
       justify-content: space-between;
-      height: 6px;
-      margin: 0px 32px;
-  }
+      height: 4em;
 
-  .headerWrapperIOS {
-    height: 4em;
-  }
-  
-  .iconContainer{
+    .iconContainer{
       display: flex;
       flex-basis: 1;
-      margin-left: 10px;
+      margin-left: .5em;
       align-items: center;
       justify-content: center;
-  }
-  
-  .bcgovIcon{
-      max-height: 60px;
-      max-width: 100%;
-      border-style: none;
-      overflow-clip-margin: content-box;
-      overflow: clip;
-  }
-  
-  .titleContainer{
+
+      .bcgovIcon{
+        max-height: 4em;
+        max-width: 100%;
+        border-style: none;
+        overflow-clip-margin: content-box;
+        overflow: clip;
+      }
+    }
+
+    .titleContainer{
       display: flex;
       flex-basis: 6;
       align-items: center;
       justify-content: start;
       flex-grow: 1;
-  }
-  
-  .headerText{
-      font-size: xx-large;
-      font-weight: bold;
-      color: #036;
-      margin-left: 20px;
-  }
-  
-  .headerButtonContainer {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding-right: 0.5rem;
-  
-    .headerButton {
-      display: inline-block;
-      padding: 6px 12px;
-      margin: 0.5em;
-      border-radius: 4px;
-      text-decoration: none;
-      font-size: 16px;
-      line-height: 27px;
-      background-color: #fff;
-      color:  #036;
-      /* border: 1px solid #323130; */
-      cursor: pointer;
+
+      .headerText{
+        font-size: xx-large;
+        font-weight: bold;
+        color: #036;
+      }
     }
-  
-    .header-selected {
-      font-weight: bold;
-      display: inline-block;
-      padding: 6px 12px;
-      margin: 0.5em;
-      border-radius: 4px;
-      font-size: 16px;
-      line-height: 27px;
-      background-color: #fff;
-      color:  #036;
-      /* border: 1px solid #323130; */
-      cursor: pointer;
-      border-bottom: rgb(227, 168, 43);
+
+    .headerButtonContainer {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      padding-right: 0.5em;
+    
+      .headerButton {
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        margin: 0.5em;
+        border-radius: 0.25em;
+        text-decoration: none;
+        font-size: 1em;
+        line-height: 1em;
+        background-color: #fff;
+        color:  #036;
+        cursor: pointer;
+      }
+    
+      .header-selected {
+        font-weight: bold;
+        display: inline-block;
+        padding: 6px 12px;
+        margin: 0.5em;
+        border-radius: 4px;
+        font-size: 16px;
+        line-height: 27px;
+        background-color: #fff;
+        color:  #036;
+        /* border: 1px solid #323130; */
+        cursor: pointer;
+        border-bottom: rgb(227, 168, 43);
+      }
+    }
+  }
+
+  .headerWrapperIOS{
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 5em;
+    margin-top: 2em;
+
+    .iconContainer{
+      flex-basis: 1;
+      margin-left: .5em;
+
+      .bcgovIcon{
+        max-height: 6em;
+        max-width: 6em;
+        border-style: none;
+        overflow-clip-margin: content-box;
+        overflow: clip;
+      }
+    }
+
+    .titleContainer{
+      .headerText{
+        font-size: 0.7em;
+        font-weight: bold;
+        color: #036;
+        margin-block-end: 0.3em;
+      }
+    }
+
+    .headerButtonContainer {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      /* padding-right: 0.2em; */
+    
+      .headerButton {
+        display: inline-block;
+        /* padding: 0.25em 0.5em;
+        margin: 0.5em; */
+        /* border-radius: 0.25em; */
+        text-decoration: none;
+        font-size: 0.25em;
+        line-height: 1em;
+        background-color: #fff;
+        color:  #036;
+        cursor: pointer;
+      }
+      
+      .header-selected {
+        font-weight: bold;
+        display: inline-block;
+        padding: .2em .3em;
+        margin: 0.2em;
+        border-radius: 4px;
+        font-size: .7em;
+        background-color: #fff;
+        color:  #036;
+        cursor: pointer;
+        border-bottom: rgb(227, 168, 43);
+      }
     }
   }
   
@@ -92,3 +148,4 @@
     border-width: .5vh;
     border-color: #FCBA19;
   }
+}
