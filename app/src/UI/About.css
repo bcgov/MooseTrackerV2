@@ -1,12 +1,39 @@
-.about-container {
+.aboutContainer {
   display: flex;
-  background-color: white;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
+  background-color: #036;
+  flex-direction: row;
   align-content: center;
   justify-content: center;
-  align-items: center;
-  margin: 2em;
+  padding: 2em;
+  width: 100%;
 }
 
+.aboutWrapper {
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+}
 
+.aboutWrapper::before {
+  background-image: url('/moose.png');
+  opacity: 0.25;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.about {
+  margin: 1.5em;
+  text-align: center;
+}
+
+.spacer {
+  width: 10%;
+}
