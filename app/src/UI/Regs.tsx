@@ -1,11 +1,50 @@
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
+import { Document, Page } from 'react-pdf'
+import { pdfjs } from 'react-pdf';
+import { useResizeObserver } from '@wojtekmaj/react-hooks';
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  import.meta.url,
+).toString();
 
 import "./Regs.css";
+import "react-pdf/dist/esm/Page/TextLayer.css";
 
-export const Regs = (props: any) => {
+const resizeObserverOptions = {};
+
+export const Regs = () => {
   const ref = useRef(0);
   ref.current += 1;
   console.log("%Regs render:" + ref.current.toString(), "color: yellow");
+
+  const [file, setFile] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+  const [numPages, setNumPages] = useState<number>();
+  const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
+  const [containerWidth, setContainerWidth] = useState<number>(300);
+
+  const onResize = useCallback<ResizeObserverCallback>((entries) => {
+    const [entry] = entries;
+
+    if (entry) {
+      setContainerWidth(entry.contentRect.width > 1024 ? entry.contentRect.width / 3 : entry.contentRect.width);
+    }
+  }, []);
+
+  useResizeObserver(containerRef, resizeObserverOptions, onResize);
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
+  const goToPrevPage = () => {
+    setPageNumber((prevPageNumber) => Math.max(prevPageNumber - 1, 1));
+  };
+
+  const goToNextPage = () => {
+    setPageNumber((prevPageNumber) => Math.min(prevPageNumber + 1, numPages));
+  };
 
   const contentsMap = [
     {
@@ -48,21 +87,48 @@ export const Regs = (props: any) => {
 
   return (
     <div className="regs-component">
+      <div className="regs-document" ref={setContainerRef}>
+        <Document 
+          file={file} 
+          onLoadSuccess={onDocumentLoadSuccess}
+          onLoadError={
+            (error) => console.error('Error occurred while loading document:', error.message)}>
+          <Page 
+            pageNumber={pageNumber}
+            renderAnnotationLayer={false} 
+            renderTextLayer={false}
+            width={containerWidth}
+          />
+        </Document>
+        {file && 
+          <div>
+            <button onClick={goToPrevPage} disabled={pageNumber <= 1}>
+              Previous
+            </button>
+            <button onClick={goToNextPage} disabled={pageNumber >= numPages}>
+              Next
+            </button>
+            <p>
+              Page {pageNumber} of {numPages}
+            </p>
+          </div>
+        }
+      </div>
       <div className="table-of-contents">
         <h1>Regulations</h1>
-        <a href='hunting-trapping-synopsis.pdf' className="link">
+        <span onClick={() => setFile("hunting-trapping-synopsis.pdf")} className="link">
           <div className="pdf">Full Hunting and Trapping Regulations Synopsis 2022-2024</div>
-        </a>
+        </span>
         <h2 className="title">
           Contents By Region
         </h2>
         {contentsMap.map((content) => {
         return (
-          <a href={content.link} className="link">
+          <span onClick={() => setFile(content.link)} className="link">
             <div>
               {content.name}
             </div>
-          </a>
+          </span>
           )
         })}
       </div>
