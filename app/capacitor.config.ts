@@ -1,12 +1,11 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.example.app',
+  appId: 'ca.bc.gov.fw.WildlifeTracker',
   appName: 'MooseTracker',
   webDir: 'dist',
   server: {
-    androidScheme: 'https',
-    url: 'http://localhost:4173/'
+    androidScheme: 'https'
   }
 };
 
