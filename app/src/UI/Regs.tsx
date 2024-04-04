@@ -12,7 +12,6 @@ import "./Regs.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 
 const resizeObserverOptions = {};
-// const maxWidth = 800;
 
 export const Regs = () => {
   const ref = useRef(0);
@@ -29,7 +28,7 @@ export const Regs = () => {
     const [entry] = entries;
 
     if (entry) {
-      setContainerWidth(entry.contentRect.width/3);
+      setContainerWidth(entry.contentRect.width > 1024 ? entry.contentRect.width / 3 : entry.contentRect.width);
     }
   }, []);
 
