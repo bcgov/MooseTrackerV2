@@ -11,3 +11,16 @@ services:
       dockerfile: ./Dockerfile
     ports: 
       - "7080:7080"
+    env_file:
+      - ./api/src/Db/db.env
+  db:
+    image: postgis/postgis:14-3.2-alpine
+    env_file:
+      - ./api/src/Db/db.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+
+volumes:
+  postgis_data:
