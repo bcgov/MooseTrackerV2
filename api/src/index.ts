@@ -8,8 +8,7 @@ const port = 7080;
 
 const setupDb = async function () {
   console.log("setting up db");
-  const connection = await openDb();
-  createDb(connection);
+  createDb();
 };
 
 const cors = require("cors");

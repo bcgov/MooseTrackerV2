@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.example.app',
+  appId: 'ca.bc.gov.fw.WildlifeTracker',
   appName: 'MooseTracker',
   webDir: 'dist',
   server: {

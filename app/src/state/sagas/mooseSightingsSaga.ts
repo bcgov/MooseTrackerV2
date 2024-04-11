@@ -1,3 +1,4 @@
+import { Geolocation } from '@capacitor/geolocation';
 import { channel } from "redux-saga";
 import { useDispatch } from "react-redux";
 import { all, put, call, take, takeEvery, select } from "redux-saga/effects";
@@ -12,6 +13,9 @@ import {
   SYNC_SIGHTINGS_TO_DB,
   SIGHTING_SYNC_SUCCESSFUL,
 } from "../actions";
+import { json } from 'react-router-dom';
+
+const apiUrl = "http://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
 
 function* handle_USER_CLICK_RECORD_MOOSE(action: any) {
   yield put({ type: ACTIVITY_LOCATION_SET, payload: location });
@@ -30,7 +34,6 @@ function* getGeoLocation(action: any) {
   function success(pos: any) {
     console.log("in the success function");
     const crd = pos.coords;
-    console.dir(crd);
     coordChannel.put({
       type: ACTIVITY_LOCATION_SET,
       payload: { latitude: crd.latitude, longitude: crd.longitude },
@@ -41,7 +44,14 @@ function* getGeoLocation(action: any) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
 
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  Geolocation.checkPermissions().then((permissionReturnval)=> {
+    console.log(JSON.stringify(permissionReturnval))
+    Geolocation.getCurrentPosition(options).then((returnval) => {
+      success(returnval);
+    });
+  });
+
+  //navigator.geolocation.getCurrentPosition(success, error, options);
 
   while (true) {
     const action: any = yield take(coordChannel);
@@ -103,7 +113,7 @@ function prepareSightingsForApi(sightings: any) {
 }
 
 function fetchSightings(validatedSightings: any) {
-  return fetch("http://localhost:7080/recordSightings", {
+  return fetch(`${apiUrl}/recordSightings`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

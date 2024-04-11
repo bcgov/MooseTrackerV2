@@ -1,7 +1,6 @@
 .headerMain {
   position: relative;
-  }
-  
+
   .headerWrapper{
     display: flex;
     -webkit-box-pack: justify;
@@ -83,4 +82,5 @@
     display: flex;
     border-top: 2px solid rgb(217, 217, 217);
     width: 100%;
+  }
   }
