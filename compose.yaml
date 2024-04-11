@@ -14,11 +14,13 @@ services:
     env_file:
       - ./api/src/Db/db.env
   db:
-    image: postgis/postgis:14-3.2-alpine
-    env_file:
-      - ./api/src/Db/db.env
+    build:
+      context: db
+      dockerfile: ./Dockerfile
     ports:
       - "5432:5432"
+    env_file:
+      - ./api/src/Db/db.env
     volumes:
       - postgis_data:/var/lib/postgresql/data
 
