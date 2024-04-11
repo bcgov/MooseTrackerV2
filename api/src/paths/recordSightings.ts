@@ -7,7 +7,7 @@ function postMooseSightings(): RequestHandler {
     try {
       console.log(req.body);
       const dbConnection = await openDb();
-      insertSightingMoose(dbConnection, req.body);
+      await insertSightingMoose(dbConnection, req.body);
       res.status(200).json(req.body);
     } catch (error) {
       next(error);
