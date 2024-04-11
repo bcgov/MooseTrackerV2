@@ -21,7 +21,7 @@ export const Sightings = (props: any) => {
   return (
     <div className="sightingContainer">
       <span className="wrapper">
-        <h1>All Sightings</h1>
+        <h1 className="sightingHeader">All Sightings</h1>
         <button className="syncButton" onClick={() => dispatch({ type: SYNC_SIGHTINGS_TO_DB, payload: {} })}>
             Sync
         </button>
@@ -43,7 +43,7 @@ export const Sightings = (props: any) => {
           );
         })
         :
-        <p>No stored sightings currently</p>
+        <p className="noSightings">No stored sightings currently</p>
       }
     </div>
   );
