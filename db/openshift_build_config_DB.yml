@@ -1,0 +1,100 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: db
+  namespace: a3e022-tools
+  uid: 7bae0f8f-b777-45a1-a5fe-b9097b651220
+  resourceVersion: '9396074697'
+  generation: 2
+  creationTimestamp: '2024-03-14T17:06:29Z'
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"build.openshift.io/v1","kind":"BuildConfig","metadata":{"annotations":{},"managedFields":[{"apiVersion":"build.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:spec":{"f:failedBuildsHistoryLimit":{},"f:output":{"f:to":{}},"f:resources":{"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}},"f:runPolicy":{},"f:source":{"f:contextDir":{},"f:dockerfile":{},"f:git":{".":{},"f:ref":{},"f:uri":{}},"f:images":{},"f:type":{}},"f:strategy":{"f:dockerStrategy":{".":{},"f:from":{}},"f:type":{}},"f:successfulBuildsHistoryLimit":{},"f:triggers":{}}},"manager":"Mozilla","operation":"Update"},{"apiVersion":"build.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:status":{"f:lastVersion":{}}},"manager":"openshift-apiserver","operation":"Update","time":"2024-03-13T23:33:42Z"}],"name":"api","namespace":"a3e022-tools"},"spec":{"contextDir":"api","failedBuildsHistoryLimit":1,"nodeSelector":null,"output":{"to":{"kind":"ImageStreamTag","name":"api:latest"}},"runPolicy":"SerialLatestOnly","source":{"git":{"ref":"main","uri":"https://github.com/bcgov/MooseTrackerv2.git"},"type":"Git"},"strategy":{"dockerStrategy":{"dockerfilePath":"Dockerfile"},"type":"Docker"},"successfulBuildsHistoryLimit":1,"triggers":[{"type":"ConfigChange"},{"github":{"secretReference":{"name":"gh-deploy-secret"}},"type":"GitHub"}]},"status":{"lastVersion":737}}
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: build.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:resources':
+            'f:limits':
+              .: {}
+              'f:cpu': {}
+              'f:memory': {}
+            'f:requests':
+              .: {}
+              'f:cpu': {}
+              'f:memory': {}
+          'f:source':
+            'f:contextDir': {}
+            'f:dockerfile': {}
+            'f:images': {}
+          'f:strategy':
+            'f:dockerStrategy':
+              'f:from': {}
+    - manager: kubectl-client-side-apply
+      operation: Update
+      apiVersion: build.openshift.io/v1
+      time: '2024-03-14T17:06:29Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+        'f:spec':
+          'f:failedBuildsHistoryLimit': {}
+          'f:output':
+            'f:to': {}
+          'f:runPolicy': {}
+          'f:source':
+            'f:git':
+              .: {}
+              'f:ref': {}
+              'f:uri': {}
+            'f:type': {}
+          'f:strategy':
+            'f:dockerStrategy':
+              .: {}
+              'f:dockerfilePath': {}
+            'f:type': {}
+          'f:successfulBuildsHistoryLimit': {}
+          'f:triggers': {}
+    - manager: openshift-apiserver
+      operation: Update
+      apiVersion: build.openshift.io/v1
+      time: '2024-03-14T17:07:05Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:lastVersion': {}
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'db:latest'
+  resources: {}
+  successfulBuildsHistoryLimit: 1
+  failedBuildsHistoryLimit: 1
+  contextDir: api
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: db/Dockerfile
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/bcgov/MooseTrackerv2.git'
+      ref: main
+  triggers:
+    - type: ConfigChange
+    - type: GitHub
+      github:
+        secretReference:
+          name: gh-deploy-secret
+  runPolicy: SerialLatestOnly
+status:
+  lastVersion: 738
