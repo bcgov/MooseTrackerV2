@@ -24,27 +24,29 @@ export const Header = (props: any) => {
     return(
       <header className="headerMain">
         <div className="headerWrapper">
+          <div className="headingwrapper">
             <div className="iconContainer">
-                <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToForm}/>
-            </div>
-            <div className="titleContainer" onClick={goToForm}>
-              <p className="headerText">Moose Tracker</p>
-            </div>
-            <div className="headerButtonContainer">
-              <NavLink className={`headerButton ${location.pathname === "/" ? 'header-selected ' : ''}`} to="/">
-                Add a Moose Sighting
-              </NavLink>
-              <NavLink className={`headerButton ${location.pathname === "/Sightings" ? 'header-selected ' : ''}`} to="/Sightings">
-                Sightings
-              </NavLink>
-              <NavLink className={`headerButton ${location.pathname === "/Regulations" ? 'header-selected ' : ''}`} to="/Regulations">
-                Regulations
-              </NavLink>
-              <NavLink className={`headerButton ${location.pathname === "/About" ? 'header-selected ' : ''}`} to="/About">
-                About
-              </NavLink>
-            </div>
+                  <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToForm}/>
+              </div>
+              <div className="titleContainer" onClick={goToForm}>
+                <p className="headerText">Moose Tracker</p>
+              </div>
           </div>
+          <div className="headerButtonContainer">
+            <NavLink className={`headerButton ${location.pathname === "/" ? 'header-selected ' : ''}`} to="/">
+              Add a Moose Sighting
+            </NavLink>
+            <NavLink className={`headerButton ${location.pathname === "/Sightings" ? 'header-selected ' : ''}`} to="/Sightings">
+              Sightings
+            </NavLink>
+            <NavLink className={`headerButton ${location.pathname === "/Regulations" ? 'header-selected ' : ''}`} to="/Regulations">
+              Regulations
+            </NavLink>
+            <NavLink className={`headerButton ${location.pathname === "/About" ? 'header-selected ' : ''}`} to="/About">
+              About
+            </NavLink>
+          </div>
+        </div>
         <span className="horizontal-line"></span>
       </header>
     )
