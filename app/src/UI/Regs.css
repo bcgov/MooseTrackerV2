@@ -1,3 +1,7 @@
+.centered {
+  text-align:center;
+}
+
 .regs-component {
   background:#223f75;
   padding: 2rem;
@@ -9,6 +13,7 @@
   align-items: center;
   margin: 10px 0;
   padding: 10px;
+  color: white;
 }
 
 .table-of-contents {
@@ -16,21 +21,45 @@
   flex-direction: column;
   padding: 1rem;
   background: white;
-  border-radius: 2px;
+  border-radius: 25px;
 }
 
 .title {
   font-weight: bold;
   text-decoration: none;
+  text-align:center;
+}
+
+.link-container {
+  margin: 0 auto;
 }
 
 .link {
   text-decoration: none;
-  padding: .5rem;
+  padding: 1rem 5rem;
+  display: block;
+  width: 16rem;
+  cursor: pointer;
 }
 
 .link:hover {
   background: #003366;
-  border-radius: 2px;
+  border-radius: 10px;
   color: white;
+}
+
+.pdf-button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin: .5em;
+  text-decoration: none;
+  background-color: rgb(35, 107, 178);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+.pdf-button:hover {
+  background-color: #f4cb64;
 }
