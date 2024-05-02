@@ -101,36 +101,40 @@ export const Regs = () => {
           />
         </Document>
         {file && 
-          <div>
-            <button onClick={goToPrevPage} disabled={pageNumber <= 1}>
+          <div className="pdf-pagination">
+            <button className="pdf-button" onClick={goToPrevPage} disabled={pageNumber <= 1}>
               Previous
             </button>
-            <button onClick={goToNextPage} disabled={pageNumber >= numPages}>
+            <button className="pdf-button" onClick={goToNextPage} disabled={pageNumber >= numPages}>
               Next
             </button>
-            <p>
+            <p className="centered">
               Page {pageNumber} of {numPages}
             </p>
           </div>
         }
       </div>
       <div className="table-of-contents">
-        <h1>Regulations</h1>
-        <span onClick={() => setFile("hunting-trapping-synopsis.pdf")} className="link">
-          <div className="pdf">Full Hunting and Trapping Regulations Synopsis 2022-2024</div>
-        </span>
+        <h1 className="title">Regulations</h1>
+        <div className="link-container">
+          <span onClick={() => setFile("hunting-trapping-synopsis.pdf")} className="link">
+            <div className="pdf">Full Hunting and Trapping Regulations Synopsis 2022-2024</div>
+          </span>
+        </div>
         <h2 className="title">
           Contents By Region
         </h2>
-        {contentsMap.map((content) => {
-        return (
-          <span onClick={() => setFile(content.link)} className="link">
-            <div>
-              {content.name}
-            </div>
-          </span>
-          )
-        })}
+        <div className="link-container">
+          {contentsMap.map((content) => {
+            return (
+              <span onClick={() => setFile(content.link)} className="link">
+                <div>
+                  {content.name}
+                </div>
+              </span>
+            )
+          })}
+        </div>
       </div>
     </div>
 )}
