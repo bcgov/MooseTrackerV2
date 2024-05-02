@@ -1,6 +1,7 @@
 .regs-component {
   background:#223f75;
   padding: 2rem;
+  height: 100vh;
 }
 
 .regs-document {
