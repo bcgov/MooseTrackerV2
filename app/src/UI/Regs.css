@@ -1,7 +1,11 @@
 .regs-component {
   background:#223f75;
   padding: 2rem;
-  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 250px);
+  flex-shrink: 0;
 }
 
 .regs-document {
@@ -18,6 +22,7 @@
   padding: 1rem;
   background: white;
   border-radius: 2px;
+  height: 100%;
 }
 
 .title {
