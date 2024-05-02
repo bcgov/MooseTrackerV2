@@ -7,21 +7,33 @@
     align-items: flex-start;
     flex-direction: column;
     flex-wrap: nowrap;
+}
 
-    a{
-      color: #036;
-      text-decoration: none;
-      margin-left: 32px;
-    }
-
+a{
+  color: #036;
+  text-decoration: none;
+  margin-left: 32px;
 }
 
 .footer-content{
-  padding: 32px
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.bcgovIcon{
+  max-height: 4em;
+  max-width: 100%;
+  border-style: none;
+  overflow-clip-margin: content-box;
+  overflow: clip;
 }
 
 .footer-text-container{
   padding-top: 16px;
+  padding-right: 0.5em;
 }
 
 .privacy-text{
