@@ -7,47 +7,53 @@
   padding-bottom: 2em;
   background-color: #223f75;
   width: 100%;
-  height: calc(100vh - 250px);
-}
+  height: 500px;
+  /* height: calc(100vh - 250px); */
 
-.sightingHeader {
-  background-color: #003366;
-  width: 80%;
-  margin-bottom: 1em;
-  text-align: right;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-}
+  .wrapper{
+    display: flex;
+    justify-content: space-between;
+    background-color: #003366;
+    color: white;
+    height: 50px;
+    padding: 0.5em;
+    text-align: right;
+    /* align-items: center;
+    width: 80%; */
 
-.wrapper{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  background-color: #003366;
-  color: white;
-}
 
-h1{
-  margin-left: 1em
-}
+    .sightingHeader {
+      background-color: #003366;
+      width: 80%;
+      margin-bottom: 1em;
+      text-align: right;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      margin-left: 1em;
+    }
 
-.syncButton {
-  padding: 10px 20px;
-  border-radius: 4px;
-  margin: .5em;
-  text-decoration: none;
-  background-color: rgb(35, 107, 178);
-  color: #fff;
-  cursor: pointer;
-  border: none;
-  text-align: center;
-}
+    .syncButton {
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: .5em;
+      text-decoration: none;
+      background-color: rgb(35, 107, 178);
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+    
+    .syncButton:hover {
+      background-color:#f4cb64;
+    }
+  }
 
-.syncButton:hover {
-  background-color:#f4cb64;
+  .noSightings{
+    background-color: white;
+  }
 }
 
 .sighting {

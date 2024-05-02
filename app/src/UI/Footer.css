@@ -1,5 +1,14 @@
 .footer{
-    background-color: #fff;
+  background-color: #fff;
+  height: 64px;
+  /* display: flex; */
+  /* align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: nowrap; */
+  /* flex-grow: 1;
+  margin: 0; */
+
+  .footer-content{
     display: flex;
     flex-grow: 1;
     height: 75px;

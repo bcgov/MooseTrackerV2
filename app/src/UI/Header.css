@@ -2,26 +2,31 @@
   position: relative;
 
   .headerWrapper{
-      display: flex;
-      -webkit-box-pack: justify;
-      justify-content: space-between;
-      height: 4em;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    height: 64px;
+    margin-right: .25em;
+    /* margin: 0px 32px; */
 
-    .iconContainer{
+    .headingwrapper{
       display: flex;
-      flex-basis: 1;
-      margin-left: .5em;
-      align-items: center;
-      justify-content: center;
 
-      .bcgovIcon{
-        max-height: 4em;
-        max-width: 100%;
-        border-style: none;
-        overflow-clip-margin: content-box;
-        overflow: clip;
+      .iconContainer{
+        display: flex;
+        flex-basis: 1;
+        /* margin-left: 10px; */
+        align-items: center;
+        justify-content: center;
+
+        .bcgovIcon{
+          max-height: 60px;
+          max-width: 100%;
+          border-style: none;
+          overflow-clip-margin: content-box;
+          overflow: clip;
+        }
       }
-    }
 
     .titleContainer{
       display: flex;
