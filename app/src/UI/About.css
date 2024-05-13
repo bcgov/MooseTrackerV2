@@ -1,11 +1,9 @@
 .aboutContainer {
   display: flex;
-  background-color: #036;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
+  background-color: #223f75;
+  justify-content: flex-start;
   padding: 2em;
-  min-height: calc(100vh - 250px);
+  min-height: calc(100vh - 200px);
   flex-direction: column;
   max-width: 100%;
   flex-shrink: 0;
