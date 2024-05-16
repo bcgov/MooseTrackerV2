@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 import L from "leaflet";
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { featureCenters } from "../ManagementUnitLabels";
+
+console.log(featureCenters)
 
 interface ChangeViewProps {
   center: LatLngExpression;
@@ -260,7 +263,7 @@ export const MapPanel: React.FC = () => {
             <WMSTileLayer
               key={Math.random()}
               transparent={true}
-              opacity={.2}
+              opacity={1}
               format={'image/png'}
               layers="pub:WHSE_WILDLIFE_MANAGEMENT.WAA_WILDLIFE_MGMT_UNITS_SVW"
               url="http://openmaps.gov.bc.ca/geo/ows"

@@ -22,6 +22,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.4",
+    "@turf/turf": "^6.5.0",
     "@types/react-router-dom": "^5.3.3",
     "@wojtekmaj/react-hooks": "^1.19.0",
     "cors": "^2.8.5",
