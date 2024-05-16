@@ -79,6 +79,7 @@ export const FormPanel = (props: any) => {
             className="formButton"
             onClick={() => {
               dispatch({ type: GET_GEOLOCATION });
+              setShowModal(false);
             }}
           >
             Use Geolocation
@@ -101,6 +102,7 @@ export const FormPanel = (props: any) => {
               className="formButton"
               onClick={() => {
                 dispatch({ type: MANUAL_REGION_CHOICE });
+                setShowModal(false);
               }}
             >
               Submit Region
