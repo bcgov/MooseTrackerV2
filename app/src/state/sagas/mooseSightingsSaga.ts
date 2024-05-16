@@ -12,6 +12,7 @@ import {
   USER_SAVE_SIGHTINGS_FAIL,
   SYNC_SIGHTINGS_TO_DB,
   SIGHTING_SYNC_SUCCESSFUL,
+  MANUAL_REGION_CHOICE,
 } from "../actions";
 import { json } from 'react-router-dom';
 
@@ -58,6 +59,10 @@ function* getGeoLocation(action: any) {
     yield put(action);
     return;
   }
+}
+
+function* handle_MANUAL_REGION_CHOICE(action:any) {
+  yield put({ type: MANUAL_REGION_CHOICE, payload: { data: data } });
 }
 
 function* write_sightings_to_disk(action: any): Generator<any> {
@@ -157,6 +162,7 @@ function* mooseSightingSaga() {
       ),
       takeEvery(SYNC_SIGHTINGS_TO_DB, handle_SYNC_SIGHTINGS_TO_DB),
       takeEvery(SIGHTING_SYNC_SUCCESSFUL, write_sightings_to_disk),
+      takeEvery(MANUAL_REGION_CHOICE, handle_MANUAL_REGION_CHOICE),
     ]);
   } catch (e) {
     console.log(e);
