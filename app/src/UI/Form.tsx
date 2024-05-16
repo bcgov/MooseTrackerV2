@@ -67,37 +67,46 @@ export const FormPanel = (props: any) => {
     <div className="FormPanel">
       <div className={showModal ? 'showModal' : 'hideModal'} >
         <button
-          className="formButton"
+          className="formButton modalCloseButton"
           onClick={() => {setShowModal(false)}}
         >
-          x
+          X
         </button>
-        <button
-          className="formButton"
-          onClick={() => {
-            dispatch({ type: GET_GEOLOCATION });
-          }}
-        >
-          Use Geolocation
-        </button>
-        <label>
-          Select a region
-          <select
-            id="mgmtselector"
-          >
-            <option value='Region 1'>1</option>
-            <option value='Region 2'>2</option>
-            <option value='Region 3'>3</option>
-          </select>
+        <div className="modalElements">
+          <h3>Current location</h3>
+          <p>Use your current location</p>
           <button
-            className="submitRegion"
+            className="formButton"
             onClick={() => {
-              dispatch({ type: MANUAL_REGION_CHOICE });
+              dispatch({ type: GET_GEOLOCATION });
             }}
           >
-            Submit Region
+            Use Geolocation
           </button>
-        </label>
+        </div>
+        <div className="modalElements">OR</div>
+        <div className="modalElements">
+          <h3>Management region</h3>
+          <p>Mark down the moose as being in a management location.</p>
+          <label>
+            Select a region
+            <select
+              id="mgmtselector"
+            >
+              <option value='Region 1'>1</option>
+              <option value='Region 2'>2</option>
+              <option value='Region 3'>3</option>
+            </select>
+            <button
+              className="formButton"
+              onClick={() => {
+                dispatch({ type: MANUAL_REGION_CHOICE });
+              }}
+            >
+              Submit Region
+            </button>
+          </label>
+        </div>
       </div>
       <div className="inputsContainer">
         <div className="headerBar">
