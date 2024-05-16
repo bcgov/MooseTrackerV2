@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
-import { ACTIVITY_CLEAR_MOOSE_ARRAY, ACTIVITY_DELETE_MOOSE, GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER, USER_SAVE_SIGHTINGS } from "../state/actions";
+import { ACTIVITY_CLEAR_MOOSE_ARRAY, ACTIVITY_DELETE_MOOSE, GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER, USER_SAVE_SIGHTINGS, MANUAL_REGION_CHOICE } from "../state/actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
 import { Age } from "./Enums";
 
@@ -21,6 +21,8 @@ export const FormPanel = (props: any) => {
 
   const mooseArray = useSelector((state: any) => state.MooseSightingsState.mooseArray);
   const location = useSelector((state: any) => state.MooseSightingsState.location);
+
+  const [showModal, setShowModal] = useState(false);
 
   // const saveSightingToDisk = () => {
 
@@ -63,6 +65,40 @@ export const FormPanel = (props: any) => {
 
   return (
     <div className="FormPanel">
+      <div className={showModal ? 'showModal' : 'hideModal'} >
+        <button
+          className="formButton"
+          onClick={() => {setShowModal(false)}}
+        >
+          x
+        </button>
+        <button
+          className="formButton"
+          onClick={() => {
+            dispatch({ type: GET_GEOLOCATION });
+          }}
+        >
+          Use Geolocation
+        </button>
+        <label>
+          Select a region
+          <select
+            id="mgmtselector"
+          >
+            <option value='Region 1'>1</option>
+            <option value='Region 2'>2</option>
+            <option value='Region 3'>3</option>
+          </select>
+          <button
+            className="submitRegion"
+            onClick={() => {
+              dispatch({ type: MANUAL_REGION_CHOICE });
+            }}
+          >
+            Submit Region
+          </button>
+        </label>
+      </div>
       <div className="inputsContainer">
         <div className="headerBar">
           <h2 className="formHeading">Add a Moose Sighting</h2>
@@ -83,14 +119,22 @@ export const FormPanel = (props: any) => {
             >
               Add Moose
             </button>
+            {/* <button
+              className="formButton"
+              // onClick={() => {
+              //   dispatch({ type: GET_GEOLOCATION });
+              // }}
+            >
+              Mark Location
+            </button> */}
+
             <button
               className="formButton"
-              onClick={() => {
-                dispatch({ type: GET_GEOLOCATION });
-              }}
+              onClick={() => {setShowModal(true)}}
             >
               Mark Location
             </button>
+
             <div className="popup" >?
               <span className="popuptext" id="myPopup">Use this form to record moose sightings. Will save locally until you synch once connected to the internet.</span>
             </div>

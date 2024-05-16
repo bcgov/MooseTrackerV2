@@ -54,6 +54,24 @@
   background-color:#f4cb64;
 }
 
+.showModal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  color: #003366;
+  z-index: 3;
+  position: absolute;
+  width: 30em;
+  height: 10em;
+  border: #223f75 2px solid;
+  margin: 5em;
+}
+
+.hideModal{
+  display: none;
+}
+
 .popup {
   position: relative;
   display: inline-block;
