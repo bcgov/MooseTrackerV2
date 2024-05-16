@@ -23,12 +23,12 @@ function App() {
         <Header />
         <UserSaveSnackbar />
         <Routes>
-          <Route path="/" element={<MapPanel />}>
+          <Route path="/Map" element={<MapPanel />}>
             <Route index element={<FormPanel />} />
             <Route path="Sightings" element={<Sightings />} />
           </Route>
           <Route path="/Regulations" element={<Regs />} />
-          <Route path="/About" element={<About />} />
+          <Route path="/" element={<About />} />
         </Routes>
         <Footer />
       </BrowserRouter>
