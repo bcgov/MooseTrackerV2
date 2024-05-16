@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import L from "leaflet";
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { featureCenters } from "../ManagementUnitLabels";
+import { getLabelPoints } from "../ManagementUnitLabels";
 
-console.log(featureCenters)
+console.log(getLabelPoints())
 
 interface ChangeViewProps {
   center: LatLngExpression;

@@ -1,20 +1,17 @@
-import * as turf from '@turf/turf'
-import featuresGeoJson from './management-units-geojson.json'
+import * as turf from "@turf/turf";
+import featuresGeoJson from "./management-units-geojson.json";
 
-export const featureCenters = featuresGeoJson.features.map((feature: any) => {
-    const id = feature.id
-    const groupedCenters = []
-
-    for(let i = 0; i < feature.geometry.coordinates.length; i++){
-        const points = turf.points(feature.geometry.coordinates[i])
-        const center = turf.center(points)
-        groupedCenters.push(center)
+export const getLabelPoints = () => {
+  let labelPoints: any = [];
+  featuresGeoJson?.features?.map((feature: any) => {
+    try {
+      const mgmtUnitID = feature?.properties?.WILDLIFE_MGMT_UNIT_ID;
+      let centerPoint = turf.center(feature);
+      centerPoint.properties.id= mgmtUnitID;
+      labelPoints.push(centerPoint);
+    } catch (e) {
+      console.log(e);
     }
-
-    if (groupedCenters.length > 1){
-        return {
-            'id': id,
-            'center': groupedCenters
-        }
-    }
-})
+  });
+  return labelPoints;
+};
