@@ -1,5 +1,5 @@
 import "./Map.css"
-import { MapContainer, Marker, TileLayer, useMap, Popup} from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, useMap, Popup, WMSTileLayer, LayersControl, LayerGroup} from 'react-leaflet'
 import { LatLngExpression, Icon } from 'leaflet'
 import { useSelector } from "react-redux";
 import L from "leaflet";
@@ -257,6 +257,15 @@ export const MapPanel: React.FC = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+            <WMSTileLayer
+              key={Math.random()}
+              transparent={true}
+              opacity={.2}
+              format={'image/png'}
+              layers="pub:WHSE_WILDLIFE_MANAGEMENT.WAA_WILDLIFE_MGMT_UNITS_SVW"
+              url="http://openmaps.gov.bc.ca/geo/ows"
+              zIndex={9999}
+            />
         <MapMarkers />
         <ChangeView center={markerPosition} />
       </MapContainer>
