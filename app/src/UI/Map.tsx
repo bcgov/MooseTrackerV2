@@ -1,10 +1,13 @@
 import "./Map.css"
-import { MapContainer, Marker, TileLayer, useMap, Popup} from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, useMap, Popup, GeoJSON} from 'react-leaflet'
 import { LatLngExpression, Icon } from 'leaflet'
 import { useSelector } from "react-redux";
 import L from "leaflet";
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import mgmtUnits from '../assets/management_units.json'
+import { managementUnitStyle } from "./featureStylers";
+import { FeatureCollection, Feature } from "geojson";
 
 interface ChangeViewProps {
   center: LatLngExpression;
@@ -228,6 +231,7 @@ const MapMarkers = (props: any) => {
 
 export const MapPanel: React.FC = () => {
   const defaultLocation: [number, number] = [48.4284, -123.3656];
+  // const [selectedFeature, setSelectedFeature] = useState(null);
   const mapLocation = useSelector(
     (state: any) => state.MooseSightingsState.location
   );
@@ -244,6 +248,12 @@ export const MapPanel: React.FC = () => {
     ])
   }, [markerState]);
 
+  const onEachFeature = (feature: Feature, layer: L.Layer) => {
+    if (feature.properties) {
+      layer.bindTooltip(feature.properties.WILDLIFE_MGMT_UNIT_ID, {permanent: true, direction:'center', className: 'mgmtUnitLabel'})
+    }
+  }
+
   return (
     <div className="MapPanel">
       <MapContainer
@@ -257,6 +267,7 @@ export const MapPanel: React.FC = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <GeoJSON data={mgmtUnits as FeatureCollection} style={managementUnitStyle} onEachFeature={onEachFeature}/>
         <MapMarkers />
         <ChangeView center={markerPosition} />
       </MapContainer>
