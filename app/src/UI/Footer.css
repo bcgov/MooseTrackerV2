@@ -1,51 +1,57 @@
-.footer{
-  background-color: #fff;
-  height: 64px;
-  /* display: flex; */
-  /* align-items: flex-start;
-  flex-direction: column;
-  flex-wrap: nowrap; */
-  /* flex-grow: 1;
-  margin: 0; */
-
-  .footer-content{
-    display: flex;
-    flex-grow: 1;
-    height: 75px;
-    margin: 0;
-    align-items: flex-start;
-    flex-direction: column;
-    flex-wrap: nowrap;
-}
-
-a{
-  color: #036;
-  text-decoration: none;
-  margin-left: 32px;
-}
-
-.footer-content{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+.footer {
+  flex-shrink: 0;
+  background-color: #036;
   width: 100%;
+  min-height: 45px;
+  border-top: 2px solid #fcba19;
+  overflow: hidden;
+  margin: 0;
 }
 
-.bcgovIcon{
-  max-height: 4em;
-  max-width: 100%;
-  border-style: none;
-  overflow-clip-margin: content-box;
-  overflow: clip;
+.footer-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.footer-text-container{
-  padding-top: 16px;
-  padding-right: 0.5em;
+@media (min-width: 576px) {
+  .footer {
+    height: 45px !important;
+  }
 }
 
-.privacy-text{
-    color: #036;
-    text-decoration: none;
+.footer .nav-item {
+  font-size: 1.5vh;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.footer .nav-link {
+  display: block;
+  font-size: 2vh;
+  padding: 0.1rem 0.5rem;
+  text-decoration: none;
+}
+
+.footer a {
+  color: #fff !important;
+  cursor: pointer;
+}
+
+.footer ul {
+  padding-inline-start: 40px;
+}
+
+@media (min-width: 576px) {
+  footer li + li {
+    border-left: 1px solid #4b5e73;
+  }
 }
