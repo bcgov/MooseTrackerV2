@@ -1,9 +1,18 @@
 import { useRef, useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
-import { ACTIVITY_CLEAR_MOOSE_ARRAY, ACTIVITY_DELETE_MOOSE, GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER, USER_SAVE_SIGHTINGS, MANUAL_REGION_CHOICE } from "../state/actions";
+import {
+  ACTIVITY_CLEAR_MOOSE_ARRAY,
+  ACTIVITY_DELETE_MOOSE,
+  GET_GEOLOCATION,
+  USER_CLICK_ADD_MOOSE,
+  USER_CLICK_RECORD_GENDER,
+  USER_SAVE_SIGHTINGS,
+  MANUAL_REGION_CHOICE,
+} from "../state/actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
 import { Age } from "./Enums";
+import RegionSelector from "./RegionSelector";
 
 export const FormPanel = (props: any) => {
   const ref = useRef(0);
@@ -72,7 +81,7 @@ export const FormPanel = (props: any) => {
         >
           X
         </button>
-        <div className="modalElements">
+        {/* <div className="modalElements">
           <h3>Current location</h3>
           <p>Use your current location</p>
           <button
@@ -85,29 +94,28 @@ export const FormPanel = (props: any) => {
             Use Geolocation
           </button>
         </div>
-        <div className="modalElements">OR</div>
+        <div className="modalElements">OR</div> */}
         <div className="modalElements">
           <h3>Management region</h3>
           <p>Mark down the moose as being in a management location.</p>
-          <label>
-            Select a region
-            <select
-              id="mgmtselector"
-            >
-              <option value='Region 1'>1</option>
-              <option value='Region 2'>2</option>
-              <option value='Region 3'>3</option>
-            </select>
-            <button
+            <RegionSelector/>
+            {/* <button
               className="formButton"
               onClick={() => {
-                dispatch({ type: MANUAL_REGION_CHOICE });
+                dispatch({
+                  type: MANUAL_REGION_CHOICE,
+                  payload: {
+                    region: (
+                      document.getElementsByTagName("subRegionSelector") as any
+                    ).value,
+                  },
+                });
                 setShowModal(false);
+                console.log("buttonClick");
               }}
             >
               Submit Region
-            </button>
-          </label>
+            </button> */}
         </div>
       </div>
       <div className="inputsContainer">
@@ -210,4 +218,3 @@ export const FormPanel = (props: any) => {
     </div>
   );
 };
-
