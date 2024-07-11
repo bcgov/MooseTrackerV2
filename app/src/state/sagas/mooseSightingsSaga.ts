@@ -19,7 +19,7 @@ import { json } from 'react-router-dom';
 const apiUrl = "http://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
 
 function* handle_USER_CLICK_RECORD_MOOSE(action: any) {
-  yield put({ type: ACTIVITY_LOCATION_SET, payload: location });
+  //yield put({ type: ACTIVITY_LOCATION_SET, payload: location });
 }
 
 function* getGeoLocation(action: any) {
@@ -62,7 +62,8 @@ function* getGeoLocation(action: any) {
 }
 
 function* handle_MANUAL_REGION_CHOICE(action:any) {
-  yield put({ type: MANUAL_REGION_CHOICE, payload: { data: data } });
+  //console.log("handler****", action.payload.region);
+ // yield put({ type: MANUAL_REGION_CHOICE, payload: action.payload.region });
 }
 
 function* write_sightings_to_disk(action: any): Generator<any> {
