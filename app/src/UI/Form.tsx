@@ -8,7 +8,6 @@ import {
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_GENDER,
   USER_SAVE_SIGHTINGS,
-  MANUAL_REGION_CHOICE,
 } from "../state/actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
 import { Age } from "./Enums";
@@ -99,23 +98,6 @@ export const FormPanel = (props: any) => {
           <h3>Management region</h3>
           <p>Mark down the moose as being in a management location.</p>
             <RegionSelector/>
-            {/* <button
-              className="formButton"
-              onClick={() => {
-                dispatch({
-                  type: MANUAL_REGION_CHOICE,
-                  payload: {
-                    region: (
-                      document.getElementsByTagName("subRegionSelector") as any
-                    ).value,
-                  },
-                });
-                setShowModal(false);
-                console.log("buttonClick");
-              }}
-            >
-              Submit Region
-            </button> */}
         </div>
       </div>
       <div className="inputsContainer">

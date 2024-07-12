@@ -5,24 +5,30 @@ import { useDispatch, useSelector } from "react-redux";
 import  { MANUAL_REGION_CHOICE } from "../state/actions";
 import * as mgmtUnits from "../assets/management_units.json";
 
-let options = mgmtUnits as any;
-const features = options.features;
-console.dir(features);
-options = features.map((feature:any) => {
+const managementUnits = mgmtUnits as any; // a large object including data about wildlife management regions
+const features = managementUnits.features; // an array with entries for each management region
+
+let options = features.map((feature:any) => {   // an array with the data we're actually using for each managment region
     return feature.properties;
 })
 
-let regionNamesArr = features.map(
+let regionNamesArray = features.map(
   (feature: any) => feature.properties.REGION_RESPONSIBLE_NAME
 );
 
-let regionSet = new Set(regionNamesArr);
-regionNamesArr = Array.from(regionSet)
+let regionSet = new Set(regionNamesArray);
+regionNamesArray = Array.from(regionSet) // an array of all the unique regions
 
 
-
+/**
+ * A component with two selectors for choosing a wildlife management area
+ * When a subregion is selected, an action is dispatched to update the location state
+ * 
+ * @component
+ * @returns {React.ReactElement} a div with 2 selectors
+ */
 export default () => {
-    const [selectedRegion, setSelectedRegion ] = useState('');
+    const [selectedRegion, setSelectedRegion ] = useState(''); //only used in this component so not sent to the store
     const selectedSubregion = useSelector(
       (state: any) => state.MooseSightingsState.location
     );
@@ -40,16 +46,14 @@ export default () => {
     return (
       <div>
         <label>
-          Select your Region  : 
+          Select your Region :
           <select
             name="regionSelector"
             value={selectedRegion}
             onChange={handleRegionSelect}
           >
-            <option selected>
-              -- select an option --
-            </option>
-            {regionNamesArr.map((region: any) => (
+            <option selected>-- select an option --</option>
+            {regionNamesArray.map((region: any) => (
               <option key={region} value={region}>
                 {region}
               </option>
@@ -58,12 +62,14 @@ export default () => {
         </label>
         <br />
         <label>
-          Select your Sub-Region  :  
+          Select your Sub-Region :
           <select
             name="subRegionSelector"
             value={selectedSubregion}
             onChange={handleSubRegionSelect}
           >
+            {/* This section filters the options array so only subregions of the selected region are shown*/}
+            {/* The result is then sorted based on management region id (ex id : "1-12") and an option entry generated for each*/}
             {options
               .filter(
                 (property: any) =>
@@ -89,16 +95,3 @@ export default () => {
       </div>
     );
 };
-
-/* {
-    "WILDLIFE_MGMT_UNIT_ID": "1-6",
-    "FEATURE_CODE": "WI02800110",
-    "REGION_RESPONSIBLE": 1,
-    "REGION_RESPONSIBLE_NAME": "Vancouver Island",
-    "GAME_MANAGEMENT_ZONE_ID": "1a",
-    "GAME_MANAGEMENT_ZONE_NAME": "Southern Vancouver Island",
-    "FEATURE_AREA_SQM": 4014262107.1476,
-    "FEATURE_LENGTH_M": 358041.9776,
-    "OBJECTID": 653,
-    "SE_ANNO_CAD_DATA": null
-} */
