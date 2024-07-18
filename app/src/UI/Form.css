@@ -4,29 +4,27 @@
   height: 500px;   
   padding-top: 2em;
   padding-bottom: 2em;
-  background-color: #223f75;
   justify-content: center;
+  background-color: rgba(0, 0, 0, .03);
 }
 
 .inputsContainer {
   height: 75%;
   width: 80%;
-  background-color: yellow;
+  background-color: #fff;
 }
 
 .headerBar {
-  background-color: #003366;
   height: 50px;
   padding: 0.5em;
   text-align: right;
+  font-family: Myriad-Pro, Calibri, Arial, sans serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #494949;
   display: flex;
   justify-content: space-between;
-}
-
-.meese {
-  background-color: white;
-  height: 100%;
-  width: 100%;
 }
 
 .headerButtons {
@@ -37,21 +35,38 @@
   flex-direction: row;
 }
 
-.formButton {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 4px;
-  margin: .5em;
-  text-decoration: none;
-  background-color: rgb(35, 107, 178);
-  color: #fff;
-  cursor: pointer;
-  border: none;
-  text-align: center;
+.meese {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  font-family: Myriad-Pro, Calibri, Arial, sans serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #494949;
+  border: 1px solid rgba(0, 0, 0, .125);
 }
 
-.formButton:hover {
-  background-color:#f4cb64;
+.formButton {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  background-color: #036;
+  border-color: #036;
+  font-family: Myriad-Pro, Calibri, Arial, sans serif;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  margin: .25em;
 }
 
 .showModal {
@@ -86,13 +101,12 @@
 .popup {
   position: relative;
   display: inline-block;
-  color: #fff;
+  color: #494949;
 }
 
 .popup .popuptext {
   visibility: hidden;
-  background-color: #555;
-  color: #fff;
+  color: #494949;
   text-align: center;
   border-radius: 6px;
   padding: 8px 0;
@@ -107,8 +121,7 @@
 }
 
 .moose{
-  margin: 1px;
-  border: #223f75 1px solid;
+  margin: .5em;
 }
 
 #ageSelector {
@@ -116,18 +129,15 @@
 }
 
 h2.formHeading {
-  text-align: left;
-  font-size: x-large;
-  font-weight: bold;
-  color: white;
+  line-height: 1.2;
   margin-left: 20px;
 }
 
 .formFooter {
-  background-color: #003366;
   height: 50px;
   padding: 0.5em;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: #fff;
 }

@@ -1,42 +1,74 @@
+.centered {
+  text-align:center;
+  color: #494949;
+}
+
 .regs-component {
-  background-color: #223f75;
+  background-color: rgba(0, 0, 0, .03);
   padding: 2rem;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - 250px);
-  flex-shrink: 0;
+  min-height: calc(100vh - 109px);
+  font-family: Myriad-Pro, Calibri, Arial, sans serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .regs-document {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 0;
-  padding: 10px;
+  color: white;
+  min-height: 0;
+}
+
+.pdf-pagination{
+  padding: 2em;
 }
 
 .table-of-contents {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   background: white;
-  border-radius: 2px;
-  height: 100%;
+  color: #494949;
+  padding-bottom: 1em;
 }
 
 .title {
   font-weight: bold;
   text-decoration: none;
+  text-align:center;
+}
+
+.link-container {
+  margin: 0 auto;
 }
 
 .link {
   text-decoration: none;
-  padding: .5rem;
+  padding: 1rem 5rem;
+  display: block;
+  width: 16rem;
+  cursor: pointer;
 }
 
 .link:hover {
   background: #003366;
-  border-radius: 2px;
+  border-radius: 10px;
   color: white;
+}
+
+.pdf-button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin: .5em;
+  text-decoration: none;
+  background-color: rgb(35, 107, 178);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+.pdf-button:hover {
+  background-color: #f4cb64;
 }

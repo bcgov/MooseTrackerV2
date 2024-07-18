@@ -21,30 +21,34 @@ export const Sightings = (props: any) => {
   return (
     <div className="sightingContainer">
       <span className="wrapper">
-        <h1 className="sightingHeader">All Sightings</h1>
-        <button className="syncButton" onClick={() => dispatch({ type: SYNC_SIGHTINGS_TO_DB, payload: {} })}>
+        <div className="sightingHeader">
+          <h2 className="sightingHeadingText">All Sightings</h2>
+          <button className="syncButton" onClick={() => dispatch({ type: SYNC_SIGHTINGS_TO_DB, payload: {} })}>
             Sync
-        </button>
+          </button>
+        </div>
+        <div className="sightingText">
+          {storedSightings?.length > 0 ?
+            storedSightings?.map((sighting: any) => {
+              return (
+                <Accordion key={sighting.id} className="sighting">
+                  <AccordionSummary className="sightingHeader" aria-controls="panel-content">
+                    <div className="sightingDate">{sighting.dateOfSighting}</div>
+                    <div className="sightingStatus">status: {sighting.status}</div>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    {sighting.mooseArray.map((moose: any) => {
+                      return (<p>{moose.id} | {moose.age} - {moose.gender}</p>);
+                    })}
+                  </AccordionDetails>
+                </Accordion>
+              );
+            })
+            :
+            <p className="noSightings">No stored sightings currently</p>
+          }
+        </div>
       </span>
-      {storedSightings?.length > 0 ?
-        storedSightings?.map((sighting: any) => {
-          return (
-            <Accordion key={sighting.id} className="sighting">
-              <AccordionSummary className="sightingHeader" aria-controls="panel-content">
-                <div className="sightingDate">{sighting.dateOfSighting}</div>
-                <div className="sightingStatus">status: {sighting.status}</div>
-              </AccordionSummary>
-              <AccordionDetails>
-                {sighting.mooseArray.map((moose: any) => {
-                  return (<p>{moose.id} | {moose.age} - {moose.gender}</p>);
-                })}
-              </AccordionDetails>
-            </Accordion>
-          );
-        })
-        :
-        <p className="noSightings">No stored sightings currently</p>
-      }
     </div>
   );
 };

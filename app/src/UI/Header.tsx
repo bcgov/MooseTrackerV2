@@ -64,7 +64,6 @@ export const Header = (props: any) => {
             </NavLink>
           </div>
         </div>
-        <span className="horizontal-line"></span>
       </header>
     )
 }
