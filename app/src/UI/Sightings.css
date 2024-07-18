@@ -1,65 +1,81 @@
-.sightingContainer {
+.wrapper{
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  color: #494949;
+  text-align: right;
+  height: 75%;
+  width: 80%;
+  background-color: #fff;
+}
+
+.sightingContainer {
   align-items: center;
-  overflow-y: auto;
-  padding-top: 2em;
-  padding-bottom: 2em;
-  background-color: #223f75;
+  display: flex;
   width: 100%;
   height: 500px;
-  /* height: calc(100vh - 250px); */
+  justify-content: center;
+  background-color: rgba(0, 0, 0, .03);
+}
 
-  .wrapper{
-    display: flex;
-    justify-content: space-between;
-    background-color: #003366;
-    color: white;
-    height: 50px;
-    padding: 0.5em;
-    text-align: right;
-    /* align-items: center;
-    width: 80%; */
+.sightingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  color: #494949;
+  text-align: right;
+  font-family: Myriad-Pro, Calibri, Arial, sans serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
 
+.sightingHeadingText {
+  line-height: 1.2;
+  margin-left: 20px;
+}
 
-    .sightingHeader {
-      background-color: #003366;
-      width: 80%;
-      margin-bottom: 1em;
-      text-align: right;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      margin-left: 1em;
-    }
+.sightingText {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  font-family: Myriad-Pro, Calibri, Arial, sans serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #494949;
+  border: 1px solid rgba(0, 0, 0, .125);
+}
 
-    .syncButton {
-      padding: 10px 20px;
-      border-radius: 4px;
-      margin: .5em;
-      text-decoration: none;
-      background-color: rgb(35, 107, 178);
-      color: #fff;
-      cursor: pointer;
-      border: none;
-      text-align: center;
-    }
-    
-    .syncButton:hover {
-      background-color:#f4cb64;
-    }
-  }
-
-  .noSightings{
-    background-color: white;
-  }
+.noSightings{
+  background-color: white;
 }
 
 .sighting {
   background-color: white;
   color: #000;
-  width: 80%;
+}
+
+.syncButton {
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  background-color: #036;
+  border-color: #036;
+  font-family: Myriad-Pro, Calibri, Arial, sans serif;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  margin: .25em;
 }
 
 .sighting .MuiAccordionSummary-root {

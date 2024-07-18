@@ -1,4 +1,11 @@
 .footer {
+  /* @include media-breakpoint-only(xs) {
+    height: 8.2rem!important;
+    margin-top: 10rem;
+  }
+  @include media-breakpoint-up(sm) {
+    height: 45px!important;
+  } */
   flex-shrink: 0;
   background-color: #036;
   width: 100%;
@@ -29,14 +36,14 @@
 }
 
 .footer .nav-item {
-  font-size: 1.5vh;
+  font-size: 13px;
   margin-bottom: 0;
   list-style: none;
 }
 
 .footer .nav-link {
   display: block;
-  font-size: 2vh;
+  font-size: 13px;
   padding: 0.1rem 0.5rem;
   text-decoration: none;
 }
@@ -48,10 +55,4 @@
 
 .footer ul {
   padding-inline-start: 40px;
-}
-
-@media (min-width: 576px) {
-  footer li + li {
-    border-left: 1px solid #4b5e73;
-  }
 }
