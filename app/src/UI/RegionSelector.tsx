@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import Select from "react-select";
+import { useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
 import  { MANUAL_REGION_CHOICE } from "../state/actions";
