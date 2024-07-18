@@ -54,6 +54,35 @@
   background-color:#f4cb64;
 }
 
+.showModal {
+  display: flex;  
+  align-items: center;
+  background-color: #fff;
+  color: #003366;
+  z-index: 3;
+  position: absolute;
+  width: 40em;
+  height: 10em;
+  border: #223f75 2px solid;
+  margin: 5em;
+  padding: 3em
+}
+
+.hideModal {
+  display: none;
+}
+
+.modalElements {
+  flex-direction: row;
+  padding: 2em;
+}
+
+.modalCloseButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .popup {
   position: relative;
   display: inline-block;

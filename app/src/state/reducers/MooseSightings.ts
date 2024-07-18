@@ -10,6 +10,7 @@ import {
   USER_SAVE_SIGHTINGS_FAIL,
   USER_CLOSE_SNACKBAR,
   SIGHTING_SYNC_SUCCESSFUL,
+  MANUAL_REGION_CHOICE,
 } from "../actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
 
@@ -148,6 +149,12 @@ function createMooseSightingStateReducer(
         return {
           ...state,
           allSightings: state.allSightings.map((sighting) => { return {...sighting, 'status':"Synced"} })
+        }
+      }
+      case MANUAL_REGION_CHOICE: {
+        return {
+          ...state,
+          location: action.payload
         }
       }
       default:

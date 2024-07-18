@@ -12,13 +12,14 @@ import {
   USER_SAVE_SIGHTINGS_FAIL,
   SYNC_SIGHTINGS_TO_DB,
   SIGHTING_SYNC_SUCCESSFUL,
+  MANUAL_REGION_CHOICE,
 } from "../actions";
 import { json } from 'react-router-dom';
 
 const apiUrl = "http://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
 
 function* handle_USER_CLICK_RECORD_MOOSE(action: any) {
-  yield put({ type: ACTIVITY_LOCATION_SET, payload: location });
+  //yield put({ type: ACTIVITY_LOCATION_SET, payload: location });
 }
 
 function* getGeoLocation(action: any) {
@@ -58,6 +59,11 @@ function* getGeoLocation(action: any) {
     yield put(action);
     return;
   }
+}
+
+function* handle_MANUAL_REGION_CHOICE(action:any) {
+  //console.log("handler****", action.payload.region);
+ // yield put({ type: MANUAL_REGION_CHOICE, payload: action.payload.region });
 }
 
 function* write_sightings_to_disk(action: any): Generator<any> {
@@ -157,6 +163,7 @@ function* mooseSightingSaga() {
       ),
       takeEvery(SYNC_SIGHTINGS_TO_DB, handle_SYNC_SIGHTINGS_TO_DB),
       takeEvery(SIGHTING_SYNC_SUCCESSFUL, write_sightings_to_disk),
+      takeEvery(MANUAL_REGION_CHOICE, handle_MANUAL_REGION_CHOICE),
     ]);
   } catch (e) {
     console.log(e);
