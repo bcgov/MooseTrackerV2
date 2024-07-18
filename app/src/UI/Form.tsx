@@ -190,7 +190,8 @@ export const FormPanel = (props: any) => {
           <button
             className="formButton"
             onClick={() => {
-              dispatch({ type: USER_SAVE_SIGHTINGS })
+              dispatch({ type: USER_SAVE_SIGHTINGS });
+              setShowModal(false);
             }}
           >
             Save
