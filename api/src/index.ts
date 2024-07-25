@@ -23,12 +23,16 @@ app.use(
 
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Moose Sightings API!");
+});
+
 console.log("about to initialize");
 initialize({
   validateApiDoc: false,
   app,
   apiDoc: apiDoc,
-  paths: path.resolve(__dirname, "./paths"),
+  paths: "./src/paths",
   routesGlob: "**/*.{ts,js}", // updated default to allow .ts
   routesIndexFileRegExp: /(?:index)?\.[tj]s$/, // updated default to allow .ts
 });
