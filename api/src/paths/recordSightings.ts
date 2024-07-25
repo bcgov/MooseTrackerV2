@@ -15,60 +15,55 @@ function postMooseSightings(): RequestHandler {
   };
 }
 
-export const POST: Operation = postMooseSightings();
+export const POST: Operation = postMooseSightings;
 
 POST.apiDoc = {
-  summary: "Uploads moose group sighting data",
+  summary: "Uploads moose sighting data",
   requestBody: {
     content: {
       "application/json": {
         schema: {
-          type: "object",
-          properties: {
-            sightings: {
-              type: "array",
-              items: {
-                type: "object",
-                properties: {
-                  id: {
-                    type: "string",
-                  },
-                  dateOfSighting: {
-                    type: "number",
-                  },
-                  status: {
-                    type: "string",
-                  },
-                  syncDate: {
-                    type: "number",
-                  },
-                  location: {
-                    type: "array",
-                    items: {
-                      type: "number",
-                      maxLength: 2,
-                      minLength: 2,
-                    },
-                  },
-                  mooseArray: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                      properties: {
-                        id: {
-                          type: "number",
-                        },
-                        age: {
-                          type: "string",
-                        },
-                        gender: {
-                          type: "string",
-                        },
-                      }
-                    }
-                  },
-                }
-              }
+          type: "array",
+          items: {
+            type: "object",
+            required: [
+              "clientSightingId",
+              "dateFrom",
+              "dateTo",
+              "region",
+              "subRegion",
+              "tickHairLoss",
+              "mooseCount",
+            ],
+            properties: {
+              clientSightingId: {
+                type: "string",
+              },
+              dateFrom: {
+                type: "string",
+              },
+              dateTo: {
+                type: "string",
+              },
+              region: {
+                type: "number",
+                minimum: 1,
+                maximum: 8,
+              },
+              subRegion: {
+                type: "number",
+                minimum: 1,
+                maximum: 99,
+              },
+              tickHairLoss: {
+                type: "number",
+                minimum: 1,
+                maximum: 5,
+              },
+              mooseCount: {
+                type: "number",
+                minimum: 1,
+              },
             },
           },
         },

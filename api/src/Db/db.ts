@@ -1,58 +1,84 @@
-import { Pool } from 'pg';
+import { Pool } from "pg";
+import "dotenv/config";
+import { MooseSighting } from "interfaces";
+import { formatDateNoTime } from "../util";
 
 const pool = new Pool({
-  user: process.env.DB_USER || 'postgres',
-  host: process.env.DB_HOST || 'localhost',
-  database: process.env.DB_NAME || 'mooseDB',
-  password: process.env.DB_PASSWORD || 'supermoosepassword',
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
 });
 
-
 export async function openDb() {
-  return pool
+  return pool;
 }
 
 export async function createDb() {
-  const createTableSql = `CREATE TABLE IF NOT EXISTS Moose
-                            (clientId real not Null, 
-                            sightingId text not Null,
-                            date text not Null,
-                            lat real not Null,
-                            long real not Null,
-                            lifestage text,
-                            gender text,
-                            health text);`;
+  const createTableSql = `CREATE TABLE IF NOT EXISTS moose (
+    sightingId SERIAL PRIMARY KEY, 
+    clientSightingId TEXT NOT NULL,
+    syncDate DATE NOT NULL,
+    dateFrom DATE NOT NULL,
+    dateTo DATE NOT NULL,
+    region INT NOT NULL,
+    subRegion INT NOT NULL,
+    tickHairLoss INT, 
+    mooseCount INT NOT NULL);`;
 
   await pool.query(createTableSql);
 }
 
-export async function insertSightingMoose(dbPool, postbody) {
+const createInsertValues = (length: number, startIndex: number): string => {
+  const insertValue = [];
+  for (let i = 0; i < length; i++) {
+    insertValue.push(`$${startIndex + i}`);
+  }
+  return `(${insertValue.join(", ")})`;
+};
+
+const prepareInsertData = (
+  mooseSightingsPostBody: MooseSighting[]
+): { values: any[]; insertValues: string[] } => {
+  const values: any[] = [];
+  const insertValues: string[] = [];
+  let paramCounter = 1;
+
+  mooseSightingsPostBody.forEach((sighting) => {
+    values.push(
+      sighting.clientSightingId,
+      formatDateNoTime(new Date()), // syncDate
+      sighting.dateFrom,
+      sighting.dateTo,
+      sighting.region,
+      sighting.subRegion,
+      sighting.tickHairLoss,
+      sighting.mooseCount
+    );
+    insertValues.push(createInsertValues(8, paramCounter));
+    paramCounter += 8;
+  });
+
+  return { values, insertValues };
+};
+
+// Main function to insert sightings into the database
+export async function insertSightingMoose(
+  dbPool: Pool,
+  mooseSightingsPostBody: MooseSighting[]
+) {
   try {
-    let values = [];
-    let paramCounter = 1;
-    let placeholders = [];
+    const { values, insertValues } = prepareInsertData(mooseSightingsPostBody);
 
-    postbody.sightings.forEach(sighting => {
-      console.log(sighting);
-      if (sighting.status !== 'Synced') {
-        sighting.mooseArray.forEach(moose => {
-          values.push(1, sighting.id, new Date(sighting.dateOfSighting * 1000), sighting.location[0], sighting.location[1], moose?.age || null, moose?.gender || null, 'Healthy');
-          let valuePlaceholders = [];
-          for (let i = 0; i < 8; i++) {
-            valuePlaceholders.push(`$${paramCounter++}`);
-          }
-          placeholders.push(`(${valuePlaceholders.join(', ')})`);
-        });
-      }
-    });
-
-    if (values.length < 1) {
+    if (values.length === 0) {
       console.log("There is nothing new to sync");
       return;
     }
 
-    const insertSQL = `INSERT INTO Moose (clientId, sightingId, date, lat, long, lifestage, gender, health) VALUES ${placeholders.join(', ')}`;
+    const insertSQL = `INSERT INTO Moose (clientSightingID, syncDate, dateFrom, dateTo, region, subRegion, tickHairLoss, mooseCount) VALUES ${insertValues.join(
+      ", "
+    )}`;
 
     await dbPool.query(insertSQL, values);
     console.log("Insertion successful");
@@ -63,7 +89,7 @@ export async function insertSightingMoose(dbPool, postbody) {
 }
 
 export async function findUserMeese(dbPool: any, user: any) {
-  let findUserSQL = 'SELECT * FROM Moose WHERE clientId = ?'
+  let findUserSQL = "SELECT * FROM moose WHERE clientSightingId = ?";
   console.log(findUserSQL);
   await dbPool.query(findUserSQL, user);
 }
