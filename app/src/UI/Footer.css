@@ -1,11 +1,4 @@
 .footer {
-  /* @include media-breakpoint-only(xs) {
-    height: 8.2rem!important;
-    margin-top: 10rem;
-  }
-  @include media-breakpoint-up(sm) {
-    height: 45px!important;
-  } */
   flex-shrink: 0;
   background-color: #036;
   width: 100%;
@@ -29,12 +22,6 @@
   margin-left: auto;
 }
 
-@media (min-width: 576px) {
-  .footer {
-    height: 45px !important;
-  }
-}
-
 .footer .nav-item {
   font-size: 13px;
   margin-bottom: 0;
@@ -55,4 +42,10 @@
 
 .footer ul {
   padding-inline-start: 40px;
+}
+
+@media (max-width: 575.98px) {
+  .footer {
+    height: 5rem !important;
+  }
 }
