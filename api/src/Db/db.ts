@@ -39,13 +39,13 @@ const createInsertValues = (length: number, startIndex: number): string => {
 };
 
 const prepareInsertData = (
-  postbody: MooseSighting[]
+  mooseSightingsPostBody: MooseSighting[]
 ): { values: any[]; insertValues: string[] } => {
   const values: any[] = [];
   const insertValues: string[] = [];
   let paramCounter = 1;
 
-  postbody.forEach((sighting) => {
+  mooseSightingsPostBody.forEach((sighting) => {
     values.push(
       sighting.clientSightingId,
       formatDateNoTime(new Date()), // syncDate
@@ -66,10 +66,10 @@ const prepareInsertData = (
 // Main function to insert sightings into the database
 export async function insertSightingMoose(
   dbPool: Pool,
-  postbody: MooseSighting[]
+  mooseSightingsPostBody: MooseSighting[]
 ) {
   try {
-    const { values, insertValues } = prepareInsertData(postbody);
+    const { values, insertValues } = prepareInsertData(mooseSightingsPostBody);
 
     if (values.length === 0) {
       console.log("There is nothing new to sync");
@@ -89,7 +89,7 @@ export async function insertSightingMoose(
 }
 
 export async function findUserMeese(dbPool: any, user: any) {
-  let findUserSQL = "SELECT * FROM Moose WHERE clientId = ?";
+  let findUserSQL = "SELECT * FROM moose WHERE clientSightingId = ?";
   console.log(findUserSQL);
   await dbPool.query(findUserSQL, user);
 }
