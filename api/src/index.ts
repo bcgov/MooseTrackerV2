@@ -44,7 +44,8 @@ app.use(
     res: express.Response,
     next: express.NextFunction
   ) => {
-    console.error(`Error in path ${req.path}:`, err);
+    const path = req.path;
+    console.error("Error in path %s", path, err);
     res.status(500).send("Something broke!");
   }
 );
