@@ -87,9 +87,13 @@
   display: none;
 }
 
-.modalElements {
+.modal {
   flex-direction: row;
   padding: 2em;
+}
+
+.modal .modalContent {
+  margin-right: 1em;
 }
 
 .modalCloseButton {

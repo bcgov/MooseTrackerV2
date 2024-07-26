@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { useSelector, useDispatch } from "react-redux";
 import { SYNC_SIGHTINGS_TO_DB } from "../state/actions";
-
+import { formatDateString } from "../util";
 
 export const Sightings = (props: any) => {
   const ref = useRef(0);
@@ -33,13 +33,15 @@ export const Sightings = (props: any) => {
               return (
                 <Accordion key={sighting.id} className="sighting">
                   <AccordionSummary className="sightingHeader" aria-controls="panel-content">
-                    <div className="sightingDate">{sighting.dateOfSighting}</div>
-                    <div className="sightingStatus">status: {sighting.status}</div>
+                    <div className="sightingDate">{formatDateString(sighting.dateFrom)} to {formatDateString(sighting.dateTo)}</div>
+                    <div className="sightingStatus">&nbsp;({sighting.status})</div>
                   </AccordionSummary>
                   <AccordionDetails>
-                    {sighting.mooseArray.map((moose: any) => {
-                      return (<p>{moose.id} | {moose.age} - {moose.gender}</p>);
-                    })}
+                    <div>{sighting.region} {sighting.subRegion}</div>
+                    <div>Moose count: {sighting.mooseCount}</div>
+                    {/* TODO: tick hair loss not yet implemented */}
+                    {/* <div>Tick hair loss: {sighting.tickHairLoss} </div> */}
+                    <div>Sync date: {sighting.syncDate ?? '(not synced)'}</div>
                   </AccordionDetails>
                 </Accordion>
               );

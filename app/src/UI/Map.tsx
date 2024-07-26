@@ -99,9 +99,9 @@ const MapMarkers = (props: any) => {
   });
 
 
-  const mooseArray = useSelector(
-    (state: any) => state.MooseSightingsState.mooseArray
-  ).slice(0, 5);
+  // const mooseArray = useSelector(
+  //   (state: any) => state.MooseSightingsState.mooseArray
+  // ).slice(0, 5);
 
   const allSightings = useSelector(
     (state: any) => state.MooseSightingsState.allSightings
@@ -115,7 +115,7 @@ const MapMarkers = (props: any) => {
   //   shadowSize: [41, 41]
   // })
 
-  const markerState = useSelector((state: any) => state.MooseSightingsState.location) as LocationState;
+  const markerState = useSelector((state: any) => state.MooseSightingsState.subRegion) as LocationState;
   const defaultLocation: [number, number] = [48.4284, -123.3656];
 
   const markerPosition: [number, number] = [
@@ -174,18 +174,17 @@ const MapMarkers = (props: any) => {
     }
   };
 
-
-  const Meese = (props: any) => (
-    <>
-      {mooseArray.map((moose: any, index: number) => {
-        const position = getOffsetLocation(index, markerPosition);
-        const mooseIcon = getMooseIcon(moose, "Current");
-        return (
-          <Marker key={index} position={position} icon={mooseIcon} />
-        );
-      })}
-    </>
-  );
+  // const Meese = (props: any) => (
+  //   <>
+  //     {mooseArray.map((moose: any, index: number) => {
+  //       const position = getOffsetLocation(index, markerPosition);
+  //       const mooseIcon = getMooseIcon(moose, "Current");
+  //       return (
+  //         <Marker key={'meeseMarker' + index} position={position} icon={mooseIcon} />
+  //       );
+  //     })}
+  //   </>
+  // );
 
   // const synchedMeese = (props: any) => (
   //   <>
@@ -197,33 +196,33 @@ const MapMarkers = (props: any) => {
   //   </>
   // );
 
-  const NotSynchedMeese = (props: any) => {
+  // const NotSynchedMeese = (props: any) => {
     
-      return(
-    <>
-      {allSightings?.map((sighting: any, index: number) => {
-        return sighting.mooseArray.map((moose: any, mooseIndex: number) => {
-          const offLoc: [number, number] = sighting?.location?.latitude ? [sighting.location.latitude, sighting.location.longitude] : markerPosition;
-          const position = getOffsetLocation(index, offLoc);
-          const mooseIcon = getMooseIcon(moose, sighting?.status);
-          const mooseDate = new Date(sighting.dateOfSighting).toLocaleDateString();
-          return (
-            <Marker key={index + mooseIndex} position={position} icon={mooseIcon} >
-              <Popup>
-                <div>Date of Sighting: {mooseDate}</div>
-              </Popup>
-            </Marker>
-          )
-        })
-      })}
-    </>
-  )};
+  //     return(
+  //   <>
+  //     {allSightings?.map((sighting: any, index: number) => {
+  //       return sighting.mooseArray.map((moose: any, mooseIndex: number) => {
+  //         const offLoc: [number, number] = sighting?.location?.latitude ? [sighting.location.latitude, sighting.location.longitude] : markerPosition;
+  //         const position = getOffsetLocation(index, offLoc);
+  //         const mooseIcon = getMooseIcon(moose, sighting?.status);
+  //         const mooseDate = new Date(sighting.dateOfSighting).toLocaleDateString();
+  //         return (
+  //           <Marker key={index.toString() + mooseIndex.toString()} position={position} icon={mooseIcon} >
+  //             <Popup>
+  //               <div>Date of Sighting: {mooseDate}</div>
+  //             </Popup>
+  //           </Marker>
+  //         )
+  //       })
+  //     })}
+  //   </>
+  // )};
 
   return (
     <>
-      <Meese key={zoomed} />
+      {/* <Meese key={zoomed} /> */}
       {/* <synchedMeese key={}/> */}
-      <NotSynchedMeese key={zoomed}/>
+      {/*<NotSynchedMeese key={zoomed}/>*/}
     </>
   )
 };
@@ -233,10 +232,10 @@ export const MapPanel: React.FC = () => {
   const defaultLocation: [number, number] = [48.4284, -123.3656];
   // const [selectedFeature, setSelectedFeature] = useState(null);
   const mapLocation = useSelector(
-    (state: any) => state.MooseSightingsState.location
+    (state: any) => state.MooseSightingsState.subRegion
   );
   const markerState = useSelector(
-    (state: any) => state.MooseSightingsState.location
+    (state: any) => state.MooseSightingsState.subRegion
   ) as LocationState;
   const [markerPosition, setMarkerPosition] = useState(defaultLocation);
   // let markerPosition: [number, number] = [defaultLocation[0], defaultLocation[1]];
