@@ -1,33 +1,41 @@
 import { Age } from "../../UI/Enums";
 import {
-  ACTIVITY_DELETE_MOOSE,
-  ACTIVITY_LOCATION_SET,
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
   USER_SAVE_SIGHTINGS,
-  ACTIVITY_CLEAR_MOOSE_ARRAY,
   USER_SAVE_SIGHTINGS_SUCCESS,
   USER_SAVE_SIGHTINGS_FAIL,
   USER_CLOSE_SNACKBAR,
   SIGHTING_SYNC_SUCCESSFUL,
   MANUAL_REGION_CHOICE,
+  MANUAL_SUBREGION_CHOICE,
+  CLEAR_CURRENT_MOOSE_SIGHTING,
+  ACTIVITY_UPDATE_SIGHTING
 } from "../actions";
-import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
+// import { ACTIVITY_UPDATE_MOOSE, ACTIVITY_UPDATE_SIGHTING } from "../actions/index";
 
 import { AppConfig } from "../config";
 
 class MooseSightingState {
   recordingMooseInProgress: boolean;
-  location: any;
-  mooseArray: any[];
+  region: string; 
+  subRegion: string;
+  mooseCount: number;
+  tickHairLoss: number;
+  dateFrom: Date;
+  dateTo: Date;
   allSightings: any[];
   successSnackbarOpen: boolean;
   successSnackbarMessage: string;
 
   constructor() {
-    this.location = "";
     this.recordingMooseInProgress = false;
-    this.mooseArray = [];
+    this.region = "";
+    this.subRegion = "";
+    this.mooseCount = 0;
+    this.tickHairLoss = -1;
+    this.dateFrom = new Date();
+    this.dateTo = new Date();
     this.allSightings = localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
     this.successSnackbarMessage = "";
     this.successSnackbarOpen = false;
@@ -41,41 +49,47 @@ function createMooseSightingStateReducer(
 ): (arg0: MooseSightingState, AnyAction: any) => MooseSightingState {
   return (state = initialState, action) => {
     switch (action.type) {
-      case USER_CLICK_ADD_MOOSE: {
-        return {
-          ...state,
-          mooseArray: [
-            ...state.mooseArray,
-            {
-              id: state.mooseArray.length + 1,
-              age: Age.adult,
-              gender: 'unknown',
-            },
-          ],
-        };
-      }
+      // case USER_CLICK_ADD_MOOSE: {
+      //   return {
+      //     ...state,
+      //     mooseArray: [
+      //       ...state.mooseArray,
+      //       {
+      //         id: state.mooseArray.length + 1,
+      //         age: Age.adult,
+      //         gender: 'unknown',
+      //       },
+      //     ],
+      //   };
+      // }
       case USER_CLICK_RECORD_MOOSE: {
         return {
           ...state,
           recordingMooseInProgress: true,
         };
       }
+      case USER_SAVE_SIGHTINGS: {
+        return {
+          ...state
+        }
+      }
       case USER_SAVE_SIGHTINGS_SUCCESS: {
         //const sightings  = state.allSightings? state.allSightings : [];
         console.log(state)
         return {
           ...state,
-          mooseArray: [],
-          location: [],
           allSightings: [
             ...state.allSightings,
             {
-              mooseArray: state.mooseArray,
-              location: state.location,
+              region: state.region,
+              subRegion: state.subRegion,
+              mooseCount: state.mooseCount,
+              tickHairLoss: state.tickHairLoss,
+              dateFrom: state.dateFrom,
+              dateTo: state.dateTo,
               id: crypto.randomUUID(),
               status: "Not Synced",
               syncDate: null,
-              dateOfSighting: Date.now(),
             },
           ],
           successSnackbarOpen: true,
@@ -97,53 +111,16 @@ function createMooseSightingStateReducer(
           successSnackbarMessage: ""
         }
       }
-      case ACTIVITY_LOCATION_SET: {
+      case ACTIVITY_UPDATE_SIGHTING: {
         return {
           ...state,
-          location: { ...action.payload },
-        };
-      }
-      case ACTIVITY_UPDATE_MOOSE: {
-        const id = action.payload?.id;
-        const meese = [...state.mooseArray];
-        const mooseIndex = meese.findIndex((moose) => moose.id === id);
-        if (mooseIndex === -1) return { ...state };
-
-        const updatedMoose = {
-          ...meese[mooseIndex],
-          age: action.payload.age ?? meese[mooseIndex].age,
-          gender: action.payload.gender ?? meese[mooseIndex].gender,
-        };
-
-        meese[mooseIndex] = updatedMoose;
-
-        return {
-          ...state,
-          mooseArray: meese,
-        };
-      }
-      case ACTIVITY_DELETE_MOOSE: {
-        const id = action.payload?.id;
-        let meese = [...state.mooseArray];
-
-        meese.splice(id - 1, 1);
-
-        meese = meese.map((moose, index) => {
-          return {
-            ...moose,
-            id: index + 1,
-          };
-        });
-        return {
-          ...state,
-          mooseArray: meese,
-        };
-      }
-      case ACTIVITY_CLEAR_MOOSE_ARRAY: {
-        return {
-          ...state,
-          mooseArray: [],
-        };
+          mooseCount: action.payload.mooseCount ? action.payload.mooseCount : state.mooseCount,
+          dateFrom:  action.payload.dateFrom ? action.payload.dateFrom : state.dateFrom,
+          dateTo: action.payload.dateTo ? action.payload.dateTo : state.dateTo,
+          region: action.payload.region ? action.payload.region : state.region,
+          subRegion: action.payload.subRegion ? action.payload.subRegion : state.subRegion,
+          tickHairLoss: action.payload.tickHairLoss ? action.payload.tickHairLoss : state.tickHairLoss
+        }
       }
       case SIGHTING_SYNC_SUCCESSFUL: {
         return {
@@ -151,10 +128,12 @@ function createMooseSightingStateReducer(
           allSightings: state.allSightings.map((sighting) => { return {...sighting, 'status':"Synced"} })
         }
       }
-      case MANUAL_REGION_CHOICE: {
+      case CLEAR_CURRENT_MOOSE_SIGHTING: {
         return {
           ...state,
-          location: action.payload
+          mooseCount: 1,
+          startDate: new Date(),
+          endDate: new Date(),
         }
       }
       default:
