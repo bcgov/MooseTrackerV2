@@ -8,6 +8,7 @@ import {
   SIGHTING_SYNC_SUCCESSFUL,
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
+import { MooseSighting } from '../../../../api/src/interfaces';
 import { json } from 'react-router-dom';
 
 const apiUrl = "http://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
@@ -24,16 +25,7 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   const mooseSightings: any = yield select(
     (state: any) => state.MooseSightingsState
   );
-
-  // const mooseArray = mooseSightings.mooseArray;
-
   let errors = [];
-
-  // if (mooseArray.length < 1) {
-  //   errors.push("Moose array cannot be empty.");
-  // }
-
-  // location validation
   const mooseRegion = mooseSightings.region;
   const mooseSubregion = mooseSightings.subRegion;
   if (!mooseRegion || mooseRegion === undefined || mooseRegion === 0) {
@@ -42,7 +34,6 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   if (!mooseSubregion || mooseSubregion === undefined || mooseSubregion === 0) {
     errors.push("Moose subRegion cannot be empty.");
   }
-
   // date validation
   const dateFrom = mooseSightings.dateFrom;
   const dateTo = mooseSightings.dateTo;
@@ -56,8 +47,6 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   if(dateFrom > dateTo){
     errors.push("The 'From' date must be before or the same as the 'To' date")
   }
-
-
   if (errors.length) {
     yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: { errors: errors } });
   } else {
@@ -70,18 +59,16 @@ function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
 }
 
 function prepareSightingsForApi(sightings: any) {
-  return sightings.map((sighting) => {
+  return sightings.map((sighting: any) => {
+    const [region, subRegion] = sighting.subRegion.split("-")
     return {
-      id: sighting.id,
-      dateOfSighting: sighting.dateOfSighting,
-      status: sighting.status,
-      syncDate: Date.now(),
-      location: [sighting.location.latitude, sighting.location.longitude]
-      /*mooseArray: sighting.mooseArray.map((moose) => ({
-        id: moose.id,
-        age: moose.age,
-        gender: moose.gender || "unknown",
-      })), */
+      clientSightingId: sighting.clientSightingId,
+      dateFrom: sighting.dateFrom,
+      dateTo: sighting.dateTo,
+      region: region,
+      subregion: subRegion,
+      tickHairLoss: sighting.tickHairLoss,
+      mooseCount: sighting.mooseCount,
     };
   });
 }
@@ -103,6 +90,7 @@ function fetchSightings(validatedSightings: any) {
   });
 }
 
+//prepare and post sightings to db
 function* handle_SYNC_SIGHTINGS_TO_DB(action: any) {
   try {
     const storedSightings = yield select(
