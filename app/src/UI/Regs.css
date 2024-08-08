@@ -73,7 +73,7 @@
   background-color: #f4cb64;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 1024px) {
   .regs-component {
     padding: 1rem;
   }

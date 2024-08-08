@@ -23,7 +23,7 @@ div {
   line-height: 1.5;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 1024px) {
   div {
     font-family: Myriad-Pro, Calibri, Arial, sans serif;
     font-size: .75rem;

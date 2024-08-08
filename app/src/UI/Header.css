@@ -113,7 +113,7 @@
     }
   }
 
-  @media (max-width: 575.98px) {
+  @media (max-width: 1024px) {
     .headingwrapper {
       display: flex;
       flex-direction: column;

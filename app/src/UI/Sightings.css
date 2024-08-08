@@ -1,9 +1,10 @@
 .sightingContainer {
-  align-items: center;
   display: flex;
+  width: 100%; 
+  padding-top: 2em;
+  padding-bottom: 2em;
   justify-content: center;
-  background-color: #fff;
-  margin: 2rem;
+  background-color: rgba(0, 0, 0, .03);
 }
 
 .wrapper{
@@ -96,9 +97,13 @@
   width: 100%;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 1024px) {
   .sightingContainer {
-    margin: 1rem;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  .wrapper {
+    width: 90%;
   }
   .sightingHeader {
     margin-bottom: 0;

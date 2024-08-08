@@ -74,6 +74,13 @@ Please follow these instructions on setting up in an IOS/Android simulation.
 
 11. Hit play button and simulator should start
 
+For bringing into testflight
+12. In xcode go to product > click archive
+
+13. Then go to window > click organizer
+
+14. validate then distribute (ensure you update the version code)
+
 Tested on xcode 15.0.1
 
 ### For Android builds
