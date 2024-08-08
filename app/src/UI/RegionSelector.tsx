@@ -84,10 +84,12 @@ export const RegionSelector = (props: any) => {
             name="subRegionSelector"
             value={selectedSubregion}
             onChange={handleSubRegionSelect}
+            disabled={!selectedRegion}
             key={Math.random()}
           >
             {/* This section filters the options array so only subregions of the selected region are shown*/}
             {/* The result is then sorted based on management region id (ex id : "1-12") and an option entry generated for each*/}
+            <option value="">-- select a subregion --</option>
             {options
               .filter(
                 (property: any) =>
