@@ -55,7 +55,7 @@
   width: 10%;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 1024px) {
   .aboutContainer {
     padding: 1rem;
   }
