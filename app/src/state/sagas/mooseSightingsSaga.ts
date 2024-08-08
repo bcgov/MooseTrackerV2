@@ -1,76 +1,23 @@
-import { Geolocation } from '@capacitor/geolocation';
-import { channel } from "redux-saga";
-import { useDispatch } from "react-redux";
-import { all, put, call, take, takeEvery, select } from "redux-saga/effects";
+import { all, put, call, takeEvery, select } from "redux-saga/effects";
 import {
-  ACTIVITY_LOCATION_SET,
   USER_SAVE_SIGHTINGS,
-  GET_GEOLOCATION,
-  ACTIVITY_CLEAR_MOOSE_ARRAY,
   WRITE_SIGHTINGS_TO_DISK,
   USER_SAVE_SIGHTINGS_SUCCESS,
   USER_SAVE_SIGHTINGS_FAIL,
   SYNC_SIGHTINGS_TO_DB,
   SIGHTING_SYNC_SUCCESSFUL,
-  MANUAL_REGION_CHOICE,
+  CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
 import { json } from 'react-router-dom';
 
 const apiUrl = "http://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
-
-function* handle_USER_CLICK_RECORD_MOOSE(action: any) {
-  //yield put({ type: ACTIVITY_LOCATION_SET, payload: location });
-}
-
-function* getGeoLocation(action: any) {
-  const coordChannel = channel();
-
-  console.log("in the get geo function");
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
-
-  function success(pos: any) {
-    console.log("in the success function");
-    const crd = pos.coords;
-    coordChannel.put({
-      type: ACTIVITY_LOCATION_SET,
-      payload: { latitude: crd.latitude, longitude: crd.longitude },
-    });
-  }
-
-  function error(err: any) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-
-  Geolocation.checkPermissions().then((permissionReturnval)=> {
-    console.log(JSON.stringify(permissionReturnval))
-    Geolocation.getCurrentPosition(options).then((returnval) => {
-      success(returnval);
-    });
-  });
-
-  //navigator.geolocation.getCurrentPosition(success, error, options);
-
-  while (true) {
-    const action: any = yield take(coordChannel);
-    yield put(action);
-    return;
-  }
-}
-
-function* handle_MANUAL_REGION_CHOICE(action:any) {
-  //console.log("handler****", action.payload.region);
- // yield put({ type: MANUAL_REGION_CHOICE, payload: action.payload.region });
-}
 
 function* write_sightings_to_disk(action: any): Generator<any> {
   const sightings: any = yield select(
     (state: any) => state.MooseSightingsState.allSightings
   );
   localStorage.setItem("Sightings", JSON.stringify(sightings));
+  yield put({ type: CLEAR_CURRENT_MOOSE_SIGHTING });
 }
 
 function* handle_USER_SAVE_SIGHTINGS(action: any) {
@@ -78,17 +25,38 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
     (state: any) => state.MooseSightingsState
   );
 
-  const mooseArray = mooseSightings.mooseArray;
-  const mooseLocation = mooseSightings.location;
+  // const mooseArray = mooseSightings.mooseArray;
 
   let errors = [];
 
-  if (mooseArray.length < 1) {
-    errors.push("Moose array cannot be empty.");
+  // if (mooseArray.length < 1) {
+  //   errors.push("Moose array cannot be empty.");
+  // }
+
+  // location validation
+  const mooseRegion = mooseSightings.region;
+  const mooseSubregion = mooseSightings.subRegion;
+  if (!mooseRegion || mooseRegion === undefined || mooseRegion === 0) {
+    errors.push("Moose region cannot be empty.");
   }
-  if (!mooseLocation || mooseLocation === undefined || mooseLocation === "") {
-    errors.push("Moose location cannot be empty.");
+  if (!mooseSubregion || mooseSubregion === undefined || mooseSubregion === 0) {
+    errors.push("Moose subRegion cannot be empty.");
   }
+
+  // date validation
+  const dateFrom = mooseSightings.dateFrom;
+  const dateTo = mooseSightings.dateTo;
+  if (!dateFrom || dateFrom === undefined || !dateTo || dateTo === undefined){
+    errors.push("A 'From' date and a 'To' date must be selected");
+  }
+  const currentDate = new Date();
+  if(dateFrom > currentDate || dateTo > currentDate){
+    errors.push("Dates that are in the future are not valid selections")
+  }
+  if(dateFrom > dateTo){
+    errors.push("The 'From' date must be before or the same as the 'To' date")
+  }
+
 
   if (errors.length) {
     yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: { errors: errors } });
@@ -108,12 +76,12 @@ function prepareSightingsForApi(sightings: any) {
       dateOfSighting: sighting.dateOfSighting,
       status: sighting.status,
       syncDate: Date.now(),
-      location: [sighting.location.latitude, sighting.location.longitude],
-      mooseArray: sighting.mooseArray.map((moose) => ({
+      location: [sighting.location.latitude, sighting.location.longitude]
+      /*mooseArray: sighting.mooseArray.map((moose) => ({
         id: moose.id,
         age: moose.age,
         gender: moose.gender || "unknown",
-      })),
+      })), */
     };
   });
 }
@@ -154,7 +122,6 @@ function* handle_SYNC_SIGHTINGS_TO_DB(action: any) {
 function* mooseSightingSaga() {
   try {
     yield all([
-      takeEvery(GET_GEOLOCATION, getGeoLocation),
       takeEvery(USER_SAVE_SIGHTINGS, handle_USER_SAVE_SIGHTINGS),
       takeEvery(WRITE_SIGHTINGS_TO_DISK, write_sightings_to_disk),
       takeEvery(
@@ -163,7 +130,6 @@ function* mooseSightingSaga() {
       ),
       takeEvery(SYNC_SIGHTINGS_TO_DB, handle_SYNC_SIGHTINGS_TO_DB),
       takeEvery(SIGHTING_SYNC_SUCCESSFUL, write_sightings_to_disk),
-      takeEvery(MANUAL_REGION_CHOICE, handle_MANUAL_REGION_CHOICE),
     ]);
   } catch (e) {
     console.log(e);

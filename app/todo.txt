@@ -138,11 +138,6 @@ React leaflet stuff:
     - [x] add gender to things we record for each moose
 
 
-    - [x] prompt for lactation
-        - [ ] let user enter or 
-        - [x] grab from geolocation
-
-
 
     # Gabe
     - [ ] confirm/submit - dispatch action

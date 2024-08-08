@@ -15,7 +15,7 @@ function postMooseSightings(): RequestHandler {
   };
 }
 
-export const POST: Operation = postMooseSightings;
+export const POST: Operation = postMooseSightings();
 
 POST.apiDoc = {
   summary: "Uploads moose sighting data",

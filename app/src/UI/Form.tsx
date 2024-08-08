@@ -2,16 +2,12 @@ import { useRef, useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  ACTIVITY_CLEAR_MOOSE_ARRAY,
-  ACTIVITY_DELETE_MOOSE,
-  GET_GEOLOCATION,
-  USER_CLICK_ADD_MOOSE,
-  USER_CLICK_RECORD_GENDER,
-  USER_SAVE_SIGHTINGS,
+  ACTIVITY_UPDATE_SIGHTING,
+  CLEAR_CURRENT_MOOSE_SIGHTING,
+  USER_SAVE_SIGHTINGS
 } from "../state/actions";
-import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
-import { Age } from "./Enums";
-import RegionSelector from "./RegionSelector";
+
+import { RegionSelector } from "./RegionSelector";
 
 export const FormPanel = (props: any) => {
   const ref = useRef(0);
@@ -20,56 +16,30 @@ export const FormPanel = (props: any) => {
 
   const dispatch = useDispatch();
 
-  const handleAgeChange = (mooseId: number, mooseAge: string) => {
-    dispatch({ type: ACTIVITY_UPDATE_MOOSE, payload: { id: mooseId, age: mooseAge } });
-  };
-  const handleGenderChange = (mooseId: number, mooseGender: string) => {
-    dispatch({ type: ACTIVITY_UPDATE_MOOSE, payload: { id: mooseId, gender: mooseGender } });
+  const mooseCount = useSelector(
+    (state: any) => state.MooseSightingsState.mooseCount
+  );
+
+  const dateFrom = useSelector(
+    (state: any) => state.MooseSightingsState.dateFrom
+  );
+  const dateTo = useSelector(
+    (state: any) => state.MooseSightingsState.dateTo
+  );
+
+  const handleMooseCountChange = (event: any) => {
+    dispatch({ type: ACTIVITY_UPDATE_SIGHTING, payload: { mooseCount: event.target.value }});
   };
 
-  const mooseArray = useSelector((state: any) => state.MooseSightingsState.mooseArray);
-  const location = useSelector((state: any) => state.MooseSightingsState.location);
+  const handlefromDateChange = (event: any) => {
+    dispatch({ type: ACTIVITY_UPDATE_SIGHTING, payload: { dateFrom: event.target.valueAsDate }});
+  };
+
+  const handleToDateChange = (event: any) => {
+    dispatch({ type: ACTIVITY_UPDATE_SIGHTING, payload: { dateTo: event.target.valueAsDate }});
+  };
 
   const [showModal, setShowModal] = useState(false);
-
-  // const saveSightingToDisk = () => {
-
-  //   let storedSightings = JSON.parse(localStorage.getItem("Sightings"))
-
-  //   if (storedSightings) {
-  //     const newSighting: object = {
-  //       id: crypto.randomUUID(),
-  //           status: 'synced',
-  //           syncDate: Date.now(),
-  //           dateOfSighting: Date.now(),
-  //           location: location,
-  //           mooseArray: mooseArray
-  //     }
-
-  //     storedSightings.sightings.push(newSighting)
-  //     localStorage.setItem("Sightings", JSON.stringify(storedSightings))
-
-  //     dispatch({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
-  //   }
-
-  //   else {
-  //     const firstSighting: object = {
-  //       sightings: [
-  //         {
-  //           id: crypto.randomUUID(),
-  //           status: 'synced',
-  //           syncDate: Date.now(),
-  //           dateOfSighting: Date.now(),
-  //           location: location,
-  //           mooseArray: mooseArray
-  //         }
-  //       ]
-  //     }
-
-  //     localStorage.setItem("Sightings", JSON.stringify(firstSighting))
-  //     dispatch({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
-  //   }
-  // }
 
   return (
     <div className="FormPanel">
@@ -80,24 +50,39 @@ export const FormPanel = (props: any) => {
         >
           X
         </button>
-        {/* <div className="modalElements">
-          <h3>Current location</h3>
-          <p>Use your current location</p>
+        <div className="modal">
+          <h3>Record a sighting</h3>
+          <div>
+            <label>
+              <span className="modalContent">How many moose?</span>
+              <input type="number" name="mooseCount" min="1" 
+                onChange={handleMooseCountChange}/>
+            </label>
+          </div>
+          <div>
+            <label>
+            <span className="modalContent">Where did you see the moose(s)?</span>
+              <RegionSelector/>
+            </label>
+          </div>
+          <div>
+            <label>
+              <span className="modalContent">When did you see the moose(s)?</span>
+              <input type="date" id="dateFrom" onChange={handlefromDateChange}/>
+              <input type="date" id="dateTo" onChange={handleToDateChange}/>
+            </label>
+          </div>
           <button
             className="formButton"
             onClick={() => {
-              dispatch({ type: GET_GEOLOCATION });
+              dispatch({ 
+                type: USER_SAVE_SIGHTINGS
+              });
               setShowModal(false);
             }}
           >
-            Use Geolocation
+            Save sighting
           </button>
-        </div>
-        <div className="modalElements">OR</div> */}
-        <div className="modalElements">
-          <h3>Management region</h3>
-          <p>Mark down the moose as being in a management location.</p>
-            <RegionSelector/>
         </div>
       </div>
       <div className="inputsContainer">
@@ -107,33 +92,16 @@ export const FormPanel = (props: any) => {
             <button
               className="formButton"
               onClick={() => {
-                dispatch({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
+                dispatch({ type: CLEAR_CURRENT_MOOSE_SIGHTING });
               }}
             >
-              Clear
+              Clear current sighting
             </button>
-            <button
-              className="formButton"
-              onClick={() => {
-                dispatch({ type: USER_CLICK_ADD_MOOSE });
-              }}
-            >
-              Add Moose
-            </button>
-            {/* <button
-              className="formButton"
-              // onClick={() => {
-              //   dispatch({ type: GET_GEOLOCATION });
-              // }}
-            >
-              Mark Location
-            </button> */}
-
             <button
               className="formButton"
               onClick={() => {setShowModal(true)}}
             >
-              Mark Location
+              Add
             </button>
 
             <div className="popup" >?
@@ -141,61 +109,8 @@ export const FormPanel = (props: any) => {
             </div>
           </div>
         </div>
-        <div className="meese">
-          {mooseArray.map((moose: any) => {
-            return (
-              <>
-                <div className="moose" key={moose.id}>
-                  {moose.id}
-                  <select
-                    id="ageSelector"
-                    value={moose.age}
-                    onChange={(event) => {
-                      console.log(moose.id);
-                      handleAgeChange(moose.id, event.target.value)
-                    }}
-                  >
-                    {
-                      Object.values(Age).map((age, i) => {
-                        return (
-                          <option key={i + 1} value={age}>
-                            {age}
-                          </option>
-                        );
-                      })
-                    }
-                  </select>
-                  <select
-                    id="genderSelector"
-                    value={moose.gender}
-                    onChange={(event) => {
-                      handleGenderChange(moose.id, event.target.value.toString())
-                    }}
-                  >
-                    <option value='male'>Male</option>
-                    <option value='female'>Female</option>
-                    <option value='unknown'>Unknown</option>
-                  </select>
-                  <button onClick={() => {
-                    dispatch({ type: ACTIVITY_DELETE_MOOSE, payload: { id: moose.id } })
-                  }}>
-                    Delete
-                  </button>
-                </div>
-              </>
-            );
-          })}
-        </div>
+        
         <div className="formFooter">
-          <button
-            className="formButton"
-            onClick={() => {
-              dispatch({ type: USER_SAVE_SIGHTINGS });
-              setShowModal(false);
-            }}
-          >
-            Save
-          </button>
         </div>
       </div>
     </div>

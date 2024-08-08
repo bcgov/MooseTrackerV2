@@ -13,7 +13,6 @@ DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorBrowser (from `../../node_modules/@capacitor/browser`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
-  - "CapacitorGeolocation (from `../../node_modules/@capacitor/geolocation`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
 
 EXTERNAL SOURCES:
@@ -23,8 +22,6 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/browser"
   CapacitorCordova:
     :path: "../../node_modules/@capacitor/ios"
-  CapacitorGeolocation:
-    :path: "../../node_modules/@capacitor/geolocation"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
 
@@ -35,6 +32,6 @@ SPEC CHECKSUMS:
   CapacitorGeolocation: 0572212732f7ee65828d069a9663a274be89b9fc
   CapacitorStatusBar: 51af549cfcf35aac3ab072b062967ae5971ee485
 
-PODFILE CHECKSUM: 8e226a8f0c3fb86d93c8f349dd7875d66aecc7cd
+PODFILE CHECKSUM: f1df6340a6ecf454b6dcc704998b790ef27150b6
 
 COCOAPODS: 1.15.2
