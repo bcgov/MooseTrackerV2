@@ -1,7 +1,6 @@
 .sightingContainer {
   display: flex;
-  width: 100%;
-  height: 500px;   
+  width: 100%; 
   padding-top: 2em;
   padding-bottom: 2em;
   justify-content: center;
