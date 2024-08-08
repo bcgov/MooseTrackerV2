@@ -32,12 +32,10 @@ export const FormPanel = (props: any) => {
   };
 
   const handlefromDateChange = (event: any) => {
-    console.log(event);
     dispatch({ type: ACTIVITY_UPDATE_SIGHTING, payload: { dateFrom: event.target.valueAsDate }});
   };
 
   const handleToDateChange = (event: any) => {
-    console.log(event);
     dispatch({ type: ACTIVITY_UPDATE_SIGHTING, payload: { dateTo: event.target.valueAsDate }});
   };
 

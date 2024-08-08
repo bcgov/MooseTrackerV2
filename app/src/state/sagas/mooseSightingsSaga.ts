@@ -1,7 +1,4 @@
-import { Geolocation } from '@capacitor/geolocation';
-import { channel } from "redux-saga";
-import { useDispatch } from "react-redux";
-import { all, put, call, take, takeEvery, select } from "redux-saga/effects";
+import { all, put, call, takeEvery, select } from "redux-saga/effects";
 import {
   USER_SAVE_SIGHTINGS,
   WRITE_SIGHTINGS_TO_DISK,
@@ -9,17 +6,11 @@ import {
   USER_SAVE_SIGHTINGS_FAIL,
   SYNC_SIGHTINGS_TO_DB,
   SIGHTING_SYNC_SUCCESSFUL,
-  MANUAL_REGION_CHOICE,
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
 import { json } from 'react-router-dom';
 
 const apiUrl = "http://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
-
-function* handle_MANUAL_REGION_CHOICE(action:any) {
-  //console.log("handler****", action.payload.region);
- // yield put({ type: MANUAL_REGION_CHOICE, payload: action.payload.region });
-}
 
 function* write_sightings_to_disk(action: any): Generator<any> {
   const sightings: any = yield select(
@@ -139,7 +130,6 @@ function* mooseSightingSaga() {
       ),
       takeEvery(SYNC_SIGHTINGS_TO_DB, handle_SYNC_SIGHTINGS_TO_DB),
       takeEvery(SIGHTING_SYNC_SUCCESSFUL, write_sightings_to_disk),
-      //takeEvery(MANUAL_REGION_CHOICE, handle_MANUAL_REGION_CHOICE),
     ]);
   } catch (e) {
     console.log(e);
