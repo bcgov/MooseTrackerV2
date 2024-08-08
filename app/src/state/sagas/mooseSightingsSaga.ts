@@ -66,7 +66,7 @@ function prepareSightingsForApi(sightings: any) {
       dateFrom: sighting.dateFrom,
       dateTo: sighting.dateTo,
       region: region,
-      subregion: subRegion,
+      subRegion: subRegion,
       tickHairLoss: sighting.tickHairLoss,
       mooseCount: sighting.mooseCount,
     };
@@ -79,7 +79,7 @@ function fetchSightings(validatedSightings: any) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ sightings: validatedSightings }),
+    body: JSON.stringify(validatedSightings),
   }).then((response) => {
     if (!response.ok) {
       return response
