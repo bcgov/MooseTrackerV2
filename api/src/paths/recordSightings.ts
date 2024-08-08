@@ -56,7 +56,7 @@ POST.apiDoc = {
               },
               tickHairLoss: {
                 type: "number",
-                minimum: 1,
+                minimum: -1,
                 maximum: 5,
               },
               mooseCount: {

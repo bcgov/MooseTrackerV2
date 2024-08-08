@@ -8,8 +8,6 @@ import {
   SIGHTING_SYNC_SUCCESSFUL,
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
-import { MooseSighting } from '../../../../api/src/interfaces';
-import { json } from 'react-router-dom';
 
 const apiUrl = "https://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
 
@@ -37,15 +35,15 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   // date validation
   const dateFrom = mooseSightings.dateFrom;
   const dateTo = mooseSightings.dateTo;
-  if (!dateFrom || dateFrom === undefined || !dateTo || dateTo === undefined){
+  if (!dateFrom || dateFrom === undefined || !dateTo || dateTo === undefined) {
     errors.push("A 'From' date and a 'To' date must be selected");
   }
   const currentDate = new Date();
-  if(dateFrom > currentDate || dateTo > currentDate){
-    errors.push("Dates that are in the future are not valid selections")
+  if (dateFrom > currentDate || dateTo > currentDate) {
+    errors.push("Dates that are in the future are not valid selections");
   }
-  if(dateFrom > dateTo){
-    errors.push("The 'From' date must be before or the same as the 'To' date")
+  if (dateFrom > dateTo) {
+    errors.push("The 'From' date must be before or the same as the 'To' date");
   }
   if (errors.length) {
     yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: { errors: errors } });
@@ -60,15 +58,15 @@ function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
 
 function prepareSightingsForApi(sightings: any) {
   return sightings.map((sighting: any) => {
-    const [region, subRegion] = sighting.subRegion.split("-")
+    const [region, subRegion] = sighting.subRegion.split("-");
     return {
-      clientSightingId: sighting.clientSightingId,
+      clientSightingId: sighting.id,
       dateFrom: sighting.dateFrom,
       dateTo: sighting.dateTo,
-      region: region,
-      subRegion: subRegion,
+      region: parseInt(region),
+      subRegion: parseInt(subRegion),
       tickHairLoss: sighting.tickHairLoss,
-      mooseCount: sighting.mooseCount,
+      mooseCount: parseInt(sighting.mooseCount),
     };
   });
 }
