@@ -123,7 +123,7 @@ function createMooseSightingStateReducer(
       case SIGHTING_SYNC_SUCCESSFUL: {
         return {
           ...state,
-          allSightings: state.allSightings.map((sighting) => { return {...sighting, 'status':"Synced"} })
+          allSightings: state.allSightings.map((sighting) => { return {...sighting, 'status':"Synced", syncDate: new Date()} })
         }
       }
       case CLEAR_CURRENT_MOOSE_SIGHTING: {
