@@ -55,8 +55,7 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
 }
 
 function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
-  yield put({ type: WRITE_SIGHTINGS_TO_DISK });
-  yield put({ type: CLEAR_CURRENT_MOOSE_SIGHTING });
+  yield put({ type: SYNC_SIGHTINGS_TO_DB});
 }
 
 function prepareSightingsForApi(sightings: any) {

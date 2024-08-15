@@ -22,12 +22,7 @@ export const Sightings = (props: any) => {
     <div className="sightingContainer">
       <span className="wrapper">
         <div className="sightingHeader">
-          <div className="sightingHeadingText">
-            <h2>All Sightings</h2>
-          </div>
-          <button className="syncButton" onClick={() => dispatch({ type: SYNC_SIGHTINGS_TO_DB, payload: {} })}>
-            Sync
-          </button>
+          <h2 className="sightingHeadingText">All Sightings</h2>
         </div>
         <div className="sightingText">
           {storedSightings?.length > 0 ?
