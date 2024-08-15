@@ -46,6 +46,11 @@ export const Regs = () => {
     setPageNumber((prevPageNumber) => Math.min(prevPageNumber + 1, numPages));
   };
 
+  const handleRegsClick = (file: string) => {
+    setFile(file);
+    setPageNumber(1);
+  }
+
   const contentsMap = [
     {
       name: 'Region 1: Vancouver Island',
@@ -117,8 +122,8 @@ export const Regs = () => {
       <div className="table-of-contents">
         <h1 className="title">Regulations</h1>
         <div className="link-container">
-          <span onClick={() => setFile("hunting-trapping-synopsis.pdf")} className="link">
-            <div className="pdf">Full Hunting and Trapping Regulations Synopsis 2022-2024</div>
+          <span onClick={() => handleRegsClick("hunting-trapping-synopsis.pdf")} className="link">
+            <div className="pdf">Full Hunting and Trapping Regulations Synopsis 2024-2026</div>
           </span>
         </div>
         <h2 className="title">
@@ -127,7 +132,7 @@ export const Regs = () => {
         <div className="link-container">
           {contentsMap.map((content) => {
             return (
-              <span onClick={() => setFile(content.link)} className="link">
+              <span onClick={() => handleRegsClick(content.link)} className="link">
                 <div>
                   {content.name}
                 </div>
