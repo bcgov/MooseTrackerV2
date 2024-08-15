@@ -20,8 +20,8 @@ class MooseSightingState {
   subRegion: string;
   mooseCount: number;
   tickHairLoss: number;
-  dateFrom: Date;
-  dateTo: Date;
+  dateFrom: Date | null;
+  dateTo: Date | null;
   allSightings: any[];
   successSnackbarOpen: boolean;
   successSnackbarMessage: string;
@@ -32,8 +32,8 @@ class MooseSightingState {
     this.subRegion = "";
     this.mooseCount = 0;
     this.tickHairLoss = -1;
-    this.dateFrom = new Date();
-    this.dateTo = new Date();
+    this.dateFrom = null;
+    this.dateTo = null;
     this.allSightings = localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
     this.successSnackbarMessage = "";
     this.successSnackbarOpen = false;
@@ -129,9 +129,11 @@ function createMooseSightingStateReducer(
       case CLEAR_CURRENT_MOOSE_SIGHTING: {
         return {
           ...state,
-          mooseCount: 1,
-          startDate: new Date(),
-          endDate: new Date(),
+          mooseCount: 0,
+          region: '',
+          subRegion: '',
+          dateFrom: null,
+          dateTo: null,
         }
       }
       default:
