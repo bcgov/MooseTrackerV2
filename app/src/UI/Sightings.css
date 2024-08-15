@@ -1,10 +1,11 @@
 .sightingContainer {
   display: flex;
   width: 100%; 
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
   justify-content: center;
   background-color: rgba(0, 0, 0, .03);
+  min-height: calc(100vh - 109px);
 }
 
 .wrapper{
@@ -12,7 +13,6 @@
   flex-direction: column;
   justify-content: space-between;
   color: #494949;
-  text-align: right;
   height: 75%;
   width: 80%;
   background-color: #fff;
@@ -20,27 +20,25 @@
 
 .sightingHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
-  height: 50px;
+  font-size: 1.2rem;
+  font-family: inherit;
+  line-height: .5rem;
   color: #494949;
-  text-align: right;
-  font-family: Myriad-Pro, Calibri, Arial, sans serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
 }
 
 .sightingHeadingText {
-  line-height: 1.2;
   margin-left: 20px;
+  width: 50%;
 }
 
 .sightingText {
   background-color: white;
   height: 100%;
   width: 100%;
+  text-align: center;
   font-family: Myriad-Pro, Calibri, Arial, sans serif;
   font-size: 1rem;
   font-weight: 400;
@@ -63,8 +61,8 @@
   text-decoration: none;
   cursor: pointer;
   color: #fff;
-  background-color: #036;
-  border-color: #036;
+  background-color: #1E5189;
+  border-color: #1E5189;
   font-family: Myriad-Pro, Calibri, Arial, sans serif;
   font-weight: 400;
   text-align: center;
@@ -98,10 +96,6 @@
 }
 
 @media (max-width: 1024px) {
-  .sightingContainer {
-    padding-top: 1em;
-    padding-bottom: 1em;
-  }
   .wrapper {
     width: 90%;
   }

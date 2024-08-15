@@ -8,6 +8,7 @@ import {
   SIGHTING_SYNC_SUCCESSFUL,
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
+import { MooseSighting } from './../../../../api/src/interfaces';
 
 const apiUrl = "https://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
 
@@ -20,33 +21,34 @@ function* write_sightings_to_disk(action: any): Generator<any> {
 }
 
 function* handle_USER_SAVE_SIGHTINGS(action: any) {
-  const mooseSightings: any = yield select(
+  const mooseSightings: MooseSighting = yield select(
     (state: any) => state.MooseSightingsState
   );
-  let errors = [];
-  const mooseRegion = mooseSightings.region;
-  const mooseSubregion = mooseSightings.subRegion;
-  if (!mooseRegion || mooseRegion === undefined || mooseRegion === 0) {
-    errors.push("Moose region cannot be empty.");
-  }
-  if (!mooseSubregion || mooseSubregion === undefined || mooseSubregion === 0) {
-    errors.push("Moose subRegion cannot be empty.");
-  }
-  // date validation
-  const dateFrom = mooseSightings.dateFrom;
-  const dateTo = mooseSightings.dateTo;
-  if (!dateFrom || dateFrom === undefined || !dateTo || dateTo === undefined) {
-    errors.push("A 'From' date and a 'To' date must be selected");
-  }
+  const errors: Set<string> = new Set();
+  const { mooseCount, region, subRegion, dateFrom, dateTo } = mooseSightings;
   const currentDate = new Date();
-  if (dateFrom > currentDate || dateTo > currentDate) {
-    errors.push("Dates that are in the future are not valid selections");
+  if (!mooseCount || Number(mooseCount) <= 0) {
+    errors.add("Sighting must contain at least 1 moose.");
   }
-  if (dateFrom > dateTo) {
-    errors.push("The 'From' date must be before or the same as the 'To' date");
+  if (!region) {
+    errors.add("Moose region cannot be empty.");
   }
-  if (errors.length) {
-    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: { errors: errors } });
+  if (!subRegion) {
+    errors.add("Moose subregion cannot be empty.");
+  }
+  if (!dateFrom || dateFrom === undefined || !dateTo || dateTo === undefined) {
+    errors.add("A 'From' date and a 'To' date must be selected");
+  } else {
+    if (dateFrom > currentDate || dateTo > currentDate) {
+      errors.add("Dates that are in the future are not valid selections");
+    }
+    if (dateFrom > dateTo) {
+      errors.add("The 'From' date must be before or the same as the 'To' date");
+    }
+  }
+  if (errors.size > 0) {
+    const errorMessage = Array.from(errors).join(' ');
+    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: {errors: errorMessage} });
   } else {
     yield put({ type: USER_SAVE_SIGHTINGS_SUCCESS });
   }
@@ -54,6 +56,7 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
 
 function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
   yield put({ type: WRITE_SIGHTINGS_TO_DISK });
+  yield put({ type: CLEAR_CURRENT_MOOSE_SIGHTING });
 }
 
 function prepareSightingsForApi(sightings: any) {

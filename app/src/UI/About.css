@@ -1,18 +1,18 @@
 .aboutContainer {
+  display: flex;
+  width: 100%; 
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: center;
   background-color: rgba(0, 0, 0, .03);
-  padding: 2rem;
   min-height: calc(100vh - 109px);
 }
 
 .aboutWrapper {
   overflow: hidden;
-  height: 100%;
-  -webkit-box-flex: 1;
-  padding: 1.25rem;
+  margin: 1rem;
   position: relative;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
   word-wrap: break-word;
   background-color: #fff;
@@ -36,33 +36,18 @@
 }
 
 .about {
+  padding: 1rem;
   font-family: Myriad-Pro, Calibri, Arial, sans serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #494949;
-  text-align: left;
+  text-align: center;
 }
 
 .about h1 {
-  font-size: 2.5rem;
+  font-size: 1.2rem;
   font-family: inherit;
   line-height: 1.2;
   color: #494949;
-}
-
-.spacer {
-  width: 10%;
-}
-
-@media (max-width: 1024px) {
-  .aboutContainer {
-    padding: 1rem;
-  }
-  .about h1 {
-    font-size: 1.2rem;
-    font-family: inherit;
-    line-height: 1.2;
-    color: #494949;
-  }
 }

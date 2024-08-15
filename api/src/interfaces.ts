@@ -1,10 +1,7 @@
 export interface MooseSighting {
-  clientSightingId: string;
-  syncDate: Date;
-  dateFrom: Date;
-  dateTo: Date;
-  region: number;
-  subRegion: number;
-  tickHairLoss: number;
   mooseCount: number;
+  region: string;
+  subRegion: string;
+  dateFrom: Date | undefined;
+  dateTo: Date | undefined;
 }

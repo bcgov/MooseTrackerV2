@@ -6,13 +6,11 @@ import {
   CLEAR_CURRENT_MOOSE_SIGHTING,
   USER_SAVE_SIGHTINGS
 } from "../state/actions";
-
 import { RegionSelector } from "./RegionSelector";
 
 export const FormPanel = (props: any) => {
   const ref = useRef(0);
   ref.current += 1;
-  // console.log("%FormPanel render:" + ref.current.toString(), "color: yellow");
 
   const dispatch = useDispatch();
 
@@ -39,79 +37,44 @@ export const FormPanel = (props: any) => {
     dispatch({ type: ACTIVITY_UPDATE_SIGHTING, payload: { dateTo: event.target.valueAsDate }});
   };
 
-  const [showModal, setShowModal] = useState(false);
+  const handleSubmit = (event: any) => {
+    dispatch({ type: USER_SAVE_SIGHTINGS });
+  };
 
   return (
-    <div className="FormPanel">
-      <div className={showModal ? 'showModal' : 'hideModal'} >
-        <button
-          className="formButton modalCloseButton"
-          onClick={() => {setShowModal(false)}}
-        >
-          X
-        </button>
-        <div className="modal">
-          <h3>Record a sighting</h3>
+    <div className="formPanel">
+      <div className="formContainer" >
+        <div className="formHeader">
+          <h2>Record Moose Sighting</h2>
+          <p>Use this form to record moose sightings. Will save locally until you synch once connected to the internet.</p>
+        </div>
+        <div className="formInput">
           <div>
             <label>
-              <span className="modalContent">How many moose?</span>
-              <input type="number" name="mooseCount" min="1" 
-                onChange={handleMooseCountChange}/>
+              <span className="formContent">How many moose?</span>
+              <input type="number" name="mooseCount" min="1" value={mooseCount || ''} onChange={handleMooseCountChange}/>
             </label>
           </div>
           <div>
             <label>
-            <span className="modalContent">Where did you see the moose(s)?</span>
+            <span className="formContent">Where did you see the moose(s)?</span>
               <RegionSelector/>
             </label>
           </div>
           <div>
             <label>
-              <span className="modalContent">When did you see the moose(s)?</span>
-              <input type="date" id="dateFrom" onChange={handlefromDateChange}/>
-              <input type="date" id="dateTo" onChange={handleToDateChange}/>
+              <span className="formContent">What were the start and end dates of your trip where you saw moose(s)?</span>
+              <input type="date" id="dateFrom" value={dateFrom ? dateFrom.toISOString().split('T')[0] : ''} onChange={handlefromDateChange}/>
+              <input type="date" id="dateTo" value={dateTo ? dateTo.toISOString().split('T')[0] : ''} onChange={handleToDateChange}/>
             </label>
           </div>
-          <button
-            className="formButton"
-            onClick={() => {
-              dispatch({ 
-                type: USER_SAVE_SIGHTINGS
-              });
-              setShowModal(false);
-            }}
-          >
-            Save sighting
-          </button>
         </div>
-      </div>
-      <div className="inputsContainer">
-        <div className="headerBar">
-          <h2 className="formHeading">Add a Moose Sighting</h2>
-          <div className="headerButtons">
-            <button
-              className="formButton"
-              onClick={() => {
-                dispatch({ type: CLEAR_CURRENT_MOOSE_SIGHTING });
-              }}
-            >
-              Clear current sighting
-            </button>
-            <button
-              className="formButton"
-              onClick={() => {setShowModal(true)}}
-            >
-              Add
-            </button>
-
-            <div className="popup" >?
-              <span className="popuptext" id="myPopup">Use this form to record moose sightings. Will save locally until you synch once connected to the internet.</span>
-            </div>
-          </div>
-        </div>
-        
-        <div className="formFooter">
-        </div>
+        <button className="formButton" onClick={() => { dispatch({ type: CLEAR_CURRENT_MOOSE_SIGHTING })}}>
+          Reset
+        </button>
+        <button className="formButton" onClick={handleSubmit} >
+          Save sighting
+        </button>
       </div>
     </div>
   );

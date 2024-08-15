@@ -5,7 +5,7 @@
 
 .regs-component {
   background-color: rgba(0, 0, 0, .03);
-  padding: 2rem;
+  padding: 1rem;
   min-height: calc(100vh - 109px);
   font-family: Myriad-Pro, Calibri, Arial, sans serif;
   font-size: 1rem;
