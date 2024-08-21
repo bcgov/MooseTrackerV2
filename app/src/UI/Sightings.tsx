@@ -22,12 +22,7 @@ export const Sightings = (props: any) => {
     <div className="sightingContainer">
       <span className="wrapper">
         <div className="sightingHeader">
-          <div className="sightingHeadingText">
-            <h2>All Sightings</h2>
-          </div>
-          <button className="syncButton" onClick={() => dispatch({ type: SYNC_SIGHTINGS_TO_DB, payload: {} })}>
-            Sync
-          </button>
+          <h2 className="sightingHeadingText">All Sightings</h2>
         </div>
         <div className="sightingText">
           {storedSightings?.length > 0 ?
@@ -36,14 +31,13 @@ export const Sightings = (props: any) => {
                 <Accordion key={sighting.id} className="sighting">
                   <AccordionSummary className="sightingHeader" aria-controls="panel-content">
                     <div className="sightingDate">{formatDateString(sighting.dateFrom)} to {formatDateString(sighting.dateTo)}</div>
-                    <div className="sightingStatus">&nbsp;({sighting.status})</div>
                   </AccordionSummary>
                   <AccordionDetails>
                     <div>{sighting.region} {sighting.subRegion}</div>
                     <div>Moose count: {sighting.mooseCount}</div>
                     {/* TODO: tick hair loss not yet implemented */}
                     {/* <div>Tick hair loss: {sighting.tickHairLoss} </div> */}
-                    <div>Sync date: {sighting.syncDate ?? '(not synced)'}</div>
+                    <div>Sync date: {formatDateString(sighting.syncDate)}</div>
                   </AccordionDetails>
                 </Accordion>
               );
