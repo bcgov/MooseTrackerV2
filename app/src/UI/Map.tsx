@@ -90,6 +90,46 @@ interface LocationState {
   longitude: number | null;
 }
 
+const getFeatureCentroidFromManagementArea = (regionId: string) => {
+  const managementUnits = mgmtUnits as any; // a large object including data about wildlife management regions
+  const features = managementUnits.features; // an array with entries for each management region
+  const feature = features.find(
+    (feature: any) => feature.properties.WILDLIFE_MGMT_UNIT_ID === regionId
+  );
+  if(feature){
+  console.log("regionId: ", regionId);
+  console.log("feature: ", feature);
+  console.log("centroid: ", calculateCentroid(feature.geometry.coordinates));
+  }
+  // let centroid : LocationState = {latitude: 0, longitude: 0};
+  // const result = feature ? calculateCentroid(feature.geometry.coordinates[0]) : null;
+  // centroid.latitude = result ? result[1] : centroid.latitude;
+  // centroid.longitude = result ? result[0] : centroid.longitude;
+  // return centroid;
+  return feature ? calculateCentroid(feature.geometry.coordinates[0]) : null;
+};
+
+const calculateCentroid = (coordinates: any) => {
+  let xSum = 0;
+  let ySum = 0;
+  let area = 0;
+
+  for (let i = 0; i < coordinates.length - 1; i++) {
+    const [x1, y1] = coordinates[i];
+    const [x2, y2] = coordinates[i + 1];
+
+    const crossProduct = x1 * y2 - x2 * y1;
+    xSum += (x1 + x2) * crossProduct;
+    ySum += (y1 + y2) * crossProduct;
+    area += crossProduct;
+  }
+
+  area *= 0.5;
+  const centroidX = xSum / (6 * area);
+  const centroidY = ySum / (6 * area);
+  return [centroidY, centroidX];
+};
+
 const MapMarkers = (props: any) => {
   const mapState = useMap();
   const [zoomed, setZoomed] = React.useState(0);
@@ -115,12 +155,12 @@ const MapMarkers = (props: any) => {
   //   shadowSize: [41, 41]
   // })
 
-  const markerState = useSelector((state: any) => state.MooseSightingsState.subRegion) as LocationState;
+  const markerState = useSelector((state: any) => getFeatureCentroidFromManagementArea( state.MooseSightingsState.subRegion));
   const defaultLocation: [number, number] = [48.4284, -123.3656];
 
   const markerPosition: [number, number] = [
-      markerState.latitude ?? defaultLocation[0],
-      markerState.longitude ?? defaultLocation[1]
+    markerState ? markerState[0] : defaultLocation[0],
+    markerState ? markerState[1] : defaultLocation[1],
   ];
 
 
@@ -229,27 +269,33 @@ const MapMarkers = (props: any) => {
 
 
 export const MapPanel: React.FC = () => {
-  const defaultLocation: [number, number] = [48.4284, -123.3656];
+  const defaultLocation: [number, number] = [53.932, -123.912];
   // const [selectedFeature, setSelectedFeature] = useState(null);
-  const mapLocation = useSelector(
-    (state: any) => state.MooseSightingsState.subRegion
-  );
+
+
+  // const mapLocation = useSelector(
+  //   (state: any) => state.MooseSightingsState.subRegion
+  // );
   const markerState = useSelector(
-    (state: any) => state.MooseSightingsState.subRegion
-  ) as LocationState;
+    (state: any) => getFeatureCentroidFromManagementArea(state.MooseSightingsState.subRegion)
+  );
   const [markerPosition, setMarkerPosition] = useState(defaultLocation);
   // let markerPosition: [number, number] = [defaultLocation[0], defaultLocation[1]];
 
   useEffect(() => {
-    setMarkerPosition( [
-      markerState.latitude ?? defaultLocation[0],
-      markerState.longitude ?? defaultLocation[1],
-    ])
+    setMarkerPosition([
+      markerState ? markerState[0]: defaultLocation[0],
+      markerState ? markerState[1] : defaultLocation[1],
+    ]);
   }, [markerState]);
 
   const onEachFeature = (feature: Feature, layer: L.Layer) => {
     if (feature.properties) {
-      layer.bindTooltip(feature.properties.WILDLIFE_MGMT_UNIT_ID, {permanent: true, direction:'center', className: 'mgmtUnitLabel'})
+      layer.bindTooltip(feature.properties.WILDLIFE_MGMT_UNIT_ID, {
+        permanent: true,
+        direction: "center",
+        className: `mgmtUnitLabel-${feature.properties.WILDLIFE_MGMT_UNIT_ID}`,
+      });
     }
   }
 
@@ -258,7 +304,7 @@ export const MapPanel: React.FC = () => {
       <MapContainer
         className="MapContainer"
         center={defaultLocation}
-        zoom={13}
+        zoom={5}
         scrollWheelZoom={false}
         zoomControl={true}
       >
