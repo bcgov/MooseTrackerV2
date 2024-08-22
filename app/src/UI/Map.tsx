@@ -6,7 +6,7 @@ import L from "leaflet";
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import mgmtUnits from "../assets/management_units.json";
-import { managementUnitStyle } from "./featureStylers";
+import { managementUnitStyle, selectedFeatureStyle } from "./featureStylers";
 import { FeatureCollection, Feature } from "geojson";
 
 interface ChangeViewProps {
@@ -51,7 +51,7 @@ const MapEventHandler: React.FC = () => {
     const zoomLevel = map.getZoom();
     const tooltips = document.querySelectorAll(".mgmt-unit-label");
     tooltips.forEach((tooltip) => {
-      if (zoomLevel < 7) {
+      if (zoomLevel < 7.5) {
         (tooltip as HTMLElement).style.visibility = "hidden";
       } else {
         (tooltip as HTMLElement).style.visibility = "visible";
@@ -78,6 +78,16 @@ export const MapPanel: React.FC = () => {
     if (centroid) setMarkerPosition([centroid[0], centroid[1]]);
   }, [subRegion]);
 
+  const getFeatureStyle: L.StyleFunction = (feature: any) => {
+    if (
+      feature.properties &&
+      feature.properties.WILDLIFE_MGMT_UNIT_ID === subRegion
+    ) {
+      return selectedFeatureStyle;
+    }
+    return managementUnitStyle;
+  };
+
   const onEachFeature = (feature: Feature, layer: L.Layer) => {
     if (feature.properties) {
       layer.bindTooltip(feature.properties.WILDLIFE_MGMT_UNIT_ID, {
@@ -93,7 +103,7 @@ export const MapPanel: React.FC = () => {
         className="MapContainer"
         center={defaultLocation}
         zoom={5}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         zoomControl={true}
       >
         <TileLayer
@@ -102,7 +112,7 @@ export const MapPanel: React.FC = () => {
         />
         <GeoJSON
           data={mgmtUnits as FeatureCollection}
-          style={managementUnitStyle}
+          style={getFeatureStyle}
           onEachFeature={onEachFeature}
         />
         {markerPosition && <ChangeView center={markerPosition} />}
