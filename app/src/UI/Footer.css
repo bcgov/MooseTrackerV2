@@ -1,11 +1,8 @@
 .footer {
-  flex-shrink: 0;
   background-color: #036;
   width: 100%;
-  min-height: 45px;
   border-top: 2px solid #fcba19;
-  overflow: hidden;
-  margin: 0;
+  height: 10vh;
 }
 
 .footer-text-container {
