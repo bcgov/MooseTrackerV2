@@ -46,7 +46,6 @@ export const FormPanel = (props: any) => {
       <div className="formContainer" >
         <div className="formHeader">
           <h2>Record Moose Sighting</h2>
-          <p>Use this form to record moose sightings. Will save locally until you synch once connected to the internet.</p>
         </div>
         <div className="formInput">
           <div>

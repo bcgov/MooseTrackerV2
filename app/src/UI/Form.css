@@ -6,7 +6,7 @@
   justify-content: center;
   text-align: center;
   background-color: rgba(0, 0, 0, .03);
-  min-height: calc(100vh - 109px);
+  height: 80vh;
 }
 
 .formContainer {
@@ -64,4 +64,10 @@
   line-height: 1.5;
   border-radius: .25rem;
   margin: .25em;
+}
+
+@media (min-width: 1024px) {
+  .formPanel {
+    height: 85vh;
+  }
 }

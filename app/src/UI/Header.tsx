@@ -2,6 +2,10 @@ import "./Header.css"
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { Capacitor } from '@capacitor/core';
 import { useEffect, useState } from "react";
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import MapIcon from '@mui/icons-material/Map';
+import InfoIcon from '@mui/icons-material/Info';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 
 export const Header = (props: any) => {
   const navigate = useNavigate();
@@ -21,21 +25,29 @@ export const Header = (props: any) => {
     }
   }, []);
 
-  // const goHome = () => {
-  //   navigate('/About');
-  // }
+  const goHome = () => {
+    navigate('/About');
+  }
   
-  // const goToRegs = () => {
-  //   navigate('/Regulations');
-  // }
+  const goToRegs = () => {
+    navigate('/Regulations');
+  }
 
   const goToForm = () => {
     navigate('/');
   }
 
-  // const goToSightings = () => {
-  //   navigate("/Sightings");
-  // }
+  const goToAddMoose = () => {
+    navigate('/Form');
+  }
+
+  const goToMap = () => {
+    navigate('/Map');
+  }
+
+  const goToSightings = () => {
+    navigate("/Sightings");
+  }
 
 
     return(
@@ -57,21 +69,37 @@ export const Header = (props: any) => {
           <Route path="/Regulations" element={<Regs />} />
           <Route path="/" element={<About />} /> */}
 
-            <NavLink className={`headerButton ${location.pathname === "/Map" ? 'header-selected ' : ''}`} to="/Map">
-              Map
-            </NavLink>
-            <NavLink className={`headerButton ${location.pathname === "/Form" ? 'header-selected ' : ''}`} to="/Form">
-              Add Moose
-            </NavLink>
-            <NavLink className={`headerButton ${location.pathname === "/Sightings" ? 'header-selected ' : ''}`} to="/Sightings">
-              Sightings
-            </NavLink>
-            <NavLink className={`headerButton ${location.pathname === "/Regulations" ? 'header-selected ' : ''}`} to="/Regulations">
-              Regulations
-            </NavLink>
-            <NavLink className={`headerButton ${location.pathname === "/" ? 'header-selected ' : ''}`} to="/">
-              About
-            </NavLink>
+
+            <div className="navTab">
+              <MapIcon className="buttonIcon" onClick={goToMap}/>
+              <NavLink className={`headerButton ${location.pathname === "/Map" ? 'header-selected ' : ''}`} to="/Map">
+                Map
+              </NavLink>
+            </div>
+            <div className="navTab">
+              <img className="buttonIcon" id="mooseIcon" src="moose_bar_icon.svg" alt="Moose Icon" onClick={goToAddMoose}/>
+              <NavLink className={`headerButton ${location.pathname === "/Form" ? 'header-selected ' : ''}`} to="/Form"  id="addMooseButton">
+                Add Moose
+              </NavLink>
+            </div>
+            <div className="navTab">
+              <AssignmentIcon className="buttonIcon" onclick={goToSightings} />
+              <NavLink className={`headerButton ${location.pathname === "/Sightings" ? 'header-selected ' : ''}`} to="/Sightings">
+                Sightings
+              </NavLink>
+            </div>
+            <div className="navTab">
+              <LibraryBooksIcon className="buttonIcon" onClick={goToRegs}/>
+              <NavLink className={`headerButton ${location.pathname === "/Regulations" ? 'header-selected ' : ''}`} to="/Regulations">
+                Regulations
+              </NavLink>
+            </div>
+            <div className="navTab">
+              <InfoIcon className="buttonIcon" onClick={goHome}/>
+              <NavLink className={`headerButton ${location.pathname === "/" ? 'header-selected ' : ''}`} to="/">
+                About
+              </NavLink>
+            </div>
           </div>
         </div>
       </header>

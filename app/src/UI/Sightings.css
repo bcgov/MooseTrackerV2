@@ -5,7 +5,8 @@
   padding-bottom: 1em;
   justify-content: center;
   background-color: rgba(0, 0, 0, .03);
-  min-height: calc(100vh - 109px);
+  height: 80vh;
+  overflow: scroll;
 }
 
 .wrapper{
@@ -95,11 +96,8 @@
   width: 100%;
 }
 
-@media (max-width: 1024px) {
-  .wrapper {
-    width: 90%;
-  }
-  .sightingHeader {
-    margin-bottom: 0;
+@media (min-width: 1024px) {
+  .sightingContainer {
+    height: 85vh;
   }
 }

@@ -8,3 +8,12 @@
   height: 80vh;
 }
 
+@media (min-width: 1024px) {
+  .MapPanel {
+    height: 85vh;
+  }
+  
+  .MapContainer {
+    height: 85vh;
+  }
+}

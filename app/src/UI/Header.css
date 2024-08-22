@@ -9,7 +9,6 @@
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    height: 64px;
 }
 
 .headingwrapper{
@@ -43,12 +42,14 @@
 
 .headerButtonContainer {
   display: flex;
-  align-items: flex-end;
-  justify-content: start;
+  align-items: center;
+  padding: 1em;
 
   .headerButton {
     display: inline-block;
-    margin: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
     border-radius: 0.25em;
     text-decoration: none;
     font-size: 1em;
@@ -69,10 +70,30 @@
     color:  white;
     cursor: pointer;
     border-bottom: rgb(227, 168, 43);
-    margin: 0.2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
     border-radius: 4px;
     font-size: 1.2em;
   }
+
+  .navTab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+  }
+}
+
+#addMooseButton {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+img#mooseIcon {
+  margin: -.5em;
+  transform: scale(.7);
 }
 
 .Tab__Indicator {
@@ -113,17 +134,5 @@
   }
 
   @media (max-width: 1024px) {
-    .headingwrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: auto;
-    }
-    .headerWrapper {
-      height: 5rem !important;
-      margin-top: 1rem;
-    }
-    .headerText {
-      margin: 0;
-    }
+
   }
