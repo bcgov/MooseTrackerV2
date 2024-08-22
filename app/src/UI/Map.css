@@ -8,3 +8,7 @@
   height: 80vh;
 }
 
+.mgmt-unit-label {
+  visibility: hidden;
+}
+
