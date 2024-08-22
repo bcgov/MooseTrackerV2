@@ -1,9 +1,9 @@
 import "./Map.css"
-import { MapContainer, Marker, TileLayer, useMap, Popup, GeoJSON} from 'react-leaflet'
-import { LatLngExpression, Icon } from 'leaflet'
+import { MapContainer, TileLayer, useMap, GeoJSON} from 'react-leaflet'
+import { LatLngExpression} from 'leaflet'
 import { useSelector } from "react-redux";
 import L from "leaflet";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import mgmtUnits from '../assets/management_units.json'
 import { managementUnitStyle } from "./featureStylers";
@@ -61,17 +61,11 @@ const calculateCentroid = (coordinates: any) => {
 export const MapPanel: React.FC = () => {
 
   const defaultLocation: [number, number] = [53.932, -123.912];
-  // const [selectedFeature, setSelectedFeature] = useState(null);
 
-
-  // const mapLocation = useSelector(
-  //   (state: any) => state.MooseSightingsState.subRegion
-  // );
   const subRegion = useSelector(
     (state: any) => state.MooseSightingsState.subRegion
   );
   const [markerPosition, setMarkerPosition] = useState(defaultLocation);
-  // let markerPosition: [number, number] = [defaultLocation[0], defaultLocation[1]];
 
   useEffect(() => {
     const centroid = getFeatureCentroidFromManagementArea(subRegion);
