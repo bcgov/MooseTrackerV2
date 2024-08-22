@@ -23,10 +23,9 @@ function App() {
         <Header />
         <UserSaveSnackbar />
         <Routes>
-          <Route path="/Map" element={<MapPanel />}>
-            <Route index element={<FormPanel />} />
-            <Route path="Sightings" element={<Sightings />} />
-          </Route>
+          <Route path="/Map" element={<MapPanel />} />
+          <Route path="/Form" element={<FormPanel />} />
+          <Route path="/Sightings" element={<Sightings />} />
           <Route path="/Regulations" element={<Regs />} />
           <Route path="/" element={<About />} />
         </Routes>

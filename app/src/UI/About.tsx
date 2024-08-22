@@ -9,6 +9,7 @@ export const About = (props: any) => {
 
   return (
     <div className="aboutContainer">
+      <div className="spacer"></div>
       <div className="aboutWrapper">
         <div className="about">
           <h1>Welcome to Moose Tracker v2!</h1>
