@@ -50,10 +50,20 @@ export const Header = (props: any) => {
               </div>
           </div>
           <div className="headerButtonContainer">
+
+          {/* <Route path="/Map" element={<MapPanel />} />
+          <Route path="/Form" element={<FormPanel />} />
+          <Route path="/Sightings" element={<Sightings />} />
+          <Route path="/Regulations" element={<Regs />} />
+          <Route path="/" element={<About />} /> */}
+
             <NavLink className={`headerButton ${location.pathname === "/Map" ? 'header-selected ' : ''}`} to="/Map">
-              Add a Moose Sighting
+              Map
             </NavLink>
-            <NavLink className={`headerButton ${location.pathname === "/Map/Sightings" ? 'header-selected ' : ''}`} to="/Map/Sightings">
+            <NavLink className={`headerButton ${location.pathname === "/Form" ? 'header-selected ' : ''}`} to="/Form">
+              Add Moose
+            </NavLink>
+            <NavLink className={`headerButton ${location.pathname === "/Sightings" ? 'header-selected ' : ''}`} to="/Sightings">
               Sightings
             </NavLink>
             <NavLink className={`headerButton ${location.pathname === "/Regulations" ? 'header-selected ' : ''}`} to="/Regulations">

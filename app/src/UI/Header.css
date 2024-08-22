@@ -1,9 +1,8 @@
 .headerMain {
-  position: relative;
-  padding: .5rem 1rem;
   margin-bottom: 0;
   background-color: #036;
   border-bottom: 2px solid #fcba19;
+  height: 10vh;
 }
 
 .headerWrapper{
