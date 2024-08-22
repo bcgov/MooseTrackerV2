@@ -23,6 +23,7 @@ interface ChangeViewProps {
 
 const ChangeView: React.FC<ChangeViewProps> = ({ center }) => {
   const map = useMap();
+  map.setZoom(8);
   map.setView(center);
   return null;
 };
@@ -50,14 +51,13 @@ export const MapPanel: React.FC = () => {
   const subRegion = useSelector(
     (state: any) => state.MooseSightingsState.subRegion
   );
-  const [markerPosition, setMarkerPosition] = useState(defaultLocation);
+  const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
+    null
+  );
 
   useEffect(() => {
     const centroid = getFeatureCentroidFromManagementArea(subRegion);
-    setMarkerPosition([
-      centroid ? centroid[0] : defaultLocation[0],
-      centroid ? centroid[1] : defaultLocation[1],
-    ]);
+    if (centroid) setMarkerPosition([centroid[0], centroid[1]]);
   }, [subRegion]);
 
   const onEachFeature = (feature: Feature, layer: L.Layer) => {
@@ -87,7 +87,7 @@ export const MapPanel: React.FC = () => {
           style={managementUnitStyle}
           onEachFeature={onEachFeature}
         />
-        <ChangeView center={markerPosition} />
+        {markerPosition && <ChangeView center={markerPosition} />}
       </MapContainer>
       <Outlet />
     </div>
