@@ -11,3 +11,7 @@
   height: 500px;
 }
 
+.mgmt-unit-label {
+  visibility: hidden;
+}
+

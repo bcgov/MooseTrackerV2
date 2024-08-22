@@ -23,8 +23,7 @@ interface ChangeViewProps {
 
 const ChangeView: React.FC<ChangeViewProps> = ({ center }) => {
   const map = useMap();
-  map.setZoom(8);
-  map.setView(center);
+  map.setView(center, 8);
   return null;
 };
 
@@ -45,8 +44,27 @@ const getFeatureCentroidFromManagementArea = (regionId: string) => {
   return null;
 };
 
+const MapEventHandler: React.FC = () => {
+  const map = useMap();
+
+  const handleZoomEnd = () => {
+    const zoomLevel = map.getZoom();
+    const tooltips = document.querySelectorAll(".mgmt-unit-label");
+    tooltips.forEach((tooltip) => {
+      if (zoomLevel < 7) {
+        (tooltip as HTMLElement).style.visibility = "hidden";
+      } else {
+        (tooltip as HTMLElement).style.visibility = "visible";
+      }
+    });
+  };
+  map.on("zoomend", handleZoomEnd);
+
+  return null;
+};
+
 export const MapPanel: React.FC = () => {
-  const defaultLocation: [number, number] = [53.932, -123.912];
+  const defaultLocation: [number, number] = [55.25, -123.912];
 
   const subRegion = useSelector(
     (state: any) => state.MooseSightingsState.subRegion
@@ -65,7 +83,7 @@ export const MapPanel: React.FC = () => {
       layer.bindTooltip(feature.properties.WILDLIFE_MGMT_UNIT_ID, {
         permanent: true,
         direction: "center",
-        className: `mgmtUnitLabel-${feature.properties.WILDLIFE_MGMT_UNIT_ID}`,
+        className: `mgmt-unit-label`,
       });
     }
   };
@@ -88,6 +106,7 @@ export const MapPanel: React.FC = () => {
           onEachFeature={onEachFeature}
         />
         {markerPosition && <ChangeView center={markerPosition} />}
+        <MapEventHandler />
       </MapContainer>
       <Outlet />
     </div>
