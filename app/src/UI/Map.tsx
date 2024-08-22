@@ -99,7 +99,7 @@ const getFeatureCentroidFromManagementArea = (regionId: string) => {
   if(feature){
   console.log("regionId: ", regionId);
   console.log("feature: ", feature);
-  console.log("centroid: ", calculateCentroid(feature.geometry.coordinates));
+  //console.log("centroid: ", calculateCentroid(feature.geometry.coordinates));
   }
   // let centroid : LocationState = {latitude: 0, longitude: 0};
   // const result = feature ? calculateCentroid(feature.geometry.coordinates[0]) : null;
@@ -155,12 +155,12 @@ const MapMarkers = (props: any) => {
   //   shadowSize: [41, 41]
   // })
 
-  const markerState = useSelector((state: any) => getFeatureCentroidFromManagementArea( state.MooseSightingsState.subRegion));
+  const subRegion = useSelector((state: any) => getFeatureCentroidFromManagementArea( state.MooseSightingsState.subRegion));
   const defaultLocation: [number, number] = [48.4284, -123.3656];
 
   const markerPosition: [number, number] = [
-    markerState ? markerState[0] : defaultLocation[0],
-    markerState ? markerState[1] : defaultLocation[1],
+    subRegion ? subRegion[0] : defaultLocation[0],
+    subRegion ? subRegion[1] : defaultLocation[1],
   ];
 
 
@@ -269,6 +269,7 @@ const MapMarkers = (props: any) => {
 
 
 export const MapPanel: React.FC = () => {
+
   const defaultLocation: [number, number] = [53.932, -123.912];
   // const [selectedFeature, setSelectedFeature] = useState(null);
 
@@ -276,18 +277,19 @@ export const MapPanel: React.FC = () => {
   // const mapLocation = useSelector(
   //   (state: any) => state.MooseSightingsState.subRegion
   // );
-  const markerState = useSelector(
-    (state: any) => getFeatureCentroidFromManagementArea(state.MooseSightingsState.subRegion)
+  const subRegion = useSelector(
+    (state: any) => state.MooseSightingsState.subRegion
   );
   const [markerPosition, setMarkerPosition] = useState(defaultLocation);
   // let markerPosition: [number, number] = [defaultLocation[0], defaultLocation[1]];
 
   useEffect(() => {
+    const centroid = getFeatureCentroidFromManagementArea(subRegion);
     setMarkerPosition([
-      markerState ? markerState[0]: defaultLocation[0],
-      markerState ? markerState[1] : defaultLocation[1],
+      centroid ? centroid[0] : defaultLocation[0],
+      centroid ? centroid[1] : defaultLocation[1],
     ]);
-  }, [markerState]);
+  }, [subRegion]);
 
   const onEachFeature = (feature: Feature, layer: L.Layer) => {
     if (feature.properties) {
