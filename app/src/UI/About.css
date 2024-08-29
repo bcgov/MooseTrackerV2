@@ -5,7 +5,7 @@
   padding-bottom: 1rem;
   justify-content: center;
   background-color: rgba(0, 0, 0, .03);
-  height: 80vh;
+  height: 70vh;
 }
 
 .aboutWrapper {
@@ -57,7 +57,7 @@
   width: 10%;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 600px) {
   .aboutContainer {
     height: 85vh;
   }

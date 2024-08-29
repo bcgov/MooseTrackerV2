@@ -10,7 +10,7 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  height: 80vh;
+  height: 70vh;
   overflow: scroll;
 }
 
@@ -73,7 +73,7 @@
   background-color: #f4cb64;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 600px) {
   .regs-component {
     height: 85vh;
   }

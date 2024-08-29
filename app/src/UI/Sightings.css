@@ -5,7 +5,7 @@
   padding-bottom: 1em;
   justify-content: center;
   background-color: rgba(0, 0, 0, .03);
-  height: 80vh;
+  height: 70vh;
   overflow: scroll;
 }
 
@@ -20,19 +20,15 @@
 }
 
 .sightingHeader {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1em;
   font-family: inherit;
   line-height: .5rem;
   color: #494949;
 }
 
 .sightingHeadingText {
-  margin-left: 20px;
-  width: 50%;
+  text-align: center;
 }
 
 .sightingText {
@@ -96,7 +92,7 @@
   width: 100%;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 600px) {
   .sightingContainer {
     height: 85vh;
   }

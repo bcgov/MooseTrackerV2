@@ -1,8 +1,10 @@
 .headerMain {
+  display: flex;
+  align-items: end;
   margin-bottom: 0;
   background-color: #036;
   border-bottom: 2px solid #fcba19;
-  height: 10vh;
+  height: 20vh;
 }
 
 .headerWrapper{
@@ -136,6 +138,8 @@ img#mooseIcon {
     }
   }
 
-  @media (max-width: 1024px) {
-
+  @media (min-width: 600px) {
+    .headerMain {
+      height: 10vh;
+    }
   }

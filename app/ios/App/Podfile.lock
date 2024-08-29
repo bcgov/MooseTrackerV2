@@ -4,8 +4,6 @@ PODS:
   - CapacitorBrowser (5.2.1):
     - Capacitor
   - CapacitorCordova (5.7.7)
-  - CapacitorGeolocation (5.0.8):
-    - Capacitor
   - CapacitorStatusBar (5.0.8):
     - Capacitor
 
@@ -29,7 +27,6 @@ SPEC CHECKSUMS:
   Capacitor: 0039e9b67cfde2d5e9111b3ddca8c0097f4cf2f4
   CapacitorBrowser: bac3132be6506411704149f9f2099843ffe470a0
   CapacitorCordova: d906edead798c9bb1b07274f15615878d27507d5
-  CapacitorGeolocation: 0572212732f7ee65828d069a9663a274be89b9fc
   CapacitorStatusBar: 51af549cfcf35aac3ab072b062967ae5971ee485
 
 PODFILE CHECKSUM: f1df6340a6ecf454b6dcc704998b790ef27150b6
