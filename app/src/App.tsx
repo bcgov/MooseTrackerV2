@@ -11,11 +11,18 @@ import { About } from "./UI/About";
 import { Sightings } from "./UI/Sightings";
 import { UserSaveSnackbar } from "./UI/UserSaveSnackbar";
 //import { Breadcrumb } from "./UI/Breadcrumb";
+import { pdfjs } from 'react-pdf';
 
 function App() {
+
   const ref = useRef(0);
   ref.current += 1;
   console.log("%cParent render:" + ref.current.toString(), "color: yellow");
+
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    'pdf.worker.min.js',
+    import.meta.url,
+  ).toString();
 
   return (
     <div className="rootContainer">

@@ -1,12 +1,8 @@
 import { useCallback, useRef, useState } from "react";
 import { Document, Page } from 'react-pdf'
-import { pdfjs } from 'react-pdf';
 import { useResizeObserver } from '@wojtekmaj/react-hooks';
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.js',
-  import.meta.url,
-).toString();
+
 
 import "./Regs.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
