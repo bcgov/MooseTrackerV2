@@ -8,9 +8,9 @@ import {
   SIGHTING_SYNC_SUCCESSFUL,
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
-import { MooseSighting } from './../../../../api/src/interfaces';
 
-const apiUrl = "https://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
+// const apiUrl = "https://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
+const apiUrl = "https://api-a3e022-dev.apps.silver.devops.gov.bc.ca";
 
 function* write_sightings_to_disk(action: any): Generator<any> {
   const sightings: any = yield select(
@@ -21,7 +21,7 @@ function* write_sightings_to_disk(action: any): Generator<any> {
 }
 
 function* handle_USER_SAVE_SIGHTINGS(action: any) {
-  const mooseSightings: MooseSighting = yield select(
+  const mooseSightings: any = yield select(
     (state: any) => state.MooseSightingsState
   );
   const errors: Set<string> = new Set();
@@ -47,30 +47,35 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
     }
   }
   if (errors.size > 0) {
-    const errorMessage = Array.from(errors).join(' ');
-    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: {errors: errorMessage} });
+    const errorMessage = Array.from(errors).join(" ");
+    yield put({
+      type: USER_SAVE_SIGHTINGS_FAIL,
+      payload: { errors: errorMessage },
+    });
   } else {
     yield put({ type: USER_SAVE_SIGHTINGS_SUCCESS });
   }
 }
 
 function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
-  yield put({ type: SYNC_SIGHTINGS_TO_DB});
+  yield put({ type: SYNC_SIGHTINGS_TO_DB });
 }
 
 function prepareSightingsForApi(sightings: any) {
-  return sightings.map((sighting: any) => {
-    const [region, subRegion] = sighting.subRegion.split("-");
-    return {
-      clientSightingId: sighting.id,
-      dateFrom: sighting.dateFrom,
-      dateTo: sighting.dateTo,
-      region: parseInt(region),
-      subRegion: parseInt(subRegion),
-      tickHairLoss: sighting.tickHairLoss,
-      mooseCount: parseInt(sighting.mooseCount),
-    };
-  });
+  return sightings
+    .filter((sighting: any) => !sighting.syncDate)
+    .map((sighting: any) => {
+      const [region, subRegion] = sighting.subRegion.split("-");
+      return {
+        clientSightingId: sighting.id,
+        dateFrom: sighting.dateFrom,
+        dateTo: sighting.dateTo,
+        region: parseInt(region),
+        subRegion: parseInt(subRegion),
+        tickHairLoss: sighting.tickHairLoss,
+        mooseCount: parseInt(sighting.mooseCount),
+      };
+    });
 }
 
 function fetchSightings(validatedSightings: any) {

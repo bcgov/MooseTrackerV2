@@ -69,7 +69,7 @@ export const RegionSelector = (props: any) => {
             value={selectedRegion}
             onChange={handleRegionSelect}
           >
-            <option selected>-- select an option --</option>
+            <option>-- select an option --</option>
             {regionNamesArray.map((region: any) => (
               <option key={region} value={region}>
                 {region}
