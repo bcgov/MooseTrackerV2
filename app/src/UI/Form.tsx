@@ -46,7 +46,6 @@ export const FormPanel = (props: any) => {
       <div className="formContainer" >
         <div className="formHeader">
           <h2>Record Moose Sighting</h2>
-          <p>Use this form to record moose sightings. Will save locally until you synch once connected to the internet.</p>
         </div>
         <div className="formInput">
           <div>
@@ -69,12 +68,14 @@ export const FormPanel = (props: any) => {
             </label>
           </div>
         </div>
-        <button className="formButton" onClick={() => { dispatch({ type: CLEAR_CURRENT_MOOSE_SIGHTING })}}>
-          Reset
-        </button>
-        <button className="formButton" onClick={handleSubmit} >
-          Save sighting
-        </button>
+        <div className="formButtons">
+          <button className="formButton" onClick={() => { dispatch({ type: CLEAR_CURRENT_MOOSE_SIGHTING })}}>
+            Reset
+          </button>
+          <button className="formButton" onClick={handleSubmit} >
+            Save sighting
+          </button>
+        </div>
       </div>
     </div>
   );

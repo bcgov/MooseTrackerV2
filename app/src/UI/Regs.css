@@ -6,18 +6,18 @@
 .regs-component {
   background-color: rgba(0, 0, 0, .03);
   padding: 1rem;
-  min-height: calc(100vh - 109px);
   font-family: Myriad-Pro, Calibri, Arial, sans serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  height: 80vh;
+  overflow: scroll;
 }
 
 .regs-document {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
   min-height: 0;
 }
 
@@ -73,8 +73,8 @@
   background-color: #f4cb64;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
   .regs-component {
-    padding: 1rem;
+    height: 85vh;
   }
 }

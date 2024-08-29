@@ -18,7 +18,7 @@ export const Regs = () => {
   ref.current += 1;
   console.log("%Regs render:" + ref.current.toString(), "color: yellow");
 
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState("hunting-trapping-synopsis.pdf");
   const [pageNumber, setPageNumber] = useState(1);
   const [numPages, setNumPages] = useState<number>();
   const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);

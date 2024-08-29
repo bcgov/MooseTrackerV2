@@ -7,21 +7,15 @@
 
 .footer-text-container {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
   flex-direction: row;
-  flex-wrap: nowrap;
-  position: relative;
+  align-items: stretch;
+  justify-content: space-evenly;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  flex-wrap: wrap;
 }
 
 .footer .nav-item {
   font-size: 13px;
-  margin-bottom: 0;
   list-style: none;
 }
 
@@ -37,12 +31,12 @@
   cursor: pointer;
 }
 
-.footer ul {
-  padding-inline-start: 40px;
-}
-
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
+  .footer-text-container {
+    margin-top: .5em;
+  }
+  
   .footer {
-    height: 5rem !important;
+    height: 5vh;
   }
 }

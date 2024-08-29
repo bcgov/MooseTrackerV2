@@ -6,15 +6,13 @@
   justify-content: center;
   text-align: center;
   background-color: rgba(0, 0, 0, .03);
-  min-height: calc(100vh - 109px);
+  height: 80vh;
 }
 
 .formContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   color: #494949;
-  height: 75%;
   width: 80%;
   background-color: #fff;
 }
@@ -44,6 +42,11 @@
   justify-content: flex-start;
 }
 
+.formButtons {
+  display: flex;
+  flex-direction: column;
+}
+
 .formButton {
   display: inline-block;
   text-decoration: none;
@@ -64,4 +67,10 @@
   line-height: 1.5;
   border-radius: .25rem;
   margin: .25em;
+}
+
+@media (min-width: 1024px) {
+  .formPanel {
+    height: 85vh;
+  }
 }
