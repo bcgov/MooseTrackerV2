@@ -12,9 +12,7 @@
 .formContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   color: #494949;
-  height: 75%;
   width: 80%;
   background-color: #fff;
 }
@@ -42,6 +40,11 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
+}
+
+.formButtons {
+  display: flex;
+  flex-direction: column;
 }
 
 .formButton {

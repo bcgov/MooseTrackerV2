@@ -26,15 +26,11 @@ export const Header = (props: any) => {
   }, []);
 
   const goHome = () => {
-    navigate('/About');
+    navigate('/');
   }
   
   const goToRegs = () => {
     navigate('/Regulations');
-  }
-
-  const goToForm = () => {
-    navigate('/');
   }
 
   const goToAddMoose = () => {
@@ -55,9 +51,9 @@ export const Header = (props: any) => {
         <div className="headerWrapper">
           <div className="headingwrapper">
             <div className="iconContainer">
-                  <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToForm}/>
+                  <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToAddMoose}/>
               </div>
-              <div className="titleContainer" onClick={goToForm}>
+              <div className="titleContainer" onClick={goToAddMoose}>
                 <p className="headerText">Moose Tracker</p>
               </div>
           </div>
@@ -71,7 +67,9 @@ export const Header = (props: any) => {
 
 
             <div className="navTab">
-              <MapIcon className="buttonIcon" onClick={goToMap}/>
+              <a onClick={goToMap}>
+                <MapIcon className="buttonIcon"/>
+              </a>
               <NavLink className={`headerButton ${location.pathname === "/Map" ? 'header-selected ' : ''}`} to="/Map">
                 Map
               </NavLink>
@@ -83,19 +81,25 @@ export const Header = (props: any) => {
               </NavLink>
             </div>
             <div className="navTab">
-              <AssignmentIcon className="buttonIcon" onclick={goToSightings} />
+              <a onClick={goToSightings}>
+                <AssignmentIcon className="iconButton"/>
+              </a>
               <NavLink className={`headerButton ${location.pathname === "/Sightings" ? 'header-selected ' : ''}`} to="/Sightings">
                 Sightings
               </NavLink>
             </div>
             <div className="navTab">
-              <LibraryBooksIcon className="buttonIcon" onClick={goToRegs}/>
+              <a onClick={goToRegs}>
+                <LibraryBooksIcon className="buttonIcon"/>
+              </a>
               <NavLink className={`headerButton ${location.pathname === "/Regulations" ? 'header-selected ' : ''}`} to="/Regulations">
                 Regulations
               </NavLink>
             </div>
             <div className="navTab">
-              <InfoIcon className="buttonIcon" onClick={goHome}/>
+              <a onClick={goHome}>
+                <InfoIcon className="buttonIcon"/>
+              </a>
               <NavLink className={`headerButton ${location.pathname === "/" ? 'header-selected ' : ''}`} to="/">
                 About
               </NavLink>

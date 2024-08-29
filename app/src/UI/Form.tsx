@@ -68,12 +68,14 @@ export const FormPanel = (props: any) => {
             </label>
           </div>
         </div>
-        <button className="formButton" onClick={() => { dispatch({ type: CLEAR_CURRENT_MOOSE_SIGHTING })}}>
-          Reset
-        </button>
-        <button className="formButton" onClick={handleSubmit} >
-          Save sighting
-        </button>
+        <div className="formButtons">
+          <button className="formButton" onClick={() => { dispatch({ type: CLEAR_CURRENT_MOOSE_SIGHTING })}}>
+            Reset
+          </button>
+          <button className="formButton" onClick={handleSubmit} >
+            Save sighting
+          </button>
+        </div>
       </div>
     </div>
   );
