@@ -1,7 +1,6 @@
 .headerMain {
   display: flex;
-  align-items: end;
-  margin-bottom: 0;
+  padding-top: 1em;
   background-color: #036;
   border-bottom: 2px solid #fcba19;
   height: 20vh;
@@ -9,7 +8,7 @@
 
 .headerWrapper{
     display: flex;
-    -webkit-box-pack: justify;
+    width: 100%;
     justify-content: space-between;
 }
 
@@ -93,7 +92,7 @@
 #addMooseButton {
   margin-left: 0.5em;
   margin-right: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 
 img#mooseIcon {

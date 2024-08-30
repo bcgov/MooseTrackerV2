@@ -50,20 +50,25 @@ export const FormPanel = (props: any) => {
         <div className="formInput">
           <div>
             <label>
-              <span className="formContent">How many moose?</span>
+              <span className="formContent">Moose: </span>
               <input type="number" name="mooseCount" min="1" value={mooseCount || ''} onChange={handleMooseCountChange}/>
             </label>
           </div>
           <div>
             <label>
-            <span className="formContent">Where did you see the moose(s)?</span>
+            <span className="formContent"/>
               <RegionSelector/>
             </label>
           </div>
           <div>
             <label>
-              <span className="formContent">What were the start and end dates of your trip where you saw moose(s)?</span>
+              <span className="formContent">Date from: </span>
               <input type="date" id="dateFrom" value={dateFrom ? dateFrom.toISOString().split('T')[0] : ''} onChange={handlefromDateChange}/>
+            </label>
+          </div>
+          <div>
+            <label>
+              <span className="formContent">Date to: </span>
               <input type="date" id="dateTo" value={dateTo ? dateTo.toISOString().split('T')[0] : ''} onChange={handleToDateChange}/>
             </label>
           </div>

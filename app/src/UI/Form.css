@@ -30,15 +30,17 @@
 
 .formInput {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   padding: 1rem;
+  margin-bottom: 2em;
   background-color: #fff;
   color: #003366;
   z-index: 3;
   border: #223f75 2px solid;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
+}
+
+.formInput label {
+  font-size: 2em;
 }
 
 .formButtons {
@@ -74,5 +76,8 @@
   }
   .formHeader {
     font-size: 1.2rem;
+  }
+  .formInput div {
+    padding: .5em;
   }
 }
