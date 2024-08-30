@@ -7,3 +7,6 @@ project(':capacitor-browser').projectDir = new File('../node_modules/@capacitor/
 
 include ':capacitor-status-bar'
 project(':capacitor-status-bar').projectDir = new File('../node_modules/@capacitor/status-bar/android')
+
+include ':capacitor-zoom-android'
+project(':capacitor-zoom-android').projectDir = new File('../node_modules/capacitor-zoom-android/android')

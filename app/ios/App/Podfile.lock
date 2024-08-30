@@ -1,10 +1,12 @@
 PODS:
-  - Capacitor (5.7.7):
+  - Capacitor (5.7.8):
     - CapacitorCordova
   - CapacitorBrowser (5.2.1):
     - Capacitor
-  - CapacitorCordova (5.7.7)
+  - CapacitorCordova (5.7.8)
   - CapacitorStatusBar (5.0.8):
+    - Capacitor
+  - CapacitorZoomAndroid (5.0.0):
     - Capacitor
 
 DEPENDENCIES:
@@ -12,6 +14,7 @@ DEPENDENCIES:
   - "CapacitorBrowser (from `../../node_modules/@capacitor/browser`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - CapacitorZoomAndroid (from `../../node_modules/capacitor-zoom-android`)
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -22,13 +25,16 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
+  CapacitorZoomAndroid:
+    :path: "../../node_modules/capacitor-zoom-android"
 
 SPEC CHECKSUMS:
-  Capacitor: 0039e9b67cfde2d5e9111b3ddca8c0097f4cf2f4
+  Capacitor: 747aadb4fa786f460d8cd9d0557cb81440a13747
   CapacitorBrowser: bac3132be6506411704149f9f2099843ffe470a0
-  CapacitorCordova: d906edead798c9bb1b07274f15615878d27507d5
+  CapacitorCordova: 31ab98dca2ddcee051027a1afe7e8c85c82f7297
   CapacitorStatusBar: 51af549cfcf35aac3ab072b062967ae5971ee485
+  CapacitorZoomAndroid: 8af88fc54f2b1cf8e287f8471b617ab05b4b0dcb
 
-PODFILE CHECKSUM: f1df6340a6ecf454b6dcc704998b790ef27150b6
+PODFILE CHECKSUM: 3d82611db81999eda8240a8b59e889817701bb9b
 
 COCOAPODS: 1.15.2

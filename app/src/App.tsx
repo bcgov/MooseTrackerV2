@@ -22,7 +22,7 @@ function App() {
   pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdf.worker.min.js',
     import.meta.url,
-  ).toString();
+  ).toString();brew
 
   return (
     <div className="rootContainer">
