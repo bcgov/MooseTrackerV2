@@ -1,5 +1,6 @@
 .headerMain {
   display: flex;
+  align-items: end;
   padding-top: 1em;
   background-color: #036;
   border-bottom: 2px solid #fcba19;
