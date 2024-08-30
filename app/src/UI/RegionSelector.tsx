@@ -62,56 +62,59 @@ export const RegionSelector = (props: any) => {
 
     return (
       <div>
-        <label>
-          Select your Region :
-          <select
-            name="regionSelector"
-            value={selectedRegion}
-            onChange={handleRegionSelect}
-          >
-            <option>-- select an option --</option>
-            {regionNamesArray.map((region: any) => (
-              <option key={region} value={region}>
-                {region}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <label>
-          Select your Sub-Region :
-          <select
-            name="subRegionSelector"
-            value={selectedSubregion}
-            onChange={handleSubRegionSelect}
-            disabled={!selectedRegion}
-            key={Math.random()}
-          >
-            {/* This section filters the options array so only subregions of the selected region are shown*/}
-            {/* The result is then sorted based on management region id (ex id : "1-12") and an option entry generated for each*/}
-            <option value="">-- select a subregion --</option>
-            {options
-              .filter(
-                (property: any) =>
-                  property.REGION_RESPONSIBLE_NAME === selectedRegion
-              )
-              .sort(
-                (a: any, b: any) =>
-                  parseInt(a.WILDLIFE_MGMT_UNIT_ID.substring(2)) -
-                  parseInt(b.WILDLIFE_MGMT_UNIT_ID.substring(2))
-              )
-              .map((property: any) => (
-                <option
-                  key={property.OBJECTID}
-                  value={property.WILDLIFE_MGMT_UNIT_ID}
-                >
-                  {property.GAME_MANAGEMENT_ZONE_NAME +
-                    " - " +
-                    property.WILDLIFE_MGMT_UNIT_ID}
+        <div>
+          <label>
+            <span>Region: </span>
+            <select
+              name="regionSelector"
+              value={selectedRegion}
+              onChange={handleRegionSelect}
+            >
+              <option>-- select an option --</option>
+              {regionNamesArray.map((region: any) => (
+                <option key={region} value={region}>
+                  {region}
                 </option>
               ))}
-          </select>
-        </label>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>
+            <span>Sub-Region: </span>
+            <select
+              name="subRegionSelector"
+              value={selectedSubregion}
+              onChange={handleSubRegionSelect}
+              disabled={!selectedRegion}
+              key={Math.random()}
+            >
+              {/* This section filters the options array so only subregions of the selected region are shown*/}
+              {/* The result is then sorted based on management region id (ex id : "1-12") and an option entry generated for each*/}
+              <option value="">-- select a subregion --</option>
+              {options
+                .filter(
+                  (property: any) =>
+                    property.REGION_RESPONSIBLE_NAME === selectedRegion
+                )
+                .sort(
+                  (a: any, b: any) =>
+                    parseInt(a.WILDLIFE_MGMT_UNIT_ID.substring(2)) -
+                    parseInt(b.WILDLIFE_MGMT_UNIT_ID.substring(2))
+                )
+                .map((property: any) => (
+                  <option
+                    key={property.OBJECTID}
+                    value={property.WILDLIFE_MGMT_UNIT_ID}
+                  >
+                    {property.GAME_MANAGEMENT_ZONE_NAME +
+                      " - " +
+                      property.WILDLIFE_MGMT_UNIT_ID}
+                  </option>
+                ))}
+            </select>
+          </label>
+        </div>
       </div>
     );
 };

@@ -9,8 +9,7 @@ import {
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
 
-// const apiUrl = "https://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
-const apiUrl = "https://api-a3e022-dev.apps.silver.devops.gov.bc.ca";
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
 
 function* write_sightings_to_disk(action: any): Generator<any> {
   const sightings: any = yield select(

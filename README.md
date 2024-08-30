@@ -50,6 +50,23 @@ An updated version of the Moose Tracker application.
 
 Please follow these instructions on setting up in an IOS/Android simulation.
 
+### For local builds
+
+1. Create a .env file in app and add `VITE_API_ENDPOINT`
+
+2. Create a .env file in api and add
+`DB_NAME=""`
+`DB_USER=""`
+`DB_PASSWORD=""`
+`DB_HOST=`
+`DB_PORT=`
+
+3. `brew services start postgresql`
+
+4. `npm install`
+
+5. `npm run dev`
+
 ### For IOS builds
 
 1. `Brew install cocoapods`
