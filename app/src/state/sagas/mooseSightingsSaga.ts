@@ -8,6 +8,7 @@ import {
   SIGHTING_SYNC_SUCCESSFUL,
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
+import { MooseSighting } from "./../../../../api/src/interfaces";
 
 // const apiUrl = "https://api-a3e022-dev.apps.silver.devops.gov.bc.ca"; //localhost:7080
 const apiUrl = "https://api-a3e022-dev.apps.silver.devops.gov.bc.ca";
@@ -21,7 +22,7 @@ function* write_sightings_to_disk(action: any): Generator<any> {
 }
 
 function* handle_USER_SAVE_SIGHTINGS(action: any) {
-  const mooseSightings: any = yield select(
+  const mooseSightings: MooseSighting = yield select(
     (state: any) => state.MooseSightingsState
   );
   const errors: Set<string> = new Set();

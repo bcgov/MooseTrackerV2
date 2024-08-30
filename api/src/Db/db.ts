@@ -1,6 +1,7 @@
 import { Pool } from "pg";
 import "dotenv/config";
-import { MooseSightingPayload, PreparedMooseSighting } from "interfaces";
+import { MooseSighting } from "interfaces";
+import { formatDateNoTime } from "../util";
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -38,24 +39,23 @@ const createInsertValues = (length: number, startIndex: number): string => {
 };
 
 const prepareInsertData = (
-  mooseSightingsPostBody: MooseSightingPayload[]
-): { values: PreparedMooseSighting[]; insertValues: string[] } => {
-  const values: PreparedMooseSighting[] = [];
+  mooseSightingsPostBody: MooseSighting[]
+): { values: any[]; insertValues: string[] } => {
+  const values: any[] = [];
   const insertValues: string[] = [];
   let paramCounter = 1;
 
   mooseSightingsPostBody.forEach((sighting) => {
-    const preparedSighting: PreparedMooseSighting = {
-      clientSightingId: sighting.clientSightingId,
-      syncDate: new Date(),
-      dateFrom: sighting.dateFrom,
-      dateTo: sighting.dateTo,
-      region: sighting.region,
-      subRegion: sighting.subRegion,
-      tickHairLoss: sighting.tickHairLoss,
-      mooseCount: sighting.mooseCount,
-    };
-    values.push(preparedSighting);
+    values.push(
+      sighting.clientSightingId,
+      formatDateNoTime(new Date()), // syncDate
+      sighting.dateFrom,
+      sighting.dateTo,
+      sighting.region,
+      sighting.subRegion,
+      sighting.tickHairLoss,
+      sighting.mooseCount
+    );
     insertValues.push(createInsertValues(8, paramCounter));
     paramCounter += 8;
   });
@@ -66,7 +66,7 @@ const prepareInsertData = (
 // Main function to insert sightings into the database
 export async function insertSightingMoose(
   dbPool: Pool,
-  mooseSightingsPostBody: MooseSightingPayload[]
+  mooseSightingsPostBody: MooseSighting[]
 ) {
   try {
     const { values, insertValues } = prepareInsertData(mooseSightingsPostBody);

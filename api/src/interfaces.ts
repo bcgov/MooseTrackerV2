@@ -1,12 +1,7 @@
-export interface MooseSightingPayload {
-  clientSightingId: string;
-  dateFrom: Date;
-  dateTo: Date;
-  region: number;
-  subRegion: number;
-  tickHairLoss: number;
+export interface MooseSighting {
   mooseCount: number;
-}
-export interface PreparedMooseSighting extends MooseSightingPayload {
-  syncDate: Date;
+  region: string;
+  subRegion: string;
+  dateFrom: Date | undefined;
+  dateTo: Date | undefined;
 }
