@@ -1,7 +1,10 @@
 import { Pool } from "pg";
 import "dotenv/config";
-import { MooseSighting } from "interfaces";
-import { formatDateNoTime } from "../util";
+import { MooseSighting } from "paths/recordSightings";
+
+interface PreparedMooseSighting extends MooseSighting {
+  syncDate: Date;
+}
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -20,12 +23,15 @@ export async function createDb() {
     sightingId SERIAL PRIMARY KEY, 
     clientSightingId TEXT NOT NULL,
     syncDate DATE NOT NULL,
-    dateFrom DATE NOT NULL,
-    dateTo DATE NOT NULL,
+    date DATE NOT NULL,
+    hoursOut INT NOT NULL,
     region INT NOT NULL,
     subRegion INT NOT NULL,
     tickHairLoss INT, 
-    mooseCount INT NOT NULL);`;
+    bullCount INT,
+    cowCount INT,
+    calfCount INT,
+    unknownCount INT);`;
 
   await pool.query(createTableSql);
 }
@@ -40,22 +46,26 @@ const createInsertValues = (length: number, startIndex: number): string => {
 
 const prepareInsertData = (
   mooseSightingsPostBody: MooseSighting[]
-): { values: any[]; insertValues: string[] } => {
-  const values: any[] = [];
+): { values: PreparedMooseSighting[]; insertValues: string[] } => {
+  const values: PreparedMooseSighting[] = [];
   const insertValues: string[] = [];
   let paramCounter = 1;
 
   mooseSightingsPostBody.forEach((sighting) => {
-    values.push(
-      sighting.clientSightingId,
-      formatDateNoTime(new Date()), // syncDate
-      sighting.dateFrom,
-      sighting.dateTo,
-      sighting.region,
-      sighting.subRegion,
-      sighting.tickHairLoss,
-      sighting.mooseCount
-    );
+    const preparedSighting: PreparedMooseSighting = {
+      clientSightingId: sighting.clientSightingId,
+      syncDate: new Date(),
+      date: sighting.date,
+      hoursOut: sighting.hoursOut,
+      region: sighting.region,
+      subRegion: sighting.subRegion,
+      tickHairLoss: sighting.tickHairLoss,
+      bullCount: sighting.bullCount,
+      cowCount: sighting.cowCount,
+      calfCount: sighting.calfCount,
+      unknownCount: sighting.unknownCount,
+    };
+    values.push(preparedSighting);
     insertValues.push(createInsertValues(8, paramCounter));
     paramCounter += 8;
   });

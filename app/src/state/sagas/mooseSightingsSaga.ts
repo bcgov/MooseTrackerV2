@@ -8,7 +8,6 @@ import {
   SIGHTING_SYNC_SUCCESSFUL,
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
-import { MooseSighting } from "./../../../../api/src/interfaces";
 
 const apiUrl = import.meta.env.VITE_API_ENDPOINT;
 
@@ -21,7 +20,7 @@ function* write_sightings_to_disk(action: any): Generator<any> {
 }
 
 function* handle_USER_SAVE_SIGHTINGS(action: any) {
-  const mooseSightings: MooseSighting = yield select(
+  const mooseSightings: any = yield select(
     (state: any) => state.MooseSightingsState
   );
   const errors: Set<string> = new Set();
