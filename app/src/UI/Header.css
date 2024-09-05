@@ -1,10 +1,9 @@
 .headerMain {
   display: flex;
   align-items: end;
-  padding-top: 1em;
   background-color: #036;
   border-bottom: 2px solid #fcba19;
-  height: 20vh;
+  height: 15vh;
 }
 
 .headerWrapper{
@@ -45,7 +44,8 @@
 .headerButtonContainer {
   display: flex;
   align-items: center;
-  padding: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
 
   .headerButton {
     display: inline-block;

@@ -64,9 +64,10 @@ export const RegionSelector = (props: any) => {
       <div>
         <div>
           <label>
-            <span>Region: </span>
+            <span>Mangement Unit: </span>
             <select
               name="regionSelector"
+              style={{ marginRight: '0.5em' }}
               value={selectedRegion}
               onChange={handleRegionSelect}
             >
@@ -77,11 +78,7 @@ export const RegionSelector = (props: any) => {
                 </option>
               ))}
             </select>
-          </label>
-        </div>
-        <div>
-          <label>
-            <span>Sub-Region: </span>
+            {/* <span>Sub-Region: </span> */}
             <select
               name="subRegionSelector"
               value={selectedSubregion}
