@@ -143,9 +143,9 @@ function createMooseSightingStateReducer(
           cowCount: 0,
           calfCount: 0,
           unknownCount: 0,
-          region: '',
-          subRegion: '',
-          date: null,
+          // region: '',
+          // subRegion: '',
+          date: new Date(),
           hoursOut: 0,
         }
       }
