@@ -2,12 +2,24 @@ import { Operation } from "express-openapi";
 import { RequestHandler } from "express";
 import { openDb, insertSightingMoose } from "../Db/db";
 
+export interface MooseSightingPostBody {
+  clientSightingId: string;
+  region: string;
+  subRegion: string;
+  date: Date;
+  hoursOut: number;
+  tickHairLoss: number;
+  bullCount: number;
+  cowCount: number;
+  calfCount: number;
+  unknownCount: number;
+}
+
 function postMooseSightings(): RequestHandler {
   return async (req, res, next) => {
     try {
       console.log(req.body);
-      const dbConnection = await openDb();
-      await insertSightingMoose(dbConnection, req.body);
+      await insertSightingMoose(req.body);
       res.status(200).json(req.body);
     } catch (error) {
       next(error);
@@ -27,22 +39,25 @@ POST.apiDoc = {
             type: "object",
             required: [
               "clientSightingId",
-              "dateFrom",
-              "dateTo",
+              "date",
+              "hoursOut",
               "region",
               "subRegion",
               "tickHairLoss",
-              "mooseCount",
+              "bullCount",
+              "cowCount",
+              "calfCount",
+              "unknownCount",
             ],
             properties: {
               clientSightingId: {
                 type: "string",
               },
-              dateFrom: {
+              date: {
                 type: "string",
               },
-              dateTo: {
-                type: "string",
+              hoursOut: {
+                type: "number",
               },
               region: {
                 type: "number",
@@ -59,9 +74,21 @@ POST.apiDoc = {
                 minimum: -1,
                 maximum: 5,
               },
-              mooseCount: {
+              bullCount: {
                 type: "number",
-                minimum: 1,
+                minimum: 0,
+              },
+              cowCount: {
+                type: "number",
+                minimum: 0,
+              },
+              calfCount: {
+                type: "number",
+                minimum: 0,
+              },
+              unknownCount: {
+                type: "number",
+                minimum: 0,
               },
             },
           },
