@@ -1,6 +1,6 @@
 import { Pool } from "pg";
 import "dotenv/config";
-import { MooseSighting } from "paths/recordSightings";
+import { MooseSightingPostBody } from "paths/recordSightings";
 import SQL from "sql-template-strings";
 
 const pool = new Pool({
@@ -34,7 +34,7 @@ export async function createDb() {
 }
 
 export async function insertSightingMoose(
-  mooseSightingsPostBody: MooseSighting[]
+  mooseSightingsPostBody: MooseSightingPostBody[]
 ) {
   const dbPool = pool;
 

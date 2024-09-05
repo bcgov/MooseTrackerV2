@@ -2,7 +2,7 @@ import { Operation } from "express-openapi";
 import { RequestHandler } from "express";
 import { openDb, insertSightingMoose } from "../Db/db";
 
-export interface MooseSighting {
+export interface MooseSightingPostBody {
   clientSightingId: string;
   region: string;
   subRegion: string;
