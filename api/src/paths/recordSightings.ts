@@ -19,8 +19,7 @@ function postMooseSightings(): RequestHandler {
   return async (req, res, next) => {
     try {
       console.log(req.body);
-      const dbConnection = await openDb();
-      await insertSightingMoose(dbConnection, req.body);
+      await insertSightingMoose(req.body);
       res.status(200).json(req.body);
     } catch (error) {
       next(error);

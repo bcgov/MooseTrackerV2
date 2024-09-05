@@ -1,10 +1,7 @@
 import { Pool } from "pg";
 import "dotenv/config";
 import { MooseSighting } from "paths/recordSightings";
-
-interface PreparedMooseSighting extends MooseSighting {
-  syncDate: Date;
-}
+import SQL from "sql-template-strings";
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -36,71 +33,44 @@ export async function createDb() {
   await pool.query(createTableSql);
 }
 
-const createInsertValues = (length: number, startIndex: number): string => {
-  const insertValue = [];
-  for (let i = 0; i < length; i++) {
-    insertValue.push(`$${startIndex + i}`);
-  }
-  return `(${insertValue.join(", ")})`;
-};
-
-const prepareInsertData = (
-  mooseSightingsPostBody: MooseSighting[]
-): { values: PreparedMooseSighting[]; insertValues: string[] } => {
-  const values: PreparedMooseSighting[] = [];
-  const insertValues: string[] = [];
-  let paramCounter = 1;
-
-  mooseSightingsPostBody.forEach((sighting) => {
-    const preparedSighting: PreparedMooseSighting = {
-      clientSightingId: sighting.clientSightingId,
-      syncDate: new Date(),
-      date: sighting.date,
-      hoursOut: sighting.hoursOut,
-      region: sighting.region,
-      subRegion: sighting.subRegion,
-      tickHairLoss: sighting.tickHairLoss,
-      bullCount: sighting.bullCount,
-      cowCount: sighting.cowCount,
-      calfCount: sighting.calfCount,
-      unknownCount: sighting.unknownCount,
-    };
-    values.push(preparedSighting);
-    const insertCount = Object.keys(preparedSighting).length;
-    insertValues.push(createInsertValues(insertCount, paramCounter));
-    paramCounter += insertCount;
-  });
-
-  return { values, insertValues };
-};
-
-// Main function to insert sightings into the database
 export async function insertSightingMoose(
-  dbPool: Pool,
   mooseSightingsPostBody: MooseSighting[]
 ) {
+  const dbPool = pool;
+
+  if (mooseSightingsPostBody.length === 0) {
+    console.log("There is nothing new to sync");
+    return;
+  }
+
+  const insertSQL = SQL`
+    INSERT INTO moose (
+      clientSightingID, syncDate, date, hoursOut, region, subRegion, tickHairLoss, bullCount, cowCount, calfCount, unknownCount
+    ) VALUES `;
+
+  mooseSightingsPostBody.forEach((sighting, index) => {
+    if (index > 0) insertSQL.append(SQL`, `);
+
+    insertSQL.append(SQL`(
+      ${sighting.clientSightingId},
+      ${new Date()},
+      ${sighting.date},
+      ${sighting.hoursOut},
+      ${sighting.region},
+      ${sighting.subRegion},
+      ${sighting.tickHairLoss || null}, 
+      ${sighting.bullCount || 0},       
+      ${sighting.cowCount || 0},
+      ${sighting.calfCount || 0},
+      ${sighting.unknownCount || 0}
+    )`);
+  });
+
   try {
-    const { values, insertValues } = prepareInsertData(mooseSightingsPostBody);
-
-    if (values.length === 0) {
-      console.log("There is nothing new to sync");
-      return;
-    }
-
-    const insertSQL = `INSERT INTO Moose (clientSightingID, syncDate, date, hoursOut, region, subRegion, tickHairLoss, bullCount, cowCount, calfCount, unknownCount) VALUES ${insertValues.join(
-      ", "
-    )}`;
-
-    await dbPool.query(insertSQL, values);
+    await dbPool.query(insertSQL);
     console.log("Insertion successful");
   } catch (error) {
-    console.error("Error during database insertion: ", error);
+    console.error("Error during database insertion:", error);
     throw error;
   }
-}
-
-export async function findUserMeese(dbPool: any, user: any) {
-  let findUserSQL = "SELECT * FROM moose WHERE clientSightingId = ?";
-  console.log(findUserSQL);
-  await dbPool.query(findUserSQL, user);
 }
