@@ -76,15 +76,19 @@ POST.apiDoc = {
               },
               bullCount: {
                 type: "number",
+                minimum: 0,
               },
               cowCount: {
                 type: "number",
+                minimum: 0,
               },
               calfCount: {
                 type: "number",
+                minimum: 0,
               },
               unknownCount: {
                 type: "number",
+                minimum: 0,
               },
             },
           },
