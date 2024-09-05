@@ -87,7 +87,7 @@ export async function insertSightingMoose(
       return;
     }
 
-    const insertSQL = `INSERT INTO Moose (clientSightingID, syncDate, dateFrom, dateTo, region, subRegion, tickHairLoss, mooseCount) VALUES ${insertValues.join(
+    const insertSQL = `INSERT INTO Moose (clientSightingID, syncDate, date, hoursOut, region, subRegion, tickHairLoss, bullCount, cowCount, calfCount, unknownCount) VALUES ${insertValues.join(
       ", "
     )}`;
 
