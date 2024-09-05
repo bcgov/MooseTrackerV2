@@ -66,8 +66,9 @@ const prepareInsertData = (
       unknownCount: sighting.unknownCount,
     };
     values.push(preparedSighting);
-    insertValues.push(createInsertValues(8, paramCounter));
-    paramCounter += 8;
+    const insertCount = Object.keys(preparedSighting).length;
+    insertValues.push(createInsertValues(insertCount, paramCounter));
+    paramCounter += insertCount;
   });
 
   return { values, insertValues };
