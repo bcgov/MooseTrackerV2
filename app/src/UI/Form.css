@@ -1,5 +1,6 @@
 .formPanel {
   display: flex;
+  flex-direction: column;
   width: 100%; 
   justify-content: center;
   text-align: center;
@@ -9,11 +10,11 @@
 
 .formContainer {
   display: flex;
+  height: 100%;
   flex-direction: column;
   padding-top: 1rem;
   padding-bottom: 1rem;
   color: #494949;
-  width: 80%;
   background-color: #fff;
   overflow: scroll;
 }
@@ -31,16 +32,20 @@
 
 .formInput {
   display: grid;
+  padding-top: 1rem;
   align-items: start;
-  grid-template-columns: 1fr 1fr;
-  /* display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  margin-bottom: 2em;
-  background-color: #fff;
-  color: #003366;
-  z-index: 3;
-  border: #223f75 2px solid; */
+  grid-template-columns: .5fr 1fr .5fr;
+  row-gap: 1rem;
+  label {
+  }
+  span {
+    display: flex;
+  }
+  .columnRight {
+    display: flex;
+    flex-direction: row;
+
+  }
 }
 
 .formInput label {
