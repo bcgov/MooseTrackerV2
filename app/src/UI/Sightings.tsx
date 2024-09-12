@@ -30,7 +30,7 @@ export const Sightings = (props: any) => {
               return (
                 <Accordion key={sighting.id} className="sighting">
                   <AccordionSummary className="sightingHeader" aria-controls="panel-content">
-                    <div className="sightingDate">{formatDateString(sighting.dateFrom)} to {formatDateString(sighting.dateTo)}</div>
+                    <div className="sightingDate">{formatDateString(sighting.date)} ({sighting.hoursOut} {sighting.hoursOut === 1 ? 'hour' : 'hours'})</div>
                   </AccordionSummary>
                   <AccordionDetails>
                     <div>{sighting.region} {sighting.subRegion}</div>
