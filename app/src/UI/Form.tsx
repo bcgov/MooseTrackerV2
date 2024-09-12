@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -74,7 +74,7 @@ export const FormPanel = () => {
           <label>
             <span className="formContent">Bulls: </span>
           </label>
-          <div>{bullCount} </div>
+          <div className="count">{bullCount} </div>
           <div className="columnRight">
             <button
               className="countBtn"
@@ -93,7 +93,7 @@ export const FormPanel = () => {
           <label>
             <span className="formContent">Cows: </span>
           </label>
-          <div>{cowCount} </div>
+          <div className="count">{cowCount} </div>
           <div className="columnRight">
             <button
               className="countBtn"
@@ -112,7 +112,7 @@ export const FormPanel = () => {
           <label>
             <span className="formContent">Calf: </span>
           </label>
-          <div>{calfCount} </div>
+          <div className="count">{calfCount} </div>
           <div className="columnRight">
             <button
               className="countBtn"
@@ -131,7 +131,7 @@ export const FormPanel = () => {
           <label>
             <span className="formContent">Unidentified: </span>
           </label>
-          <div>{unknownCount} </div>
+          <div className="count">{unknownCount} </div>
           <div className="columnRight">
             <button
               className="countBtn"
@@ -161,7 +161,7 @@ export const FormPanel = () => {
           <label>
             <span className="formContent">Hours Out: </span>
           </label>
-          <div>{hoursOut} </div>
+          <div className="count">{hoursOut} </div>
           <div className="columnRight">
             <button
               className="countBtn"
