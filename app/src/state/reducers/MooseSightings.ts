@@ -1,6 +1,4 @@
-import { Age } from "../../UI/Enums";
 import {
-  USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
   USER_SAVE_SIGHTINGS,
   USER_SAVE_SIGHTINGS_SUCCESS,
@@ -10,6 +8,7 @@ import {
   CLEAR_CURRENT_MOOSE_SIGHTING,
   ACTIVITY_UPDATE_SIGHTING
 } from "../actions";
+import { MooseSighting } from "../../interfaces/interfaces";
 // import { ACTIVITY_UPDATE_MOOSE, ACTIVITY_UPDATE_SIGHTING } from "../actions/index";
 
 import { AppConfig } from "../config";
@@ -18,11 +17,14 @@ class MooseSightingState {
   recordingMooseInProgress: boolean;
   region: string; 
   subRegion: string;
-  mooseCount: number;
+  bullCount: number;
+  cowCount: number;
+  calfCount: number;
+  unknownCount: number;
   tickHairLoss: number;
-  dateFrom: Date | null;
-  dateTo: Date | null;
-  allSightings: any[];
+  date: Date | null;
+  hoursOut: number;
+  allSightings: MooseSighting[];
   successSnackbarOpen: boolean;
   successSnackbarMessage: string;
 
@@ -30,10 +32,13 @@ class MooseSightingState {
     this.recordingMooseInProgress = false;
     this.region = "";
     this.subRegion = "";
-    this.mooseCount = 0;
+    this.bullCount = 0;
+    this.cowCount = 0;
+    this.calfCount = 0;
+    this.unknownCount = 0;
     this.tickHairLoss = -1;
-    this.dateFrom = null;
-    this.dateTo = null;
+    this.date = new Date();
+    this.hoursOut = 0;
     this.allSightings = localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
     this.successSnackbarMessage = "";
     this.successSnackbarOpen = false;
@@ -72,7 +77,6 @@ function createMooseSightingStateReducer(
         }
       }
       case USER_SAVE_SIGHTINGS_SUCCESS: {
-        //const sightings  = state.allSightings? state.allSightings : [];
         console.log(state)
         return {
           ...state,
@@ -81,10 +85,13 @@ function createMooseSightingStateReducer(
             {
               region: state.region,
               subRegion: state.subRegion,
-              mooseCount: state.mooseCount,
+              bullCount: state.bullCount,
+              cowCount: state.cowCount,
+              calfCount: state.calfCount,
+              unknownCount: state.unknownCount,
               tickHairLoss: state.tickHairLoss,
-              dateFrom: state.dateFrom,
-              dateTo: state.dateTo,
+              date: state.date,
+              hoursOut: state.hoursOut,
               id: crypto.randomUUID(),
               status: "Not Synced",
               syncDate: null,
@@ -112,9 +119,12 @@ function createMooseSightingStateReducer(
       case ACTIVITY_UPDATE_SIGHTING: {
         return {
           ...state,
-          mooseCount: action.payload.mooseCount ? action.payload.mooseCount : state.mooseCount,
-          dateFrom:  action.payload.dateFrom ? action.payload.dateFrom : state.dateFrom,
-          dateTo: action.payload.dateTo ? action.payload.dateTo : state.dateTo,
+          bullCount: action.payload.bullCount ? action.payload.bullCount : state.bullCount,
+          cowCount: action.payload.cowCount ? action.payload.cowCount : state.cowCount,
+          calfCount: action.payload.calfCount ? action.payload.calfCount : state.calfCount,
+          unknownCount: action.payload.unknownCount ? action.payload.unknownCount : state.unknownCount,
+          date:  action.payload.date ? action.payload.date : state.date,
+          hoursOut: action.payload.hoursOut ? action.payload.hoursOut : state.hoursOut,
           region: action.payload.region ? action.payload.region : state.region,
           subRegion: action.payload.subRegion ? action.payload.subRegion : state.subRegion,
           tickHairLoss: action.payload.tickHairLoss ? action.payload.tickHairLoss : state.tickHairLoss
@@ -129,11 +139,14 @@ function createMooseSightingStateReducer(
       case CLEAR_CURRENT_MOOSE_SIGHTING: {
         return {
           ...state,
-          mooseCount: 0,
-          region: '',
-          subRegion: '',
-          dateFrom: null,
-          dateTo: null,
+          bullCount: 0,
+          cowCount: 0,
+          calfCount: 0,
+          unknownCount: 0,
+          // region: '',
+          // subRegion: '',
+          date: new Date(),
+          hoursOut: 0,
         }
       }
       default:

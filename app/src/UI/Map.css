@@ -1,11 +1,11 @@
 .MapPanel {
   width: 100%;
-  height: 70vh;
+  height: 75vh;
 }
 
 .MapContainer {
   width: 100%;
-  height: 70vh;
+  height: 75vh;
 }
 
 @media (min-width: 600px) {

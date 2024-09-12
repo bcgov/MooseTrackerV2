@@ -8,6 +8,7 @@ import {
   SIGHTING_SYNC_SUCCESSFUL,
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
+import { MooseSighting } from "../../interfaces/interfaces";
 
 const apiUrl = import.meta.env.VITE_API_ENDPOINT;
 
@@ -24,9 +25,22 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
     (state: any) => state.MooseSightingsState
   );
   const errors: Set<string> = new Set();
-  const { mooseCount, region, subRegion, dateFrom, dateTo } = mooseSightings;
+  const {
+    bullCount,
+    cowCount,
+    calfCount,
+    unknownCount,
+    region,
+    subRegion,
+    date,
+  } = mooseSightings;
   const currentDate = new Date();
-  if (!mooseCount || Number(mooseCount) <= 0) {
+  const totalMooseCount =
+    Number(bullCount) +
+    Number(cowCount) +
+    Number(calfCount) +
+    Number(unknownCount);
+  if (!totalMooseCount || Number(totalMooseCount) <= 0) {
     errors.add("Sighting must contain at least 1 moose.");
   }
   if (!region) {
@@ -35,15 +49,10 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   if (!subRegion) {
     errors.add("Moose subregion cannot be empty.");
   }
-  if (!dateFrom || dateFrom === undefined || !dateTo || dateTo === undefined) {
-    errors.add("A 'From' date and a 'To' date must be selected");
-  } else {
-    if (dateFrom > currentDate || dateTo > currentDate) {
-      errors.add("Dates that are in the future are not valid selections");
-    }
-    if (dateFrom > dateTo) {
-      errors.add("The 'From' date must be before or the same as the 'To' date");
-    }
+  if (date === undefined) {
+    errors.add("A date must be selected");
+  } else if (date > currentDate) {
+    errors.add("Dates that are in the future are not valid selections");
   }
   if (errors.size > 0) {
     const errorMessage = Array.from(errors).join(" ");
@@ -60,19 +69,22 @@ function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
   yield put({ type: SYNC_SIGHTINGS_TO_DB });
 }
 
-function prepareSightingsForApi(sightings: any) {
+function prepareSightingsForApi(sightings: MooseSighting[]) {
   return sightings
-    .filter((sighting: any) => !sighting.syncDate)
-    .map((sighting: any) => {
+    .filter((sighting: MooseSighting) => !sighting.syncDate)
+    .map((sighting: MooseSighting) => {
       const [region, subRegion] = sighting.subRegion.split("-");
       return {
         clientSightingId: sighting.id,
-        dateFrom: sighting.dateFrom,
-        dateTo: sighting.dateTo,
-        region: parseInt(region),
-        subRegion: parseInt(subRegion),
-        tickHairLoss: sighting.tickHairLoss,
-        mooseCount: parseInt(sighting.mooseCount),
+        date: sighting.date,
+        hoursOut: Number(sighting.hoursOut),
+        region: Number(region),
+        subRegion: Number(subRegion),
+        tickHairLoss: Number(sighting.tickHairLoss),
+        bullCount: Number(sighting.bullCount),
+        cowCount: Number(sighting.cowCount),
+        calfCount: Number(sighting.calfCount),
+        unknownCount: Number(sighting.unknownCount),
       };
     });
 }
@@ -97,12 +109,12 @@ function fetchSightings(validatedSightings: any) {
 //prepare and post sightings to db
 function* handle_SYNC_SIGHTINGS_TO_DB(action: any) {
   try {
-    const storedSightings = yield select(
+    const storedSightings: MooseSighting[] = yield select(
       (state) => state.MooseSightingsState.allSightings
     );
     const validatedSightings = prepareSightingsForApi(storedSightings);
 
-    const data = yield call(fetchSightings, validatedSightings);
+    const data: any[] = yield call(fetchSightings, validatedSightings);
 
     yield put({ type: SIGHTING_SYNC_SUCCESSFUL, payload: { data: data } });
     console.log("Sightings synced successfully:", data);
