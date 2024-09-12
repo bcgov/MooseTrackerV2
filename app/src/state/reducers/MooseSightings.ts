@@ -6,7 +6,7 @@ import {
   USER_CLOSE_SNACKBAR,
   SIGHTING_SYNC_SUCCESSFUL,
   CLEAR_CURRENT_MOOSE_SIGHTING,
-  ACTIVITY_UPDATE_SIGHTING
+  ACTIVITY_UPDATE_SIGHTING,
 } from "../actions";
 import { MooseSighting } from "../../interfaces/interfaces";
 // import { ACTIVITY_UPDATE_MOOSE, ACTIVITY_UPDATE_SIGHTING } from "../actions/index";
@@ -15,7 +15,7 @@ import { AppConfig } from "../config";
 
 class MooseSightingState {
   recordingMooseInProgress: boolean;
-  region: string; 
+  region: string;
   subRegion: string;
   bullCount: number;
   cowCount: number;
@@ -39,13 +39,14 @@ class MooseSightingState {
     this.tickHairLoss = -1;
     this.date = new Date();
     this.hoursOut = 0;
-    this.allSightings = localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
+    this.allSightings = localStorage.getItem("Sightings")
+      ? JSON.parse(localStorage.getItem("Sightings")!)
+      : [];
     this.successSnackbarMessage = "";
     this.successSnackbarOpen = false;
   }
 }
 const initialState = new MooseSightingState();
-
 
 function createMooseSightingStateReducer(
   configuration: AppConfig
@@ -73,11 +74,11 @@ function createMooseSightingStateReducer(
       }
       case USER_SAVE_SIGHTINGS: {
         return {
-          ...state
-        }
+          ...state,
+        };
       }
       case USER_SAVE_SIGHTINGS_SUCCESS: {
-        console.log(state)
+        console.log(state);
         return {
           ...state,
           allSightings: [
@@ -98,7 +99,7 @@ function createMooseSightingStateReducer(
             },
           ],
           successSnackbarOpen: true,
-          successSnackbarMessage: "Moose sighting saved successfully."
+          successSnackbarMessage: "Moose sighting saved successfully.",
         };
       }
       case USER_SAVE_SIGHTINGS_FAIL: {
@@ -106,35 +107,39 @@ function createMooseSightingStateReducer(
         return {
           ...state,
           successSnackbarOpen: true,
-          successSnackbarMessage: JSON.stringify(action.payload.errors)
-        }
+          successSnackbarMessage: JSON.stringify(action.payload.errors),
+        };
       }
       case USER_CLOSE_SNACKBAR: {
         return {
           ...state,
           successSnackbarOpen: false,
-          successSnackbarMessage: ""
-        }
+          successSnackbarMessage: "",
+        };
       }
       case ACTIVITY_UPDATE_SIGHTING: {
         return {
           ...state,
-          bullCount: action.payload.bullCount ? action.payload.bullCount : state.bullCount,
-          cowCount: action.payload.cowCount ? action.payload.cowCount : state.cowCount,
-          calfCount: action.payload.calfCount ? action.payload.calfCount : state.calfCount,
-          unknownCount: action.payload.unknownCount ? action.payload.unknownCount : state.unknownCount,
-          date:  action.payload.date ? action.payload.date : state.date,
-          hoursOut: action.payload.hoursOut ? action.payload.hoursOut : state.hoursOut,
+          bullCount: action.payload.bullCount ?? state.bullCount,
+          cowCount: action.payload.cowCount ?? state.cowCount,
+          calfCount: action.payload.calfCount ?? state.calfCount,
+          unknownCount: action.payload.unknownCount ?? state.unknownCount,
+          date: action.payload.date ? action.payload.date : state.date,
+          hoursOut: action.payload.hoursOut ?? state.hoursOut,
           region: action.payload.region ? action.payload.region : state.region,
-          subRegion: action.payload.subRegion ? action.payload.subRegion : state.subRegion,
-          tickHairLoss: action.payload.tickHairLoss ? action.payload.tickHairLoss : state.tickHairLoss
-        }
+          subRegion: action.payload.subRegion
+            ? action.payload.subRegion
+            : state.subRegion,
+          tickHairLoss: action.payload.tickHairLoss ?? state.tickHairLoss,
+        };
       }
       case SIGHTING_SYNC_SUCCESSFUL: {
         return {
           ...state,
-          allSightings: state.allSightings.map((sighting) => { return {...sighting, 'status':"Synced", syncDate: new Date()} })
-        }
+          allSightings: state.allSightings.map((sighting) => {
+            return { ...sighting, status: "Synced", syncDate: new Date() };
+          }),
+        };
       }
       case CLEAR_CURRENT_MOOSE_SIGHTING: {
         return {
@@ -147,7 +152,7 @@ function createMooseSightingStateReducer(
           // subRegion: '',
           date: new Date(),
           hoursOut: 0,
-        }
+        };
       }
       default:
         return state;
