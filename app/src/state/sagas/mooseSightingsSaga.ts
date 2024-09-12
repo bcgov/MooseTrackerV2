@@ -25,9 +25,21 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
     (state: any) => state.MooseSightingsState
   );
   const errors: Set<string> = new Set();
-  const { bullCount, cowCount, calfCount, unknownCount, region, subRegion, date } = mooseSightings;
+  const {
+    bullCount,
+    cowCount,
+    calfCount,
+    unknownCount,
+    region,
+    subRegion,
+    date,
+  } = mooseSightings;
   const currentDate = new Date();
-  const totalMooseCount = Number(bullCount) + Number(cowCount) + Number(calfCount) + Number(unknownCount);
+  const totalMooseCount =
+    Number(bullCount) +
+    Number(cowCount) +
+    Number(calfCount) +
+    Number(unknownCount);
   if (!totalMooseCount || Number(totalMooseCount) <= 0) {
     errors.add("Sighting must contain at least 1 moose.");
   }
@@ -37,12 +49,10 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   if (!subRegion) {
     errors.add("Moose subregion cannot be empty.");
   }
-  if (!date === undefined) {
+  if (date === undefined) {
     errors.add("A date must be selected");
-  } else {
-    if (!date || date > currentDate) {
-      errors.add("Dates that are in the future are not valid selections");
-    }
+  } else if (date > currentDate) {
+    errors.add("Dates that are in the future are not valid selections");
   }
   if (errors.size > 0) {
     const errorMessage = Array.from(errors).join(" ");
