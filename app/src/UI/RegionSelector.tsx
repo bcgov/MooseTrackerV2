@@ -72,7 +72,7 @@ export const RegionSelector = () => {
       <div className="regionSelectors">
         <select
           name="regionSelector"
-          style={{ width: "100%" }}
+          style={{ width: "100%", fontSize: "1.5em" }}
           value={selectedRegion}
           onChange={handleRegionSelect}
         >
@@ -85,7 +85,7 @@ export const RegionSelector = () => {
         </select>
         <select
           name="subRegionSelector"
-          style={{ width: "100%" }}
+          style={{ width: "100%", fontSize: "1.5em" }}
           value={selectedSubregion}
           onChange={handleSubRegionSelect}
           disabled={!selectedRegion}

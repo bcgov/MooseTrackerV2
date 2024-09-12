@@ -51,7 +51,7 @@ export const Header = (props: any) => {
         <div className="headerWrapper">
           <div className="headingwrapper">
             <div className="iconContainer">
-                  <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToAddMoose}/>
+                  <img className="bcgovIcon" src="BC Moose Tracker logo.svg" alt="Government of British Columbia" onClick={goToAddMoose}/>
               </div>
               <div className="titleContainer" onClick={goToAddMoose}>
                 <p className="headerText">Moose Tracker</p>
