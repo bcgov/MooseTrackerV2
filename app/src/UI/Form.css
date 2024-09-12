@@ -48,6 +48,9 @@
     flex-direction: row;
 
   }
+  .count {
+    font-size: 1.5rem
+  }
   .regionSelectors {
     display: flex;
     flex-direction: column;
