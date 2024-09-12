@@ -75,7 +75,7 @@ export const FormPanel = () => {
             <span className="formContent">Bulls: </span>
           </label>
           <div>{bullCount} </div>
-        <div className="columnRight">
+          <div className="columnRight">
             <button
               className="countBtn"
               onClick={() => updateCount(bullCount, true, "bullCount")}
@@ -94,7 +94,7 @@ export const FormPanel = () => {
             <span className="formContent">Cows: </span>
           </label>
           <div>{cowCount} </div>
-        <div className="columnRight">
+          <div className="columnRight">
             <button
               className="countBtn"
               onClick={() => updateCount(cowCount, true, "cowCount")}
@@ -113,7 +113,7 @@ export const FormPanel = () => {
             <span className="formContent">Calf: </span>
           </label>
           <div>{calfCount} </div>
-        <div className="columnRight">
+          <div className="columnRight">
             <button
               className="countBtn"
               onClick={() => updateCount(calfCount, true, "calfCount")}
@@ -132,7 +132,7 @@ export const FormPanel = () => {
             <span className="formContent">Unidentified: </span>
           </label>
           <div>{unknownCount} </div>
-        <div className="columnRight">
+          <div className="columnRight">
             <button
               className="countBtn"
               onClick={() => updateCount(unknownCount, true, "unknownCount")}
@@ -147,7 +147,6 @@ export const FormPanel = () => {
             </button>
           </div>
 
-
           <label>
             <span className="formContent">Date: </span>
           </label>
@@ -159,31 +158,26 @@ export const FormPanel = () => {
           />
           <div></div>
 
-        <label>
-          <span className="formContent">Hours Out: </span>
-        </label>
-        <div>{hoursOut} </div>
-        <div className="columnRight">
-          <button
-            className="countBtn"
-            onClick={() => updateCount(hoursOut, true, "hoursOut")}
-          >
-            +
-          </button>
-          <button
-            className="countBtn"
-            onClick={() => updateCount(hoursOut, false, "hoursOut")}
-          >
-            -
-          </button>
+          <label>
+            <span className="formContent">Hours Out: </span>
+          </label>
+          <div>{hoursOut} </div>
+          <div className="columnRight">
+            <button
+              className="countBtn"
+              onClick={() => updateCount(hoursOut, true, "hoursOut")}
+            >
+              +
+            </button>
+            <button
+              className="countBtn"
+              onClick={() => updateCount(hoursOut, false, "hoursOut")}
+            >
+              -
+            </button>
+          </div>
+          <RegionSelector />
         </div>
-
-        </div>
-            <label>
-              <span className="formContent" />
-            </label>
-              <RegionSelector />
-
       </div>
       <button
         className="formButton"
