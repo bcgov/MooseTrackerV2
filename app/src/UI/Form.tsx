@@ -13,10 +13,14 @@ export const FormPanel = () => {
   ref.current += 1;
 
   const bullCount = useSelector((state: any) => state.MooseSightingsState.bullCount)
-  const [cowCount, setCowCount] = useState(0);
-  const [calfCount, setCalfCount] = useState(0);
-  const [unknownCount, setUnknownCount] = useState(0);
-  const [hoursOut, sethoursOut] = useState(0);
+  const cowCount = useSelector((state: any) => state.MooseSightingsState.cowCount)
+  const calfCount = useSelector((state: any) => state.MooseSightingsState.calfCount)
+  const unknownCount = useSelector((state: any) => state.MooseSightingsState.unknownCount)
+  const hoursOut = useSelector((state: any) => state.MooseSightingsState.hoursOut)
+  // const [cowCount, setCowCount] = useState(0);
+  // const [calfCount, setCalfCount] = useState(0);
+  // const [unknownCount, setUnknownCount] = useState(0);
+  // const [hoursOut, sethoursOut] = useState(0);
   
   /**
    * Increments/decrements the observation count for a given counter.
@@ -68,29 +72,28 @@ export const FormPanel = () => {
               <button className="countBtn" onClick={() => updateCount(bullCount, false, "bullCount")}>-</button>
               <button className="countBtn" onClick={() => updateCount(bullCount, true, "bullCount")}>+</button>
           </div>
-            {/*}
           <div>
             <label>
               <span className="formContent">Cows: </span>
               <span>{cowCount} </span>
-              <button className="countBtn" onClick={() => updateCount(cowCount, setCowCount, false, "cowCount")}>-</button>
-              <button className="countBtn" onClick={() => updateCount(cowCount, setCowCount, true, "cowCount")}>+</button>
+              <button className="countBtn" onClick={() => updateCount(cowCount, false, "cowCount")}>-</button>
+              <button className="countBtn" onClick={() => updateCount(cowCount, true, "cowCount")}>+</button>
             </label>
           </div>
           <div>
             <label>
               <span className="formContent">Calf: </span>
               <span>{calfCount} </span>
-              <button className="countBtn" onClick={() => updateCount(calfCount, setCalfCount, false, "calfCount")}>-</button>
-              <button className="countBtn" onClick={() => updateCount(calfCount, setCalfCount, true, "calfCount")}>+</button>
+              <button className="countBtn" onClick={() => updateCount(calfCount, false, "calfCount")}>-</button>
+              <button className="countBtn" onClick={() => updateCount(calfCount, true, "calfCount")}>+</button>
             </label>
           </div>
           <div>
             <label>
               <span className="formContent">Unidentified: </span>
               <span>{unknownCount} </span>
-              <button className="countBtn" onClick={() => updateCount(unknownCount, setUnknownCount, false, "unknownCount")}>-</button>
-              <button className="countBtn" onClick={() => updateCount(unknownCount, setUnknownCount, true, "unknownCount")}>+</button>
+              <button className="countBtn" onClick={() => updateCount(unknownCount, false, "unknownCount")}>-</button>
+              <button className="countBtn" onClick={() => updateCount(unknownCount, true, "unknownCount")}>+</button>
             </label>
           </div>
           <div>
@@ -109,11 +112,11 @@ export const FormPanel = () => {
             <label>
               <span className="formContent">Hours Out: </span>
               <span>{hoursOut} </span>
-              <button className="countBtn" onClick={() => updateCount(hoursOut, sethoursOut, false, "hoursOut")}>-</button>
-              <button className="countBtn" onClick={() => updateCount(hoursOut, sethoursOut, true, "hoursOut")}>+</button>
+              <button className="countBtn" onClick={() => updateCount(hoursOut, false, "hoursOut")}>-</button>
+              <button className="countBtn" onClick={() => updateCount(hoursOut, true, "hoursOut")}>+</button>
             </label>
           </div>
-        */}
+       
         </div>
         <div className="formButtons">
           <button className="formButton" onClick={() => { dispatch({ type: CLEAR_CURRENT_MOOSE_SIGHTING })}}>
