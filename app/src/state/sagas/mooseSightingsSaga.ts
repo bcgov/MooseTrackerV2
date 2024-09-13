@@ -9,6 +9,7 @@ import {
   CLEAR_CURRENT_MOOSE_SIGHTING,
 } from "../actions";
 import { MooseSighting } from "../../interfaces/interfaces";
+import { CapacitorHttp } from "@capacitor/core";
 
 const apiUrl = import.meta.env.VITE_API_ENDPOINT;
 
@@ -89,21 +90,25 @@ function prepareSightingsForApi(sightings: MooseSighting[]) {
     });
 }
 
-function fetchSightings(validatedSightings: any) {
-  return fetch(`${apiUrl}/recordSightings`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(validatedSightings),
-  }).then((response) => {
-    if (!response.ok) {
-      return response
-        .json()
-        .then((errorResponse) => Promise.reject(new Error(errorResponse)));
+async function fetchSightings(validatedSightings: any) {
+  try {
+    const response = await CapacitorHttp.post({
+      url: `${apiUrl}/recordSightings`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: validatedSightings, // No need to stringify the body, CapacitorHttp handles it
+    });
+
+    if (response.status !== 200) {
+      throw new Error(response.data);
     }
-    return response.json();
-  });
+
+    return response.data;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    throw error;
+  }
 }
 
 //prepare and post sightings to db
