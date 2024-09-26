@@ -17,6 +17,7 @@ import {
   MlGeoJsonLayer,
 } from "@mapcomponents/react-maplibre";
 import maplibregl, { Marker } from "maplibre-gl";
+import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 interface ChangeViewProps {
   center: LatLngExpression;
 }
@@ -115,12 +116,53 @@ export const MapPanel: React.FC = () => {
           style: "https://wms.wheregroup.com/tileserver/style/osm-bright.json",
         }}
       />
-      <MlNavigationTools />
+      <MlNavigationTools
+        showCenterLocationButton={false}
+        show3DButton={false}
+        showFollowGpsButton={false}
+      />
+
       <MlGeoJsonLayer
+        type="symbol"
+        options={{
+          layout: {
+            "text-field": [
+              "format",
+              ["upcase", ["get", "WILDLIFE_MGMT_UNIT_ID"]],
+              { "font-scale": 0.9 },
+            ],
+            // the actual font names that work are here https://github.com/openmaptiles/fonts/blob/gh-pages/fontstacks.json
+            "text-font": ["literal", ["Open Sans Bold"]],
+            "text-anchor": "top",
+          },
+          paint: {
+            "text-color": "black",
+            "text-halo-color": "white",
+            "text-halo-width": 5,
+            "text-halo-blur": 1,
+          },
+        }}
+        geojson={mgmtUnits}
+      />
+
+      <MlGeoJsonLayer
+        type="line"
+        defaultPaintOverrides={{
+          line: {
+            "line-color": "#000",
+            "line-width": 1,
+            "line-opacity": 1,
+          },
+        }}
+        geojson={mgmtUnits}
+      />
+
+      <MlGeoJsonLayer
+        type="fill"
         defaultPaintOverrides={{
           fill: {
-            "fill-color": "#2485C1",
-            "fill-opacity": 0.8,
+            "fill-color": "#2F9366",
+            "fill-opacity": 0.2,
           },
         }}
         geojson={mgmtUnits}
