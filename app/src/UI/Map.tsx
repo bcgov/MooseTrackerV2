@@ -1,5 +1,4 @@
 import "./Map.css";
-import { MapContainer, TileLayer, useMap, GeoJSON } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 import { useSelector } from "react-redux";
 import L from "leaflet";
@@ -8,7 +7,16 @@ import { Outlet } from "react-router-dom";
 import mgmtUnits from "../assets/management_units.json";
 import { managementUnitStyle, selectedFeatureStyle } from "./featureStylers";
 import { FeatureCollection, Feature } from "geojson";
-
+import {
+  MapLibreMap,
+  MlImageMarkerLayer,
+  MlMarker,
+  MlNavigationTools,
+  MlWmsLayer,
+  useMap,
+  MlGeoJsonLayer,
+} from "@mapcomponents/react-maplibre";
+import maplibregl, { Marker } from "maplibre-gl";
 interface ChangeViewProps {
   center: LatLngExpression;
 }
@@ -21,11 +29,11 @@ interface ChangeViewProps {
 //   shadowSize: [41, 41],
 // });
 
-const ChangeView: React.FC<ChangeViewProps> = ({ center }) => {
-  const map = useMap();
-  map.setView(center, 8);
-  return null;
-};
+// const ChangeView: React.FC<ChangeViewProps> = ({ center }) => {
+//   const map = useMap();
+//   map.setView(center, 8);
+//   return null;
+// };
 
 const getFeatureCentroidFromManagementArea = (regionId: string) => {
   const managementUnits = mgmtUnits as any; // a large object including data about wildlife management regions
@@ -44,62 +52,80 @@ const getFeatureCentroidFromManagementArea = (regionId: string) => {
   return null;
 };
 
-const MapEventHandler: React.FC = () => {
-  const map = useMap();
+// const MapEventHandler: React.FC = () => {
+//   const map = useMap();
 
-  const handleZoomEnd = () => {
-    const zoomLevel = map.getZoom();
-    const tooltips = document.querySelectorAll(".mgmt-unit-label");
-    tooltips.forEach((tooltip) => {
-      if (zoomLevel < 7.5) {
-        (tooltip as HTMLElement).style.visibility = "hidden";
-      } else {
-        (tooltip as HTMLElement).style.visibility = "visible";
-      }
-    });
-  };
-  map.on("zoomend", handleZoomEnd);
+//   const handleZoomEnd = () => {
+//     const zoomLevel = map.getZoom();
+//     const tooltips = document.querySelectorAll(".mgmt-unit-label");
+//     tooltips.forEach((tooltip) => {
+//       if (zoomLevel < 7.5) {
+//         (tooltip as HTMLElement).style.visibility = "hidden";
+//       } else {
+//         (tooltip as HTMLElement).style.visibility = "visible";
+//       }
+//     });
+//   };
+//   map.on("zoomend", handleZoomEnd);
 
-  return null;
-};
+//   return null;
+// };
 
 export const MapPanel: React.FC = () => {
-  const defaultLocation: [number, number] = [55.25, -123.912];
+  const defaultLocation: [number, number] = [-123.912, 55.25];
 
-  const subRegion = useSelector(
-    (state: any) => state.MooseSightingsState.subRegion
-  );
-  const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
-    null
-  );
+  // const subRegion = useSelector(
+  //   (state: any) => state.MooseSightingsState.subRegion
+  // );
+  // const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
+  //   null
+  // );
 
-  useEffect(() => {
-    const centroid = getFeatureCentroidFromManagementArea(subRegion);
-    if (centroid) setMarkerPosition([centroid[0], centroid[1]]);
-  }, [subRegion]);
+  // useEffect(() => {
+  //   const centroid = getFeatureCentroidFromManagementArea(subRegion);
+  //   if (centroid) setMarkerPosition([centroid[0], centroid[1]]);
+  // }, [subRegion]);
 
-  const getFeatureStyle: L.StyleFunction = (feature: any) => {
-    if (
-      feature.properties &&
-      feature.properties.WILDLIFE_MGMT_UNIT_ID === subRegion
-    ) {
-      return selectedFeatureStyle;
-    }
-    return managementUnitStyle;
-  };
+  // const getFeatureStyle: L.StyleFunction = (feature: any) => {
+  //   if (
+  //     feature.properties &&
+  //     feature.properties.WILDLIFE_MGMT_UNIT_ID === subRegion
+  //   ) {
+  //     return selectedFeatureStyle;
+  //   }
+  //   return managementUnitStyle;
+  // };
 
-  const onEachFeature = (feature: Feature, layer: L.Layer) => {
-    if (feature.properties) {
-      layer.bindTooltip(feature.properties.WILDLIFE_MGMT_UNIT_ID, {
-        permanent: true,
-        direction: "center",
-        className: `mgmt-unit-label`,
-      });
-    }
-  };
+  // const onEachFeature = (feature: Feature, layer: L.Layer) => {
+  //   if (feature.properties) {
+  //     layer.bindTooltip(feature.properties.WILDLIFE_MGMT_UNIT_ID, {
+  //       permanent: true,
+  //       direction: "center",
+  //       className: `mgmt-unit-label`,
+  //     });
+  //   }
+  // };
   return (
     <div className="MapPanel">
-      <MapContainer
+      <MapLibreMap
+        mapId="map"
+        options={{
+          center: defaultLocation,
+          zoom: 5,
+          style: "https://wms.wheregroup.com/tileserver/style/osm-bright.json",
+        }}
+      />
+      <MlNavigationTools />
+      <MlGeoJsonLayer
+        defaultPaintOverrides={{
+          fill: {
+            "fill-color": "#2485C1",
+            "fill-opacity": 0.8,
+          },
+        }}
+        geojson={mgmtUnits}
+      />
+      {/* <MapContainer
         className="MapContainer"
         center={defaultLocation}
         zoom={5}
@@ -118,7 +144,7 @@ export const MapPanel: React.FC = () => {
         {markerPosition && <ChangeView center={markerPosition} />}
         <MapEventHandler />
       </MapContainer>
-      <Outlet />
+      <Outlet /> */}
     </div>
   );
 };
