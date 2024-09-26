@@ -133,7 +133,6 @@ export const MapPanel: React.FC = () => {
             ],
             // the actual font names that work are here https://github.com/openmaptiles/fonts/blob/gh-pages/fontstacks.json
             "text-font": ["literal", ["Open Sans Bold"]],
-            "text-anchor": "top",
           },
           paint: {
             "text-color": "black",
