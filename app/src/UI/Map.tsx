@@ -148,20 +148,9 @@ export const MapPanel: React.FC = () => {
         type="line"
         defaultPaintOverrides={{
           line: {
-            "line-color": "#000",
+            "line-color": "#2F9366",
             "line-width": 1,
             "line-opacity": 1,
-          },
-        }}
-        geojson={mgmtUnits}
-      />
-
-      <MlGeoJsonLayer
-        type="fill"
-        defaultPaintOverrides={{
-          fill: {
-            "fill-color": "#2F9366",
-            "fill-opacity": 0.2,
           },
         }}
         geojson={mgmtUnits}
