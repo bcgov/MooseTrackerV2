@@ -12,6 +12,7 @@ import { Sightings } from "./UI/Sightings";
 import { UserSaveSnackbar } from "./UI/UserSaveSnackbar";
 //import { Breadcrumb } from "./UI/Breadcrumb";
 import { pdfjs } from 'react-pdf';
+import { ZoomPlugin } from 'capacitor-zoom-android';
 
 function App() {
 
@@ -23,6 +24,9 @@ function App() {
     'pdf.worker.min.js',
     import.meta.url,
   ).toString();
+
+  ZoomPlugin.enableZoom().then(() =>{
+  });
 
   return (
     <div className="rootContainer">
