@@ -1,5 +1,4 @@
 import "./Map.css";
-import { LatLngExpression } from "leaflet";
 import { useSelector } from "react-redux";
 import L from "leaflet";
 import React, { useEffect, useState } from "react";
@@ -9,18 +8,11 @@ import { managementUnitStyle, selectedFeatureStyle } from "./featureStylers";
 import { FeatureCollection, Feature } from "geojson";
 import {
   MapLibreMap,
-  MlImageMarkerLayer,
-  MlMarker,
   MlNavigationTools,
-  MlWmsLayer,
   useMap,
   MlGeoJsonLayer,
 } from "@mapcomponents/react-maplibre";
 import maplibregl, { Marker } from "maplibre-gl";
-import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
-interface ChangeViewProps {
-  center: LatLngExpression;
-}
 
 // const mooseIconMale = new Icon({
 //   iconUrl: "moose.png",
@@ -73,11 +65,12 @@ const getFeatureCentroidFromManagementArea = (regionId: string) => {
 // };
 
 export const MapPanel: React.FC = () => {
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
   const defaultLocation: [number, number] = [-123.912, 55.25];
 
-  // const subRegion = useSelector(
-  //   (state: any) => state.MooseSightingsState.subRegion
-  // );
+  const subRegion = useSelector(
+    (state: any) => state.MooseSightingsState.subRegion
+  );
   // const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
   //   null
   // );
@@ -97,15 +90,11 @@ export const MapPanel: React.FC = () => {
   //   return managementUnitStyle;
   // };
 
-  // const onEachFeature = (feature: Feature, layer: L.Layer) => {
-  //   if (feature.properties) {
-  //     layer.bindTooltip(feature.properties.WILDLIFE_MGMT_UNIT_ID, {
-  //       permanent: true,
-  //       direction: "center",
-  //       className: `mgmt-unit-label`,
-  //     });
-  //   }
-  // };
+  useEffect(() => {
+    setIsMapLoaded(true);
+    return () => setIsMapLoaded(false);
+  }, []);
+
   return (
     <div className="MapPanel">
       <MapLibreMap
@@ -119,42 +108,64 @@ export const MapPanel: React.FC = () => {
       <MlNavigationTools
         showCenterLocationButton={false}
         show3DButton={false}
-        showFollowGpsButton={false}
+        showFollowGpsButton={true}
       />
 
-      <MlGeoJsonLayer
-        type="symbol"
-        options={{
-          layout: {
-            "text-field": [
-              "format",
-              ["upcase", ["get", "WILDLIFE_MGMT_UNIT_ID"]],
-              { "font-scale": 0.9 },
-            ],
-            // the actual font names that work are here https://github.com/openmaptiles/fonts/blob/gh-pages/fontstacks.json
-            "text-font": ["literal", ["Open Sans Bold"]],
-          },
-          paint: {
-            "text-color": "black",
-            "text-halo-color": "white",
-            "text-halo-width": 5,
-            "text-halo-blur": 1,
-          },
-        }}
-        geojson={mgmtUnits}
-      />
+      {isMapLoaded && (
+        <>
+          <MlGeoJsonLayer
+            type="symbol"
+            options={{
+              layout: {
+                "text-field": [
+                  "format",
+                  ["upcase", ["get", "WILDLIFE_MGMT_UNIT_ID"]],
+                  { "font-scale": 0.9 },
+                ],
+                // the actual font names that work are here https://github.com/openmaptiles/fonts/blob/gh-pages/fontstacks.json
+                "text-font": ["literal", ["Open Sans Bold"]],
+              },
+              paint: {
+                "text-color": "black",
+                "text-halo-color": "white",
+                "text-halo-width": 5,
+                "text-halo-blur": 1,
+              },
+            }}
+            geojson={mgmtUnits}
+          />
+          <MlGeoJsonLayer
+            type="line"
+            defaultPaintOverrides={{
+              line: {
+                "line-color": "#013366",
+                "line-width": 1,
+                "line-opacity": 1,
+              },
+            }}
+            geojson={mgmtUnits}
+          />
+          subRegion &&
+          {
+            <MlGeoJsonLayer
+              type="fill"
+              defaultPaintOverrides={{
+                fill: {
+                  "fill-color": [
+                    "case",
+                    ["==", ["get", "WILDLIFE_MGMT_UNIT_ID"], subRegion],
+                    "#f28f3b", // Selected subRegion color
+                    "rgba(0,0,0,0)", // Default color for unselected
+                  ],
+                  "fill-opacity": 0.5,
+                },
+              }}
+              geojson={mgmtUnits}
+            />
+          }
+        </>
+      )}
 
-      <MlGeoJsonLayer
-        type="line"
-        defaultPaintOverrides={{
-          line: {
-            "line-color": "#2F9366",
-            "line-width": 1,
-            "line-opacity": 1,
-          },
-        }}
-        geojson={mgmtUnits}
-      />
       {/* <MapContainer
         className="MapContainer"
         center={defaultLocation}
