@@ -2,20 +2,18 @@ import "./Map.css";
 import { useSelector, useDispatch } from "react-redux";
 import L from "leaflet";
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
 import mgmtUnits from "../assets/management_units.json";
-import { managementUnitStyle, selectedFeatureStyle } from "./featureStylers";
 import { FeatureCollection, Feature } from "geojson";
 import {
   MapLibreMap,
   MlNavigationTools,
   useMap,
   MlGeoJsonLayer,
-  useSource,
   MlWmsLayer,
 } from "@mapcomponents/react-maplibre";
 import maplibregl, { Marker } from "maplibre-gl";
 import { SET_SELECTED_MAP_LAYER } from "../state/actions";
+import { ClosedLayerIcon, ClosedLayerToggle } from "./LayerControl";
 
 // const mooseIconMale = new Icon({
 //   iconUrl: "moose.png",
@@ -72,14 +70,14 @@ export const MapPanel = () => {
   const selectedMapLayer = useSelector(
     (state) => state.Configuration.selectedMapLayer
   );
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleLayerChange = (event: any) => {
-      dispatch({
-        type: SET_SELECTED_MAP_LAYER,
-        payload: { selectedMapLayer: event.target.value },
-      });
-    };
+  const handleLayerChange = (event: any) => {
+    dispatch({
+      type: SET_SELECTED_MAP_LAYER,
+      payload: { selectedMapLayer: event.target.value },
+    });
+  };
 
   const mapInstance = useMap({
     mapId: "map",
@@ -121,34 +119,18 @@ export const MapPanel = () => {
         showCenterLocationButton={false}
         show3DButton={false}
         showFollowGpsButton={true}
-      />
+      >
+        <ClosedLayerToggle>
+          <ClosedLayerIcon src={"/stack.svg"} />
+        </ClosedLayerToggle>
+      </MlNavigationTools>
 
       {mapInstance.mapIsReady && (
         <>
           <MlWmsLayer
             mapId="map"
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-          />
-          <MlGeoJsonLayer
-            type="symbol"
-            options={{
-              layout: {
-                "text-field": [
-                  "format",
-                  ["upcase", ["get", "WILDLIFE_MGMT_UNIT_ID"]],
-                  { "font-scale": 0.9 },
-                ],
-                // the actual font names that work are here https://github.com/openmaptiles/fonts/blob/gh-pages/fontstacks.json
-                "text-font": ["literal", ["Open Sans Bold"]],
-              },
-              paint: {
-                "text-color": "black",
-                "text-halo-color": "white",
-                "text-halo-width": 5,
-                "text-halo-blur": 1,
-              },
-            }}
-            geojson={mgmtUnits}
+            visible={false}
           />
           <MlGeoJsonLayer
             type="line"
@@ -173,6 +155,27 @@ export const MapPanel = () => {
                   "rgba(0,0,0,0)", // Default color for unselected
                 ],
                 "fill-opacity": 0.5,
+              },
+            }}
+            geojson={mgmtUnits}
+          />
+          <MlGeoJsonLayer
+            type="symbol"
+            options={{
+              layout: {
+                "text-field": [
+                  "format",
+                  ["upcase", ["get", "WILDLIFE_MGMT_UNIT_ID"]],
+                  { "font-scale": 0.9 },
+                ],
+                // the actual font names that work are here https://github.com/openmaptiles/fonts/blob/gh-pages/fontstacks.json
+                "text-font": ["literal", ["Open Sans Bold"]],
+              },
+              paint: {
+                "text-color": "black",
+                "text-halo-color": "white",
+                "text-halo-width": 5,
+                "text-halo-blur": 1,
               },
             }}
             geojson={mgmtUnits}
