@@ -1,5 +1,5 @@
 import "./Map.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import L from "leaflet";
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
@@ -15,6 +15,7 @@ import {
   MlWmsLayer,
 } from "@mapcomponents/react-maplibre";
 import maplibregl, { Marker } from "maplibre-gl";
+import { SET_SELECTED_MAP_LAYER } from "../state/actions";
 
 // const mooseIconMale = new Icon({
 //   iconUrl: "moose.png",
@@ -68,6 +69,17 @@ const getFeatureCentroidFromManagementArea = (regionId: string) => {
 
 export const MapPanel = () => {
   const defaultLocation: [number, number] = [-123.912, 55.25];
+  const selectedMapLayer = useSelector(
+    (state) => state.Configuration.selectedMapLayer
+  );
+    const dispatch = useDispatch();
+
+    const handleLayerChange = (event: any) => {
+      dispatch({
+        type: SET_SELECTED_MAP_LAYER,
+        payload: { selectedMapLayer: event.target.value },
+      });
+    };
 
   const mapInstance = useMap({
     mapId: "map",
