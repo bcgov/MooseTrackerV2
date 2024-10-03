@@ -1,6 +1,7 @@
 # Temp ignore for file database before we get one set up properly
 api/moose.db
-
 api/node_modules
 
 .env
+*.tsbuildinfo
+.DS_Store
