@@ -11,6 +11,8 @@ import {
   MlNavigationTools,
   useMap,
   MlGeoJsonLayer,
+  useSource,
+  MlWmsLayer,
 } from "@mapcomponents/react-maplibre";
 import maplibregl, { Marker } from "maplibre-gl";
 
@@ -64,7 +66,7 @@ const getFeatureCentroidFromManagementArea = (regionId: string) => {
 //   return null;
 // };
 
-export const MapPanel: React.FC = () => {
+const MapPanel = () => {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const defaultLocation: [number, number] = [-123.912, 55.25];
 
@@ -89,11 +91,33 @@ export const MapPanel: React.FC = () => {
   //   }
   //   return managementUnitStyle;
   // };
+  // const addSatelliteLayer = (map: any) => {
+  //   map.addSource("arcgis-world-imagery", {
+  //     type: "raster",
+  //     tiles: [
+  //       "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png",
+  //     ],
+  //     tileSize: 256,
+  //     maxzoom: 24,
+  //   });
 
-  useEffect(() => {
-    setIsMapLoaded(true);
-    return () => setIsMapLoaded(false);
-  }, []);
+  //   map.addLayer({
+  //     id: "arcgis-world-imagery-layer",
+  //     type: "raster",
+  //     source: "arcgis-world-imagery",
+  //     paint: {},
+  //   });
+  // };
+
+  const mapInstance = useMap({
+    mapId: "map",
+  });
+
+  // useEffect(() => {
+  //   if (!mapInstance.map) return;
+
+  //   // addSatelliteLayer(mapInstance.map);
+  // }, [mapInstance.map]);
 
   return (
     <div className="MapPanel">
@@ -111,8 +135,12 @@ export const MapPanel: React.FC = () => {
         showFollowGpsButton={true}
       />
 
-      {isMapLoaded && (
+      {mapInstance.mapIsReady && (
         <>
+          <MlWmsLayer
+            mapId="map"
+            url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
           <MlGeoJsonLayer
             type="symbol"
             options={{
@@ -145,24 +173,22 @@ export const MapPanel: React.FC = () => {
             }}
             geojson={mgmtUnits}
           />
-          subRegion &&
-          {
-            <MlGeoJsonLayer
-              type="fill"
-              defaultPaintOverrides={{
-                fill: {
-                  "fill-color": [
-                    "case",
-                    ["==", ["get", "WILDLIFE_MGMT_UNIT_ID"], subRegion],
-                    "#f28f3b", // Selected subRegion color
-                    "rgba(0,0,0,0)", // Default color for unselected
-                  ],
-                  "fill-opacity": 0.5,
-                },
-              }}
-              geojson={mgmtUnits}
-            />
-          }
+
+          <MlGeoJsonLayer
+            type="fill"
+            defaultPaintOverrides={{
+              fill: {
+                "fill-color": [
+                  "case",
+                  ["==", ["get", "WILDLIFE_MGMT_UNIT_ID"], subRegion],
+                  "#f28f3b", // Selected subRegion color
+                  "rgba(0,0,0,0)", // Default color for unselected
+                ],
+                "fill-opacity": 0.5,
+              },
+            }}
+            geojson={mgmtUnits}
+          />
         </>
       )}
 
@@ -189,3 +215,5 @@ export const MapPanel: React.FC = () => {
     </div>
   );
 };
+
+export default React.memo(MapPanel);
