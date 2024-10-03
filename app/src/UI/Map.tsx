@@ -1,6 +1,6 @@
 import "./Map.css";
 import { useSelector, useDispatch } from "react-redux";
-import L from "leaflet";
+import L, { map } from "leaflet";
 import React, { useEffect, useState } from "react";
 import mgmtUnits from "../assets/management_units.json";
 import { FeatureCollection, Feature } from "geojson";
@@ -72,6 +72,8 @@ export const MapPanel = () => {
   );
   const dispatch = useDispatch();
 
+  const [addedAttribution, setAddedAttribution] = useState(false);
+
   const handleLayerChange = (event: any) => {
     dispatch({
       type: SET_SELECTED_MAP_LAYER,
@@ -82,6 +84,16 @@ export const MapPanel = () => {
   const mapInstance = useMap({
     mapId: "map",
   });
+
+  useEffect(() => {
+    if(!addedAttribution && mapInstance?.mapIsReady){
+      mapInstance?.map?.addControl(
+        new maplibregl.AttributionControl(),
+        "top-left"
+      );
+      setAddedAttribution(true);
+    }
+  },[mapInstance]);
 
   const subRegion = useSelector(
     (state: any) => state.MooseSightingsState.subRegion
@@ -121,6 +133,7 @@ export const MapPanel = () => {
           center: defaultLocation,
           zoom: 5,
           style: "https://wms.wheregroup.com/tileserver/style/osm-bright.json",
+          attributionControl: false
         }}
       />
       <MlNavigationTools
@@ -139,6 +152,7 @@ export const MapPanel = () => {
             mapId="map"
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
             visible={selectedMapLayer}
+            attribution="Esri"
           />
           <MlGeoJsonLayer
             type="line"
