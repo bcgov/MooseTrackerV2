@@ -27,22 +27,22 @@ import { ClosedLayerIcon, ClosedLayerToggle } from "./LayerControl";
 //   return null;
 // };
 
-const getFeatureCentroidFromManagementArea = (regionId: string) => {
-  const managementUnits = mgmtUnits as any; // a large object including data about wildlife management regions
-  const features = managementUnits.features; // an array with entries for each management region
-  const feature = features.find(
-    (feature: any) => feature.properties.WILDLIFE_MGMT_UNIT_ID === regionId
-  );
+// const getFeatureCentroidFromManagementArea = (regionId: string) => {
+//   const managementUnits = mgmtUnits as any; // a large object including data about wildlife management regions
+//   const features = managementUnits.features; // an array with entries for each management region
+//   const feature = features.find(
+//     (feature: any) => feature.properties.WILDLIFE_MGMT_UNIT_ID === regionId
+//   );
 
-  if (feature) {
-    const layer = L.geoJSON(feature);
-    const bounds = layer.getBounds();
-    const center = bounds.getCenter();
-    return [center.lat, center.lng];
-  }
+//   if (feature) {
+//     const layer = L.geoJSON(feature);
+//     const bounds = layer.getBounds();
+//     const center = bounds.getCenter();
+//     return [center.lat, center.lng];
+//   }
 
-  return null;
-};
+//   return null;
+// };
 
 // const MapEventHandler: React.FC = () => {
 //   const map = useMap();
