@@ -133,7 +133,7 @@ export const MapPanel = () => {
           center: defaultLocation,
           zoom: 5,
           style: "https://wms.wheregroup.com/tileserver/style/osm-bright.json",
-          attributionControl: false
+          attributionControl: false,
         }}
       />
       <MlNavigationTools
@@ -152,7 +152,7 @@ export const MapPanel = () => {
             mapId="map"
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
             visible={selectedMapLayer}
-            attribution="Esri"
+            attribution="Powered by Esri"
           />
           <MlGeoJsonLayer
             type="line"
