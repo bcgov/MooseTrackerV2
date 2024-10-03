@@ -41,7 +41,7 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
     Number(cowCount) +
     Number(calfCount) +
     Number(unknownCount);
-  if (!totalMooseCount || Number(totalMooseCount) <= 0) {
+  if (Number(totalMooseCount) < 0) {
     errors.add("Sighting must contain at least 1 moose.");
   }
   if (!region) {

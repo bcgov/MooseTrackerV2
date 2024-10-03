@@ -3,9 +3,14 @@
   height: 75vh;
 }
 
-.MapContainer {
+.mapContainer {
   width: 100%;
   height: 75vh;
+  position: relative;
+}
+
+div.MuiBox-root.css-jei5xd {
+  bottom: 7em !important;
 }
 
 @media (min-width: 600px) {
@@ -13,8 +18,12 @@
     height: 85vh;
   }
   
-  .MapContainer {
+  .mapContainer {
     height: 85vh;
+  }
+
+  div.MuiBox-root.css-1oitskl {
+    bottom: 5em !important;
   }
 }
 
