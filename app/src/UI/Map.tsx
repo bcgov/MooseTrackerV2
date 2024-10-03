@@ -75,7 +75,7 @@ export const MapPanel = () => {
   const handleLayerChange = (event: any) => {
     dispatch({
       type: SET_SELECTED_MAP_LAYER,
-      payload: { selectedMapLayer: event.target.value },
+      payload: { selectedMapLayer: !selectedMapLayer },
     });
   };
 
@@ -86,6 +86,14 @@ export const MapPanel = () => {
   const subRegion = useSelector(
     (state: any) => state.MooseSightingsState.subRegion
   );
+
+  const getLineColor = () => {
+    if(!selectedMapLayer){
+      return "#013366";
+    } else {
+      return "#f27e18";
+    }
+  }
   // const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
   //   null
   // );
@@ -120,7 +128,7 @@ export const MapPanel = () => {
         show3DButton={false}
         showFollowGpsButton={true}
       >
-        <ClosedLayerToggle>
+        <ClosedLayerToggle onClick={handleLayerChange}>
           <ClosedLayerIcon src={"/stack.svg"} />
         </ClosedLayerToggle>
       </MlNavigationTools>
@@ -130,13 +138,13 @@ export const MapPanel = () => {
           <MlWmsLayer
             mapId="map"
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-            visible={false}
+            visible={selectedMapLayer}
           />
           <MlGeoJsonLayer
             type="line"
             defaultPaintOverrides={{
               line: {
-                "line-color": "#013366",
+                "line-color": getLineColor(),
                 "line-width": 1,
                 "line-opacity": 1,
               },

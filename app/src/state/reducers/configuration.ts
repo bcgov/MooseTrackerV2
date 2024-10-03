@@ -2,13 +2,13 @@ import { AppConfig } from '../config';
 
 interface ConfigurationState {
   current: AppConfig;
-  selectedMapLayer: string;
+  selectedMapLayer: boolean;
 }
 
 function createConfigurationReducerWithDefaultState(configuration: AppConfig) {
   const initialState: ConfigurationState = {
     current: configuration,
-    selectedMapLayer: 'default',
+    selectedMapLayer: false,
   };
 
   return (state = initialState, action) => {
@@ -16,7 +16,7 @@ function createConfigurationReducerWithDefaultState(configuration: AppConfig) {
       case "SET_SELECTED_MAP_LAYER":
         return {
           ...state,
-          selectedMapLayer: action.payload,
+          selectedMapLayer: action.payload.selectedMapLayer,
         };
       default:
         return state;
