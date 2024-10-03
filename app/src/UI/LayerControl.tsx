@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 export const ClosedLayerIcon = styled.img`
-  height: 60%;
-  width: 60%;
+  height: 75%;
+  width: 75%;
 `;
 
 export const ClosedLayerToggle = styled.button`
@@ -10,20 +10,16 @@ export const ClosedLayerToggle = styled.button`
   padding-top: 5px;
   margin-top: 5px;
   border: none;
-  border-radius: 4pt;
+  border-radius: 5pt;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: white;
-  height: 30px;
-  width: 30px;
-  &:hover {
-    cursor: pointer;
-    background-color: #eee;
-    border: 1pt solid black;
-  }
+  height: 32px;
+  width: 32px;
   @media (max-width: 900px) {
     height: 50px;
     width: 50px;
+    border-radius: 8pt;
   }
 `;
