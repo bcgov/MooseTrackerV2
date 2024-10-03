@@ -9,6 +9,10 @@
   position: relative;
 }
 
+div.MuiBox-root.css-jei5xd {
+  bottom: 7em !important;
+}
+
 @media (min-width: 600px) {
   .MapPanel {
     height: 85vh;
@@ -16,6 +20,10 @@
   
   .mapContainer {
     height: 85vh;
+  }
+
+  div.MuiBox-root.css-1oitskl {
+    bottom: 5em !important;
   }
 }
 
