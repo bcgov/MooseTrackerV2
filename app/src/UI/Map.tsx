@@ -1,9 +1,7 @@
 import "./Map.css";
 import { useSelector, useDispatch } from "react-redux";
-import L, { map } from "leaflet";
 import React, { useEffect, useState } from "react";
 import mgmtUnits from "../assets/management_units.json";
-import { FeatureCollection, Feature } from "geojson";
 import {
   MapLibreMap,
   MlNavigationTools,
@@ -11,7 +9,7 @@ import {
   MlGeoJsonLayer,
   MlWmsLayer,
 } from "@mapcomponents/react-maplibre";
-import maplibregl, { Marker } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
 import { SET_SELECTED_MAP_LAYER } from "../state/actions";
 import { ClosedLayerIcon, ClosedLayerToggle } from "./LayerControl";
 
@@ -86,26 +84,26 @@ export const MapPanel = () => {
   });
 
   useEffect(() => {
-    if(!addedAttribution && mapInstance?.mapIsReady){
+    if (!addedAttribution && mapInstance?.mapIsReady) {
       mapInstance?.map?.addControl(
         new maplibregl.AttributionControl(),
         "top-left"
       );
       setAddedAttribution(true);
     }
-  },[mapInstance]);
+  }, [mapInstance]);
 
   const subRegion = useSelector(
     (state: any) => state.MooseSightingsState.subRegion
   );
 
   const getLineColor = () => {
-    if(!selectedMapLayer){
+    if (!selectedMapLayer) {
       return "#013366";
     } else {
       return "#f27e18";
     }
-  }
+  };
   // const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
   //   null
   // );
