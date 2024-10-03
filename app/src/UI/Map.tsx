@@ -1,9 +1,7 @@
 import "./Map.css";
 import { useSelector, useDispatch } from "react-redux";
-import L, { map } from "leaflet";
 import React, { useEffect, useState } from "react";
 import mgmtUnits from "../assets/management_units.json";
-import { FeatureCollection, Feature } from "geojson";
 import {
   MapLibreMap,
   MlNavigationTools,
@@ -11,7 +9,7 @@ import {
   MlGeoJsonLayer,
   MlWmsLayer,
 } from "@mapcomponents/react-maplibre";
-import maplibregl, { Marker } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
 import { SET_SELECTED_MAP_LAYER } from "../state/actions";
 import { ClosedLayerIcon, ClosedLayerToggle } from "./LayerControl";
 
@@ -29,22 +27,22 @@ import { ClosedLayerIcon, ClosedLayerToggle } from "./LayerControl";
 //   return null;
 // };
 
-const getFeatureCentroidFromManagementArea = (regionId: string) => {
-  const managementUnits = mgmtUnits as any; // a large object including data about wildlife management regions
-  const features = managementUnits.features; // an array with entries for each management region
-  const feature = features.find(
-    (feature: any) => feature.properties.WILDLIFE_MGMT_UNIT_ID === regionId
-  );
+// const getFeatureCentroidFromManagementArea = (regionId: string) => {
+//   const managementUnits = mgmtUnits as any; // a large object including data about wildlife management regions
+//   const features = managementUnits.features; // an array with entries for each management region
+//   const feature = features.find(
+//     (feature: any) => feature.properties.WILDLIFE_MGMT_UNIT_ID === regionId
+//   );
 
-  if (feature) {
-    const layer = L.geoJSON(feature);
-    const bounds = layer.getBounds();
-    const center = bounds.getCenter();
-    return [center.lat, center.lng];
-  }
+//   if (feature) {
+//     const layer = L.geoJSON(feature);
+//     const bounds = layer.getBounds();
+//     const center = bounds.getCenter();
+//     return [center.lat, center.lng];
+//   }
 
-  return null;
-};
+//   return null;
+// };
 
 // const MapEventHandler: React.FC = () => {
 //   const map = useMap();
@@ -86,26 +84,26 @@ export const MapPanel = () => {
   });
 
   useEffect(() => {
-    if(!addedAttribution && mapInstance?.mapIsReady){
+    if (!addedAttribution && mapInstance?.mapIsReady) {
       mapInstance?.map?.addControl(
         new maplibregl.AttributionControl(),
         "top-left"
       );
       setAddedAttribution(true);
     }
-  },[mapInstance]);
+  }, [mapInstance]);
 
   const subRegion = useSelector(
     (state: any) => state.MooseSightingsState.subRegion
   );
 
   const getLineColor = () => {
-    if(!selectedMapLayer){
+    if (!selectedMapLayer) {
       return "#013366";
     } else {
       return "#f27e18";
     }
-  }
+  };
   // const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
   //   null
   // );
