@@ -72,6 +72,17 @@ export const FormPanel = () => {
         </div>
         <div className="formInput">
           <label>
+            <span className="formContent">Date: </span>
+          </label>
+          <div></div>
+          <input
+            type="date"
+            id="date"
+            value={date ? date.toISOString().split("T")[0] : ""}
+            onChange={handlefromDateChange}
+          />
+          
+          <label>
             <span className="formContent">Bulls: </span>
           </label>
           <div className="count">{bullCount} </div>
@@ -146,17 +157,6 @@ export const FormPanel = () => {
               -
             </button>
           </div>
-
-          <label>
-            <span className="formContent">Date: </span>
-          </label>
-          <input
-            type="date"
-            id="date"
-            value={date ? date.toISOString().split("T")[0] : ""}
-            onChange={handlefromDateChange}
-          />
-          <div></div>
 
           <label>
             <span className="formContent">Hours Out: </span>
