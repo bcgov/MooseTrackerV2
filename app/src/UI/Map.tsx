@@ -66,9 +66,12 @@ const getFeatureCentroidFromManagementArea = (regionId: string) => {
 //   return null;
 // };
 
-const MapPanel = () => {
-  const [isMapLoaded, setIsMapLoaded] = useState(false);
+export const MapPanel = () => {
   const defaultLocation: [number, number] = [-123.912, 55.25];
+
+  const mapInstance = useMap({
+    mapId: "map",
+  });
 
   const subRegion = useSelector(
     (state: any) => state.MooseSightingsState.subRegion
@@ -91,33 +94,6 @@ const MapPanel = () => {
   //   }
   //   return managementUnitStyle;
   // };
-  // const addSatelliteLayer = (map: any) => {
-  //   map.addSource("arcgis-world-imagery", {
-  //     type: "raster",
-  //     tiles: [
-  //       "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png",
-  //     ],
-  //     tileSize: 256,
-  //     maxzoom: 24,
-  //   });
-
-  //   map.addLayer({
-  //     id: "arcgis-world-imagery-layer",
-  //     type: "raster",
-  //     source: "arcgis-world-imagery",
-  //     paint: {},
-  //   });
-  // };
-
-  const mapInstance = useMap({
-    mapId: "map",
-  });
-
-  // useEffect(() => {
-  //   if (!mapInstance.map) return;
-
-  //   // addSatelliteLayer(mapInstance.map);
-  // }, [mapInstance.map]);
 
   return (
     <div className="MapPanel">
@@ -139,7 +115,7 @@ const MapPanel = () => {
         <>
           <MlWmsLayer
             mapId="map"
-            url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
           />
           <MlGeoJsonLayer
             type="symbol"
@@ -191,29 +167,6 @@ const MapPanel = () => {
           />
         </>
       )}
-
-      {/* <MapContainer
-        className="MapContainer"
-        center={defaultLocation}
-        zoom={5}
-        scrollWheelZoom={true}
-        zoomControl={true}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <GeoJSON
-          data={mgmtUnits as FeatureCollection}
-          style={getFeatureStyle}
-          onEachFeature={onEachFeature}
-        />
-        {markerPosition && <ChangeView center={markerPosition} />}
-        <MapEventHandler />
-      </MapContainer>
-      <Outlet /> */}
     </div>
   );
 };
-
-export default React.memo(MapPanel);
