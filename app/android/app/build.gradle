@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     namespace "ca.bc.gov.fw.wildlifetracker"
-    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "ca.bc.gov.fw.wildlifetracker"
+        compileSdk = rootProject.ext.compileSdkVersion
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
