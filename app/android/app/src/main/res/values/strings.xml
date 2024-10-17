@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">MooseTracker</string>
     <string name="title_activity_main">MooseTracker</string>
-    <string name="package_name">com.example.app</string>
-    <string name="custom_url_scheme">com.example.app</string>
+    <string name="package_name">ca.bc.gov.fw.wildlifetracker</string>
+    <string name="custom_url_scheme">ca.bc.gov.fw.wildlifetracker</string>
 </resources>
