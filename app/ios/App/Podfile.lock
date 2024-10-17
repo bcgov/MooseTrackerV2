@@ -1,10 +1,10 @@
 PODS:
-  - Capacitor (5.7.8):
+  - Capacitor (6.1.2):
     - CapacitorCordova
-  - CapacitorBrowser (5.2.1):
+  - CapacitorBrowser (6.0.3):
     - Capacitor
-  - CapacitorCordova (5.7.8)
-  - CapacitorStatusBar (5.0.8):
+  - CapacitorCordova (6.1.2)
+  - CapacitorStatusBar (6.0.1):
     - Capacitor
   - CapacitorZoomAndroid (5.0.0):
     - Capacitor
@@ -29,10 +29,10 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/capacitor-zoom-android"
 
 SPEC CHECKSUMS:
-  Capacitor: 747aadb4fa786f460d8cd9d0557cb81440a13747
-  CapacitorBrowser: bac3132be6506411704149f9f2099843ffe470a0
-  CapacitorCordova: 31ab98dca2ddcee051027a1afe7e8c85c82f7297
-  CapacitorStatusBar: 51af549cfcf35aac3ab072b062967ae5971ee485
+  Capacitor: 679f9673fdf30597493a6362a5d5bf233d46abc2
+  CapacitorBrowser: aab1ed943b01c0365c4810538a8b3477e2d9f72e
+  CapacitorCordova: f48c89f96c319101cd2f0ce8a2b7449b5fb8b3dd
+  CapacitorStatusBar: b81d4fb5d4e0064c712018071b3ab4b810b39a63
   CapacitorZoomAndroid: 8af88fc54f2b1cf8e287f8471b617ab05b4b0dcb
 
 PODFILE CHECKSUM: 3d82611db81999eda8240a8b59e889817701bb9b

@@ -13,8 +13,6 @@ import maplibregl from "maplibre-gl";
 import { SET_SELECTED_MAP_LAYER } from "../state/actions";
 import { ClosedLayerIcon, ClosedLayerToggle } from "./LayerControl";
 
-
-
 export const MapPanel = () => {
   const defaultLocation: [number, number] = [-123.912, 55.25];
   const selectedMapLayer = useSelector(
@@ -46,7 +44,7 @@ export const MapPanel = () => {
   }, [mapInstance]);
 
   const subRegion = useSelector(
-    (state: any) => state.MooseSightingsState.subRegion
+    (state: any) => state.MooseSightingsState.subRegion || ""
   );
 
   const getLineColor = () => {
@@ -63,9 +61,10 @@ export const MapPanel = () => {
         mapId="map"
         options={{
           center: defaultLocation,
-          zoom: 5,
+          zoom: 6,
           style: "https://wms.wheregroup.com/tileserver/style/osm-bright.json",
           attributionControl: false,
+          minZoom: 6,
         }}
       />
       <MlNavigationTools
@@ -78,15 +77,21 @@ export const MapPanel = () => {
         </ClosedLayerToggle>
       </MlNavigationTools>
 
-      {mapInstance.mapIsReady && (
+      {mapInstance.mapIsReady && mgmtUnits?.features?.length > 0 && (
         <>
+          <MlWmsLayer
+            mapId="map"
+            url="https://openmaps.gov.bc.ca/geo/ows?format=image/png&service=WMS&version=1.3.0&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&raster-opacity=0&layers=WHSE_WILDLIFE_MANAGEMENT.WAA_WILDLIFE_MGMT_UNITS_SVW"
+            attribution="BC"
+          />
           <MlWmsLayer
             mapId="map"
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
             visible={selectedMapLayer}
             attribution="Powered by Esri"
           />
-          <MlGeoJsonLayer
+          {/* <MlGeoJsonLayer
+            layerId="polygons"
             type="line"
             defaultPaintOverrides={{
               line: {
@@ -96,8 +101,8 @@ export const MapPanel = () => {
               },
             }}
             geojson={mgmtUnits}
-          />
-
+          /> */}
+          {/* 
           <MlGeoJsonLayer
             type="fill"
             defaultPaintOverrides={{
@@ -112,8 +117,9 @@ export const MapPanel = () => {
               },
             }}
             geojson={mgmtUnits}
-          />
+          /> */}
           <MlGeoJsonLayer
+            layerId="labels"
             type="symbol"
             options={{
               layout: {
