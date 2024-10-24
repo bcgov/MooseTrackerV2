@@ -76,7 +76,7 @@ export const RegionSelector = () => {
           value={selectedRegion}
           onChange={handleRegionSelect}
         >
-          <option>-- select a region --</option>
+          <option>- select a region -</option>
           {regionNamesArray.map((region: any) => (
             <option key={region} value={region}>
               {region}
@@ -93,7 +93,7 @@ export const RegionSelector = () => {
         >
           {/* This section filters the options array so only subregions of the selected region are shown*/}
           {/* The result is then sorted based on management region id (ex id : "1-12") and an option entry generated for each*/}
-          <option value="">-- select a subregion --</option>
+          <option value="">- select a subregion -</option>
           {options
             .filter(
               (property: any) =>
