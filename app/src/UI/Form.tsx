@@ -74,13 +74,13 @@ export const FormPanel = () => {
           <label>
             <span className="formContent">Date: </span>
           </label>
+          <div></div>
           <input
             type="date"
             id="date"
             value={date ? date.toISOString().split("T")[0] : ""}
             onChange={handlefromDateChange}
           />
-          <div></div>
           <label>
             <span className="formContent">Bulls: </span>
           </label>
