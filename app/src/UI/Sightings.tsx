@@ -40,7 +40,6 @@ export const Sightings = (props: any) => {
                     <div>Unknown: {sighting.unknownCount ?? 0}</div>
                     {/* TODO: tick hair loss not yet implemented */}
                     {/* <div>Tick hair loss: {sighting.tickHairLoss} </div> */}
-                    <div>Sync date: {formatDateString(sighting.syncDate)}</div>
                   </AccordionDetails>
                 </Accordion>
               );
