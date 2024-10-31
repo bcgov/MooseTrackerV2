@@ -34,7 +34,10 @@ export const Sightings = (props: any) => {
                   </AccordionSummary>
                   <AccordionDetails>
                     <div>{sighting.region} {sighting.subRegion}</div>
-                    <div>Moose count: {sighting.mooseCount}</div>
+                    <div>Bulls: {sighting.bullCount ?? 0}</div>
+                    <div>Cows: {sighting.cowCount ?? 0}</div>
+                    <div>Calves: {sighting.calfCount ?? 0}</div>
+                    <div>Unknown: {sighting.unknownCount ?? 0}</div>
                     {/* TODO: tick hair loss not yet implemented */}
                     {/* <div>Tick hair loss: {sighting.tickHairLoss} </div> */}
                     <div>Sync date: {formatDateString(sighting.syncDate)}</div>
